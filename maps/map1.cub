@@ -1,6 +1,7 @@
 SO ./texture/SO.xpm          
 NO ./texture/NO1.xpm
 WE ./texture/WE.xpm
+
 EA ./texture/EA.xpm
 
 C 150,150,255

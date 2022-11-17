@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pro <pro@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/11/16 20:48:27 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/17 01:45:20 by pro              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ int check_colors(char **colors, t_cub3d *cubmap, int index)
 	(void) cubmap;
 	(void) index;
 
-	printf("%s\n", colors[1]);
+	if (strstr(*colors, "F") )
+			printf("%s\n", colors[1]);
+	if (strstr(*colors, "C") )
+			printf("%s\n", colors[1]);
 	return (1);
 }
 
@@ -114,10 +117,37 @@ int check_insert_texture(char **map, t_cub3d *cubmap)
 	}
 	return (1);
 }
+char  **remove_empty_line(char **map)
+{
+	int i=0;
+	int j =0;
+	
+	char **tmp;
+	while(map[i])
+		i++;
+	tmp = malloc(sizeof(char *) + i);
+	i = 0;
+	while(map[i])
+	{
+		map[i] = ft_strtrim(map[i], " \t\n");
+		if (j == 6)
+			break;
+		if (ft_strlen(map[i]) != 0)
+			tmp[j] = map[i];
+		else
+			j -= 1;
+		j++;
+		i++;
+	}
+	tmp[j] = 0;
+	return(tmp);
+}
 
 int read_to_file(char *namefile, t_cub3d *cubmap)
 {
 	int fd;
+	char **map;
+	(void) cubmap;
 
 	int i;
 	fd = open(namefile, O_RDONLY);
@@ -127,7 +157,8 @@ int read_to_file(char *namefile, t_cub3d *cubmap)
 	while(get_next_line(fd))
 		i++;
 	fd = open(namefile, O_RDONLY);
-	check_insert_texture(get_map(i, fd), cubmap);
+	map = get_map(i, fd);
+	check_insert_texture(remove_empty_line(map), cubmap);
 	return (1);
 }
 

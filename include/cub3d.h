@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pro <pro@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/11/16 17:07:31 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:19:39 by pro              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,12 @@ char	*ft_strdup(const char *s1);
 char	*ft_strtrim(char const *s1, char const *set);
 // getnext line
 char	*get_next_line(int fd);
+// check map 1
+int check_exten(char *filename);
+int check_name_exc(char *filename);
+int read_to_file(char *namefile, t_cub3d *cubmap);
+// check errors
 
+int check_colors_floor(char *color, t_cub3d *cubmap);
+int check_colors_ciel(char *color, t_cub3d *cubmap);
 #endif

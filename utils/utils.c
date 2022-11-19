@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pro <pro@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 01:12:44 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/11/16 16:52:57 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/19 19:20:07 by pro              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ size_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
+}
+
+size_t ft_len_ptr(char **ptr)
+{
+
+    size_t  i;
+
+    i = 0;
+    
+    while(ptr[i])
+        i++;
+    return (i);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

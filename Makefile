@@ -7,6 +7,7 @@ SRC = cub3d.c get_next_line.c \
 	utils/ft_split.c \
 	utils/ft_strtrim.c \
 	src/check_map1.c \
+	src/check_map2.c \
 	src/check_errors_map.c
 
 SRC_UTILS = utils/utils.c \

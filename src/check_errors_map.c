@@ -6,7 +6,7 @@
 /*   By: pro <pro@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/11/18 14:33:49 by pro              ###   ########.fr       */
+/*   Updated: 2022/11/18 22:53:03 by pro              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_is_digit(char *str)
 	i = -1;
 	while(str[++i])
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if ((str[i] < '0' || str[i] > '9') )
 			return (1);
 	}
 	return (0);
@@ -61,7 +61,7 @@ int check_colors_floor(char *color, t_cub3d *cubmap)
     splited = ft_split(color, ',');
     while(splited[i])
     {
-        if (ft_is_digit(splited[i]))
+        if (ft_is_digit(ft_strtrim(splited[i], " ")))
 			return (0);
          i++;
     }
@@ -90,7 +90,11 @@ int check_colors_ciel(char *color, t_cub3d *cubmap)
     
     splited = ft_split(color, ',');
     while(splited[i])
+	{
+		 if (ft_is_digit(ft_strtrim(splited[i], " ")))
+			return (0);
         i++;
+	}
     if (i != 3)
         return (0);
     i = -1;
@@ -104,3 +108,30 @@ int check_colors_ciel(char *color, t_cub3d *cubmap)
     cubmap->ciel[2] = atoi(splited[2]);
     return (1);
 }
+ int check_floor_ceil(int *str)
+ {
+	 int	i;
+
+	 i=0;
+	 while(i < 3)
+	 {
+		 if (str[i] < 0 || str[i] > 255)
+		 	return (0);
+		 i++;
+	 }
+	 return (1);
+ }
+ int is_open(char *namefile)
+ {
+	 int	fd;
+	 
+	 fd = open(namefile, O_RDONLY);
+	 close(fd);
+	 return (fd);
+ }
+ int check_file_texture(t_cub3d *texture)
+ {
+	 if (is_open(texture->no) == -1 || is_open(texture->so) == -1 || is_open(texture->ea) == -1 || is_open(texture->we) == -1)
+	 	return (0);
+	return (1);
+ }

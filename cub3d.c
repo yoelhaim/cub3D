@@ -6,7 +6,7 @@
 /*   By: pro <pro@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/11/18 14:25:24 by pro              ###   ########.fr       */
+/*   Updated: 2022/11/19 20:42:18 by pro              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,14 @@ int main(int ac, char **av)
 		return (write(1, "error extention maps !\n", 24), 1);
 	else
 	{
-		if (!read_to_file(namefile, &cubmap))
+		if (!read_to_file(namefile, &cubmap) )
 			return(printf("error check map\n"),1);
+        check_maps(&cubmap);
+        // if (!check_floor_ceil(cubmap.floor) || !check_floor_ceil(cubmap.ciel))
+        //     return (printf("error color\n"), 0);
+        // if(!check_file_texture(&cubmap))
+        //     return (printf("error textur\n"), 0);
+        printf("%d\n", check_is_valid_map(cubmap.maps));
 		printf("Go! %s\n", cubmap.so);
 		printf("Go! %s\n", cubmap.no);
 		printf("Go! %s\n", cubmap.we);

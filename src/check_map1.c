@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_map1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pro <pro@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/11/19 20:43:32 by pro              ###   ########.fr       */
+/*   Updated: 2022/11/20 22:34:56 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
 
 char *rev_str(char *str)
 {
@@ -34,50 +33,74 @@ char *rev_str(char *str)
 
 int check_name_exc(char *filename)
 {
-	if (strcmp(rev_str(filename), "buc"))
-		return (0);
-	return (1);
+	return (!strcmp(rev_str(filename), "buc"));
 }
-
 
 void get_map(int size, int fd, t_cub3d *cubmap)
 {
-	int		length;
+	int length;
+	char *str;
 
 	length = 0;
-	cubmap->map = malloc(sizeof(char *) * size );
-	while(length < size)
-    {
-		cubmap->map[length] =  get_next_line(fd);
-        length++;
-    }
+	cubmap->map = malloc(sizeof(char *) * size);
+	while (length < size)
+	{
+		str = ft_strtrim(get_next_line(fd), " \t\n");
+		if (strstr(str, "111"))
+			break;
+		if (ft_strlen(str) != 0)
+			cubmap->map[length] = str;
+		else
+			length -= 1;
+		length++;
+	}
+
 	cubmap->map[length] = 0;
 	close(fd);
 }
 
-
-int check_colors(char **colors, t_cub3d *cubmap, int index)
+int check_colors(char **colors, t_cub3d *cubmap)
 {
-	(void) cubmap;
-	(void) index;
+	if (strstr(*colors, "F"))
+		return (check_colors_floor(*(colors + 1), cubmap));
+	if (strstr(*colors, "C"))
+		return (check_colors_ciel(*(colors + 1), cubmap));
+	return (1);
+}
 
-	if (strstr(*colors, "F") )
+int check_doube_texture(char **map)
+{
+	int i;
+	char **split;
+	int len;
+
+	i = -1;
+	len = 0;
+	while (map[++i])
 	{
-		if (!check_colors_floor(*(colors + 1), cubmap))
-            return (0);
-        
+		split = ft_split(map[i], ' ');
+		if (strstr(*split, "SO"))
+			len++;
+		if (strstr(*split, "NO"))
+			len++;
+		if (strstr(*split, "EA"))
+			len++;
+		if (strstr(*split, "WE"))
+			len++;
+		if (strstr(*split, "F"))
+			len++;
+		if (strstr(*split, "C"))
+			len++;
 	}
-			
-	if (strstr(*colors, "C") )
-			if (!check_colors_ciel(*(colors + 1), cubmap))
-            	return (0);
+	if (len != 6)
+		return (0);
 	return (1);
 }
 
 int check_insert_texture(char **map, t_cub3d *cubmap)
 {
-	int		i;
-	char	**split;
+	int i;
+	char **split;
 
 	i = -1;
 	while (map[++i])
@@ -86,11 +109,8 @@ int check_insert_texture(char **map, t_cub3d *cubmap)
 		if (split[1])
 			split[1] = ft_strtrim(split[1], " \t\n");
 		else
-        {
-            break;
-        }
-			
-		if (strstr(*split, "NO") )
+			break;
+		if (strstr(*split, "NO"))
 			cubmap->no = strdup(split[1]);
 		else if (strstr(*split, "SO"))
 			cubmap->so = strdup(split[1]);
@@ -98,54 +118,32 @@ int check_insert_texture(char **map, t_cub3d *cubmap)
 			cubmap->we = strdup(split[1]);
 		else if (strstr(*split, "EA"))
 			cubmap->ea = strdup(split[1]);
-		if (!check_colors(split, cubmap, i))
+		if (!check_colors(split, cubmap))
 			return (0);
-		cubmap->last_index = i + 1;
+
 		
+		cubmap->last_index = i + 1;
 	}
-	return (1);
+	return (check_doube_texture(map));
 }
-char  **remove_empty_line(char **map)
+
+void replaced(char **maps)
 {
-	int i=0;
-	int j =0;
-	
-	char **tmp;
-	while(map[i])
-		i++;
-	tmp = malloc(sizeof(char *) + i);
-	i = 0;
-	while(map[i])
+	int i;
+	int j;
+
+	i = -1;
+
+	while (maps[++i])
 	{
-		map[i] = ft_strtrim(map[i], " \t\n");
-		if (j == 6)
-			break;
-		if (ft_strlen(map[i]) != 0)
-			tmp[j] = map[i];
-		else
-			j -= 1;
-		j++;
-		i++;
+		maps[i] = ft_strtrim(maps[i], " \t\n");
+		j = -1;
+		while (maps[i][++j])
+		{
+			if (maps[i][j] == '\t')
+				maps[i][j] = ' ';
+		}
 	}
-	tmp[j] = 0;
-	return(tmp);
-}
-void    replaced(char **maps)
-{
-    int i;
-    int j;
-    
-    i = -1;
-    
-    while(maps[++i])
-    {
-        j =-1;
-      while(maps[i][++j])
-          {
-            if (maps[i][j] == '\t')
-                maps[i][j] = ' ';
-        }
-    }
 }
 int read_to_file(char *namefile, t_cub3d *cubmap)
 {
@@ -157,13 +155,11 @@ int read_to_file(char *namefile, t_cub3d *cubmap)
 	if (fd < 0)
 		return (printf("error read to map ! \n"), 0);
 	i = 0;
-	while(get_next_line(fd))
+	while (get_next_line(fd))
 		i++;
 	fd = open(namefile, O_RDONLY);
-    get_map(i, fd, cubmap);
-    replaced(cubmap->map);
+	get_map(i, fd, cubmap);
+	replaced(cubmap->map);
 	map = cubmap->map;
-	if (!check_insert_texture(remove_empty_line(map), cubmap))
-		return (0);
-	return (1);
+	return (check_insert_texture(map, cubmap));
 }

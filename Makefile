@@ -15,7 +15,7 @@ SRC_UTILS = utils/utils.c \
 OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 all : $(NAME)
 %.o : %.c $(INC)
 	$(CC) $(FLAGS) -c $< -o $@

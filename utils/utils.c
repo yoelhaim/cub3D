@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pro <pro@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 01:12:44 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/11/19 19:20:07 by pro              ###   ########.fr       */
+/*   Updated: 2022/11/21 14:10:47 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,15 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
-size_t ft_len_ptr(char **ptr)
+size_t	ft_len_ptr(char **ptr)
 {
+	size_t	i;
 
-    size_t  i;
-
-    i = 0;
-    
-    while(ptr[i])
-        i++;
-    return (i);
+	i = 0;
+	while (ptr[i])
+		i++;
+	return (i);
 }
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*str;
-	size_t	s1_len;
-	size_t	s2_len;
-
-	if (!s1 || !s2)
-		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	str = malloc(sizeof(char) * (s1_len + s2_len + 1));
-	if (!str)
-		return (NULL);
-	ft_memcpy(str, s1, s1_len);
-	ft_memcpy(str + s1_len, s2, s2_len);
-	str[s1_len + s2_len] = '\0';
-	return (str);
-}
-
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
@@ -85,24 +63,4 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	dst[i] = '\0';
 	return (ft_strlen(src));
-}
-
-char	*ft_strdup(const char *s1)
-{
-	char	*dup;
-	size_t	i;
-	size_t	len_str;
-
-	i = 0;
-	len_str = ft_strlen(s1) + 1;
-	dup = malloc(len_str);
-	if (!dup)
-		return (NULL);
-	while (s1[i])
-	{
-		dup[i] = s1[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
 }

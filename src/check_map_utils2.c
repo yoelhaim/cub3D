@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/11/21 16:42:38 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:11:37 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int	check_maps(t_cub3d *cubmap, char *namefile)
 	while (get_next_line(fd))
 		i++;
 	cubmap->maps = malloc(sizeof(char *) * i);
+	if (!cubmap->maps)
+		return (0);
 	close(fd);
 	fd = open(namefile, O_RDONLY);
 	while (++len < i)

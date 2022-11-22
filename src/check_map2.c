@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/11/21 15:27:30 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/22 10:36:13 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	find_player_position(char **map, t_cub3d *cubmap)
 
 	i = -1;
 	len = 0;
-	j = 0;
 	while (map[++i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'E')
+			if (map[i][j] == 'E' || map[i][j] == 'N' \
+			|| map[i][j] == 'S' || map[i][j] == 'W')
 			{
 				cubmap->pos_player_x = i;
 				cubmap->pos_player_y = j;

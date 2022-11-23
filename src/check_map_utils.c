@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/11/22 12:10:53 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:43:21 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	check_errors(char **value)
 	int	fd;
 
 	if (!value)
-		return (printf("error\n"), 0);
+		return (ft_putstr_fd("error\n", 2), 0);
 	if (ft_strlen(value[0]) != 2)
-		return (printf("error name \n"), 0);
+		return (ft_putstr_fd("error name\n", 2), 0);
 	fd = open(ft_strtrim((strstr(value[0], "./") + 2), "\n"), O_RDONLY);
 	if (fd < 0)
 		return (printf("error open texture  %s\n", value[0]), 0);

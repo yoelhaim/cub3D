@@ -1,8 +1,15 @@
-NAME = Cub3d
+NAME = cub3d
+
 INC = include/cub3d.h
+
 CC = cc 
+
 FLAGS = -Wall -Wextra -Werror
+
 fLIB = libft/
+
+MA = ma/
+
 SRC = cub3d.c get_next_line.c \
 	utils/utils.c  \
 	utils/ft_split.c \
@@ -20,19 +27,28 @@ SRC = cub3d.c get_next_line.c \
 	$(fLIB)ft_strjoin.c \
 	$(fLIB)ft_strtrim.c \
 	$(fLIB)ft_isdigit.c \
-	$(fLIB)ft_substr.c
+	$(fLIB)ft_substr.c \
+	$(MA)utils.c \
+	$(MA)image.c \
+	main.c
 
 SRC_UTILS = utils/utils.c \
 	get_next_line.c
+
 OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
 all : $(NAME)
+
 %.o : %.c $(INC)
 	$(CC) $(FLAGS) -c $< -o $@
+
 clean : 
 	rm -rf $(OBJ)
+
 fclean : clean
 	rm -rf $(NAME)
+
 re : fclean all

@@ -39,7 +39,6 @@ void print_map(char *map_src)
     char	*line;
 
     fd = open(map_src, O_RDONLY);
-    // int fd2 = open("/dev/ttys000", O_WRONLY);
 
 
 	if (fd < 0)
@@ -49,7 +48,6 @@ void print_map(char *map_src)
 	while (line)
 	{
 		ft_putline(line);
-		// ft_putstr_fd(line, fd2);
 		line = get_next_line(fd);
 	}
 

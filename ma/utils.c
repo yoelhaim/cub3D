@@ -6,60 +6,43 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/11/23 15:35:03 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/26 18:08:12 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void print_grid(t_vars *vars)
+void ft_oriented(int keycode, t_data *data)
 {
-	int x = 30;
-	int y = 30;
-	while (x < 1080)
-	{
-		print_line(vars, x);
-		x += 30;
-	}
-	while (y < 1920)
-	{
-		print_col(vars, y);
-		y += 30;
-	}
-}
+	char **map;
+	float *pa;
 
-void print_line(t_vars *vars, int x)
-{
-	int y = -1;
-	while (++y < 1920)
-		mlx_pixel_put(vars->mlx, vars->win, y, x, 0x352F44);
-}
-
-void print_col(t_vars *vars, int y)
-{
-	int x = -1;
-	while (++x < 1080)
-		mlx_pixel_put(vars->mlx, vars->win, y, x, 0x352F44);
-}
-
-// void move(t_vars *vars, int y, int x)
-// {
-	
-// 	print_squre(vars->mlx, vars->win, y, x, 0xFF0000);
-// 	// mlx_pixel_put(vars->mlx, vars->win, y, x, 0xF0FF42);
-// }
-
-int ft_oriented(int keycode, t_data *data)
-{
-	(void)data;
+	pa = &data->angle;
+	map = data->cub->maps;
 	if (keycode == 124)
 	{
-		printf("hello\n");
-		return 1;
+		*pa -= 0.1;
+		
+		if (*pa < 0)
+			*pa = 2 * M_PI;
+		
+		data->p2.x = data->p1.x + cos(*pa) * 20;
+		data->p2.y = data->p1.y + sin(*pa) * 20;
+		return ;
 	}
+	if (keycode == 123)
+	{
+		*pa += 0.1;
+		
+		if (*pa > 2 * M_PI)
+			*pa = 0;
 
-	return 0;
+		data->p2.x = data->p1.x + cos(*pa) * 20;
+		data->p2.y = data->p1.y + sin(*pa) * 20;
+		return ;
+	}
 }
+
 
 int ft_event(int keycode, t_data *data)
 {
@@ -70,51 +53,69 @@ int ft_event(int keycode, t_data *data)
 	y = data->cub->pos_player_y;
 	if (keycode == 53)
 		ft_esc(data);
-	if (!ft_oriented(keycode, data))
-		ft_move(keycode, data, y, x);
+	ft_oriented(keycode, data);
+	ft_move(keycode, data);
+	create_image(data);
 	return (0);
 }
 
-void	ft_move(int keycode, t_data *data, double y, double x)
+void	ft_move(int keycode, t_data *data)
 {
 	char **map;
-	
+	float *pa;
+
+	pa = &data->angle;
 	map = data->cub->maps;
-	printf("%d\n", keycode);
-	if (keycode == 2)
-	{
-		if (map[(int)y][(int)(x + 0.2)] == '0')
-		{
-			data->cub->pos_player_x += 0.2;
-			// mlx_destroy_image(data->mlx_ptr, &data->img);
-			create_image(data);
-		}
-	}
+	int i;
+	int j;
+
+	// printf("%d\n", keycode);
 	if (keycode == 13)
 	{
-		if (map[(int)(y - 0.2)][(int)x] == '0')
+		i = data->p1.x + cos(*pa) * 2;
+		j = data->p1.y + sin(*pa) * 2;
+		if (map[j / GRID_SIZE][i / GRID_SIZE] != '1')
 		{
-			data->cub->pos_player_y -= 0.2;
-			// mlx_destroy_image(data->mlx_ptr, &data->img);
-			create_image(data);
+			data->p1.x += cos(*pa) * 2;
+			data->p2.x += cos(*pa) * 2;
+			data->p1.y += sin(*pa) * 2;
+			data->p2.y += sin(*pa) * 2;
 		}
 	}
-	if (keycode == 0)
+	else if (keycode == 1)
 	{
-		if (map[(int)y][(int)(x - 0.2)] == '0')
+		i = data->p1.x - cos(*pa) * 2;
+		j = data->p1.y - sin(*pa) * 2;
+		if (map[j / GRID_SIZE][i / GRID_SIZE] != '1')
 		{
-			data->cub->pos_player_x -= 0.2;
-			// mlx_destroy_image(data->mlx_ptr, &data->img);
-			create_image(data);
+			data->p1.x -= cos(*pa) * 2;
+			data->p2.x -= cos(*pa) * 2;
+			data->p1.y -= sin(*pa) * 2;
+			data->p2.y -= sin(*pa) * 2;
 		}
 	}
-	if (keycode == 1)
+	else if (keycode == 2)
 	{
-		if (map[(int)(y + 0.2)][(int)x] == '0')
+		i = data->p1.x + cos(*pa) * 2;
+		j = data->p1.y - sin(*pa) * 2;
+		if (map[j / GRID_SIZE][i / GRID_SIZE] != '1')
 		{
-			data->cub->pos_player_y += 0.2;
-			// mlx_destroy_image(data->mlx_ptr, &data->img);
-			create_image(data);
+			data->p1.x -= sin(*pa) * 2;
+			data->p2.x -= sin(*pa) * 2;
+			data->p1.y += cos(*pa) * 2;
+			data->p2.y += cos(*pa) * 2;
+		}
+	}
+	else if (keycode == 0)
+	{
+		i = data->p1.x - cos(*pa) * 2;
+		j = data->p1.y + sin(*pa) * 2;
+		if (map[j / GRID_SIZE][i / GRID_SIZE] != '1')
+		{
+			data->p1.x += sin(*pa) * 2;
+			data->p2.x += sin(*pa) * 2;
+			data->p1.y -= cos(*pa) * 2;
+			data->p2.y -= cos(*pa) * 2;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/11/23 15:30:41 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/26 19:36:10 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <mlx.h>
+#include <math.h>
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
@@ -27,10 +28,28 @@
 #define WALL 0x5454C5
 #define SPACE 0x639CD9
 #define YELLOW 0xFFFF00
+#define DARK 0x342056
+#define GRID_SIZE 30
+
+// #define PI = 3.14159
 
 
+typedef struct s_point
+{
+	float x;
+	float y;
+} t_point;
 
-
+typedef struct s_line
+{
+	int dx;
+    int dy;
+    int steps;
+    float Xinc;
+    float Yinc;
+	float X;
+	float Y;
+} t_line;
 
 typedef struct s_cub3d
 {
@@ -43,8 +62,8 @@ typedef struct s_cub3d
 	int				floor[3];
 	int				ciel[3];
 	int				last_index;
-	double				pos_player_x;
-	double				pos_player_y;
+	double			pos_player_x;
+	double			pos_player_y;
 	char			direction;
 }	t_cub3d;
 // mlx
@@ -61,7 +80,7 @@ typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
-	int		bpp; /* bits per pixel */
+	int		bpp;
 	int		line_len;
 	int		endian;
 }	t_img;
@@ -72,7 +91,12 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	img;
 	t_cub3d *cub;
+	t_point p1;
+	t_point p2;
+	float	angle;
+	int key_press;
 }	t_data;
+
 
 typedef struct s_rect
 {
@@ -82,6 +106,13 @@ typedef struct s_rect
 	int height;
 	int color;
 }	t_rect;
+
+typedef struct s_vector
+{
+	int origin_x;
+	int origin_y;
+	
+} t_vector;
 
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
@@ -120,21 +151,18 @@ int		check_maps(t_cub3d *cubmap, char *namefile);
 int		check_is_valid_map(char **maps, t_cub3d *cubmap);
 
 
-int		create_trgb(int t, int r, int g, int b);
 void	move(t_data *data, int y, int x);
 int		ft_esc(t_data *data);
 int 	ft_event(int keycode, t_data *data);
-void	ft_move(int keycode, t_data *data, double y, double x);
-int		how_many_grid(int grid);
-int		how_many_grid_mini(int grid);
-void	print_line(t_vars *vars, int x);
-void	print_col(t_vars *vars, int y);
-void	print_grid(t_vars *vars);
+void	ft_move(int keycode, t_data *data);
+void	ft_oriented(int keycode, t_data *data);
+
+
+
 void	ft_end(t_data	data);
 void	ft_init(t_data	*data, t_cub3d *cubmap);
 void	ft_main(t_data	*data);
-void	handle_c(int pid);
-void	print_squre(void *mlx, void *win, int x, int y, int color);
+
 
 
 void	img_pix_put(t_img *img, int x, int y, int color);

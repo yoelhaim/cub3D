@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/11/26 18:08:12 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/27 12:19:52 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,18 @@ void ft_oriented(int keycode, t_data *data)
 
 	pa = &data->angle;
 	map = data->cub->maps;
-	if (keycode == 124)
+	if (keycode == RIGHT_ARROW)
+	{
+		*pa += 0.1;
+
+		if (*pa > 2 * M_PI)
+			*pa = 0;
+
+		data->p2.x = data->p1.x + cos(*pa) * 20;
+		data->p2.y = data->p1.y + sin(*pa) * 20;
+		return ;
+	}
+	if (keycode == LEFT_ARROW)
 	{
 		*pa -= 0.1;
 		
@@ -30,19 +41,12 @@ void ft_oriented(int keycode, t_data *data)
 		data->p2.y = data->p1.y + sin(*pa) * 20;
 		return ;
 	}
-	if (keycode == 123)
-	{
-		*pa += 0.1;
-		
-		if (*pa > 2 * M_PI)
-			*pa = 0;
-
-		data->p2.x = data->p1.x + cos(*pa) * 20;
-		data->p2.y = data->p1.y + sin(*pa) * 20;
-		return ;
-	}
 }
 
+int ft_has_wall(char **map, int i, int j)
+{
+	return (map[(int)floor(j / GRID_SIZE)][(int)floor(i / GRID_SIZE)] != '1');
+}
 
 int ft_event(int keycode, t_data *data)
 {
@@ -51,12 +55,76 @@ int ft_event(int keycode, t_data *data)
 
 	x = data->cub->pos_player_x;
 	y = data->cub->pos_player_y;
-	if (keycode == 53)
+	if (keycode == ESC)
 		ft_esc(data);
 	ft_oriented(keycode, data);
 	ft_move(keycode, data);
 	create_image(data);
 	return (0);
+}
+
+void ft_move_up(t_data *data, char **map, float pa)
+{
+	int i;
+	int j;
+
+	i = data->p1.x + cos(pa) * MOVE_STEP;
+	j = data->p1.y + sin(pa) * MOVE_STEP;
+	if (ft_has_wall(map, i, j))
+	{
+		data->p1.x += cos(pa) * MOVE_STEP;
+		data->p2.x += cos(pa) * MOVE_STEP;
+		data->p1.y += sin(pa) * MOVE_STEP;
+		data->p2.y += sin(pa) * MOVE_STEP;
+	}
+}
+
+void ft_move_down(t_data *data, char **map, float pa)
+{
+	int i;
+	int j;
+
+	i = data->p1.x - cos(pa) * MOVE_STEP;
+	j = data->p1.y - sin(pa) * MOVE_STEP;
+	if (ft_has_wall(map, i, j))
+	{
+		data->p1.x -= cos(pa) * MOVE_STEP;
+		data->p2.x -= cos(pa) * MOVE_STEP;
+		data->p1.y -= sin(pa) * MOVE_STEP;
+		data->p2.y -= sin(pa) * MOVE_STEP;
+	}
+}
+
+void ft_move_left(t_data *data, char **map, float pa)
+{
+	int	i;
+	int	j;
+
+	i = data->p1.x - cos(pa) * MOVE_STEP;
+	j = data->p1.y + sin(pa) * MOVE_STEP;
+	if (ft_has_wall(map, i, j))
+	{
+		data->p1.x += sin(pa) * MOVE_STEP;
+		data->p2.x += sin(pa) * MOVE_STEP;
+		data->p1.y -= cos(pa) * MOVE_STEP;
+		data->p2.y -= cos(pa) * MOVE_STEP;
+	}
+}
+
+void ft_move_right(t_data *data, char **map, float pa)
+{
+	int	i;
+	int	j;
+
+	i = data->p1.x + cos(pa) * MOVE_STEP;
+	j = data->p1.y - sin(pa) * MOVE_STEP;
+	if (ft_has_wall(map, i, j))
+	{
+		data->p1.x -= sin(pa) * MOVE_STEP;
+		data->p2.x -= sin(pa) * MOVE_STEP;
+		data->p1.y += cos(pa) * MOVE_STEP;
+		data->p2.y += cos(pa) * MOVE_STEP;
+	}
 }
 
 void	ft_move(int keycode, t_data *data)
@@ -66,57 +134,12 @@ void	ft_move(int keycode, t_data *data)
 
 	pa = &data->angle;
 	map = data->cub->maps;
-	int i;
-	int j;
-
-	// printf("%d\n", keycode);
-	if (keycode == 13)
-	{
-		i = data->p1.x + cos(*pa) * 2;
-		j = data->p1.y + sin(*pa) * 2;
-		if (map[j / GRID_SIZE][i / GRID_SIZE] != '1')
-		{
-			data->p1.x += cos(*pa) * 2;
-			data->p2.x += cos(*pa) * 2;
-			data->p1.y += sin(*pa) * 2;
-			data->p2.y += sin(*pa) * 2;
-		}
-	}
-	else if (keycode == 1)
-	{
-		i = data->p1.x - cos(*pa) * 2;
-		j = data->p1.y - sin(*pa) * 2;
-		if (map[j / GRID_SIZE][i / GRID_SIZE] != '1')
-		{
-			data->p1.x -= cos(*pa) * 2;
-			data->p2.x -= cos(*pa) * 2;
-			data->p1.y -= sin(*pa) * 2;
-			data->p2.y -= sin(*pa) * 2;
-		}
-	}
-	else if (keycode == 2)
-	{
-		i = data->p1.x + cos(*pa) * 2;
-		j = data->p1.y - sin(*pa) * 2;
-		if (map[j / GRID_SIZE][i / GRID_SIZE] != '1')
-		{
-			data->p1.x -= sin(*pa) * 2;
-			data->p2.x -= sin(*pa) * 2;
-			data->p1.y += cos(*pa) * 2;
-			data->p2.y += cos(*pa) * 2;
-		}
-	}
-	else if (keycode == 0)
-	{
-		i = data->p1.x - cos(*pa) * 2;
-		j = data->p1.y + sin(*pa) * 2;
-		if (map[j / GRID_SIZE][i / GRID_SIZE] != '1')
-		{
-			data->p1.x += sin(*pa) * 2;
-			data->p2.x += sin(*pa) * 2;
-			data->p1.y -= cos(*pa) * 2;
-			data->p2.y -= cos(*pa) * 2;
-		}
-	}
+	if (keycode == W_KEY)
+		ft_move_up(data, map, data->angle);
+	else if (keycode == S_KEY)
+		ft_move_down(data, map, data->angle);
+	else if (keycode == D_KEY)
+		ft_move_right(data, map, data->angle);
+	else if (keycode == A_KEY)
+		ft_move_left(data, map, data->angle);
 }
-

@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/11/26 19:36:10 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/27 12:07:31 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,18 @@
 #define SPACE 0x639CD9
 #define YELLOW 0xFFFF00
 #define DARK 0x342056
-#define GRID_SIZE 30
+#define GRID_SIZE 32
+
+#define LEFT_ARROW 123
+#define RIGHT_ARROW 124
+
+#define ESC 53
+#define W_KEY 13
+#define D_KEY 2
+#define S_KEY 1
+#define A_KEY 0
+
+#define MOVE_STEP 2
 
 // #define PI = 3.14159
 

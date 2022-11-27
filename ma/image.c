@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/11/26 19:39:11 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/27 11:11:12 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,19 @@ void DDA(t_data *data, t_point p1, t_point p2)
     }
 }
 
-// void ft_get_intersection(t_point *orgin, t_point *p)
-// {
+void ft_get_intersection(t_data *data, t_point *orgin, t_point *p)
+{
 
-	
-// 	printf("%f %f\n", p->x, p->y);
-	
-// }
+	double pa = data->angle;
 
-void drawGrid(t_data *data)
+	(void) orgin;
+	(void) pa;
+	
+
+	printf("%f %f\n", p->x, p->y);
+}
+
+void draw_grid(t_data *data)
 {
 	int i = 0;
 	int j;
@@ -148,13 +152,11 @@ void drawGrid(t_data *data)
 	}
 }
 
-int	render(t_data *data, char **map)
+void draw_map(t_data *data, char **map)
 {
 	int i;
 	int j;
 
-	if (data->win_ptr == NULL)
-		return (1);
 	i = 0;
 	while (map[i])
 	{
@@ -169,9 +171,16 @@ int	render(t_data *data, char **map)
 		}
 		i++;
 	}
+}
+
+int	render(t_data *data, char **map)
+{
+	if (data->win_ptr == NULL)
+		return (1);
+
+	draw_map(data, map);
+	draw_grid(data);
 	
-	// ft_get_intersection(&data->p1, &data->p2);
-	drawGrid(data);
 	DDA(data, data->p1, data->p2);
 	render_rect(&data->img, (t_rect){data->p1.x, data->p1.y, 5, 5, YELLOW});
 	

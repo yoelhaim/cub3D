@@ -6,11 +6,11 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/11/27 12:07:31 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/29 16:32:24 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+# ifndef CUB3D_H
 # define CUB3D_H
 # include <stdio.h>
 # include <stdlib.h>
@@ -18,32 +18,32 @@
 # include <fcntl.h>
 # include <string.h>
 # include <mlx.h>
-#include <math.h>
+# include <math.h>
+# include <limits.h>
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
-#define GREEN_PIXEL 0xFF00
-#define RED 0xFF0000
-#define WHITE_PIXEL 0xFFFFFF
-#define WALL 0x5454C5
-#define SPACE 0x639CD9
-#define YELLOW 0xFFFF00
-#define DARK 0x342056
-#define GRID_SIZE 32
+# define GREEN_PIXEL 0xFF00
+# define RED 0xFF0000
+# define WHITE_PIXEL 0xFFFFFF
+# define WALL 0x5454C5
+# define SPACE 0x639CD9
+# define YELLOW 0xFFFF00
+# define DARK 0x342056
+# define GRID_SIZE 32
 
-#define LEFT_ARROW 123
-#define RIGHT_ARROW 124
+# define LEFT_ARROW 123
+# define RIGHT_ARROW 124
 
-#define ESC 53
-#define W_KEY 13
-#define D_KEY 2
-#define S_KEY 1
-#define A_KEY 0
+# define ESC 53
+# define W_KEY 13
+# define D_KEY 2
+# define S_KEY 1
+# define A_KEY 0
 
-#define MOVE_STEP 2
-
-// #define PI = 3.14159
-
+# define MOVE_STEP 2
+# define VIEW_ANGLE 60 * (M_PI / 180)
+# define NBR_RAYS WINDOW_WIDTH
 
 typedef struct s_point
 {
@@ -181,5 +181,11 @@ void    create_image(t_data *data);
 int     render_rect(t_img *img, t_rect rect);
 void	render_background(t_img *img, int color);
 int	    render(t_data *data, char **map);
+void	DDA(t_data *data, t_point p1, t_point p2);
+int		ft_is_wall(char **map, int i, int j);
+// cast rays
+
+void ft_cast_rays(t_data *data);
+float norm_angle(float ray_angle);
 
 #endif

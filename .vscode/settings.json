@@ -6,6 +6,8 @@
         "iterator": "c",
         "string": "c",
         "string_view": "c",
-        "vector": "c"
+        "vector": "c",
+        "unistd.h": "c",
+        "algorithm": "c"
     }
 }

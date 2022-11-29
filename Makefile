@@ -30,6 +30,7 @@ SRC = cub3d.c get_next_line.c \
 	$(fLIB)ft_substr.c \
 	$(MA)utils.c \
 	$(MA)image.c \
+	$(MA)rays.c \
 	main.c
 
 SRC_UTILS = utils/utils.c \

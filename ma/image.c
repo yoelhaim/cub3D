@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/11/27 11:11:12 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/29 15:34:40 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,35 @@ void DDA(t_data *data, t_point p1, t_point p2)
     }
 }
 
+void DDA2(t_data *data, t_point p1, t_point p2)
+{
+	int i;
+	t_line line;
+	t_img *img;
+	
+
+	img = &data->img;
+	i = 0;
+	line.dx = p2.x - p1.x;
+	line.dy = p2.y - p1.y;
+	
+	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
+	
+    line.Xinc = line.dx / (float)line.steps;
+    line.Yinc = line.dy / (float)line.steps;
+	
+    line.X = p1.x;
+    line.Y = p1.y;
+	
+    while (i <= line.steps)
+	{
+        img_pix_put(img, round(line.X), round(line.Y), RED);
+        line.X += line.Xinc; 
+        line.Y += line.Yinc;
+		i++;
+    }
+}
+
 void ft_get_intersection(t_data *data, t_point *orgin, t_point *p)
 {
 
@@ -181,9 +210,9 @@ int	render(t_data *data, char **map)
 	draw_map(data, map);
 	draw_grid(data);
 	
-	DDA(data, data->p1, data->p2);
 	render_rect(&data->img, (t_rect){data->p1.x, data->p1.y, 5, 5, YELLOW});
-	
+	ft_cast_rays(data);
+	DDA2(data, data->p1, data->p2);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }

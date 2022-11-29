@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/11/27 12:19:52 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/29 17:50:09 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void ft_oriented(int keycode, t_data *data)
 	{
 		*pa += 0.1;
 
-		if (*pa > 2 * M_PI)
-			*pa = 0;
+		// if (*pa > 2 * M_PI)
+		// 	*pa = 0;
 
+		*pa = norm_angle(*pa);
 		data->p2.x = data->p1.x + cos(*pa) * 20;
 		data->p2.y = data->p1.y + sin(*pa) * 20;
 		return ;
@@ -34,16 +35,16 @@ void ft_oriented(int keycode, t_data *data)
 	{
 		*pa -= 0.1;
 		
-		if (*pa < 0)
-			*pa = 2 * M_PI;
-		
+		// if (*pa < 0)
+		// 	*pa = 2 * M_PI;
+		*pa = norm_angle(*pa);
 		data->p2.x = data->p1.x + cos(*pa) * 20;
 		data->p2.y = data->p1.y + sin(*pa) * 20;
 		return ;
 	}
 }
 
-int ft_has_wall(char **map, int i, int j)
+int ft_is_wall(char **map, int i, int j)
 {
 	return (map[(int)floor(j / GRID_SIZE)][(int)floor(i / GRID_SIZE)] != '1');
 }
@@ -70,7 +71,7 @@ void ft_move_up(t_data *data, char **map, float pa)
 
 	i = data->p1.x + cos(pa) * MOVE_STEP;
 	j = data->p1.y + sin(pa) * MOVE_STEP;
-	if (ft_has_wall(map, i, j))
+	if (ft_is_wall(map, i, j))
 	{
 		data->p1.x += cos(pa) * MOVE_STEP;
 		data->p2.x += cos(pa) * MOVE_STEP;
@@ -86,7 +87,7 @@ void ft_move_down(t_data *data, char **map, float pa)
 
 	i = data->p1.x - cos(pa) * MOVE_STEP;
 	j = data->p1.y - sin(pa) * MOVE_STEP;
-	if (ft_has_wall(map, i, j))
+	if (ft_is_wall(map, i, j))
 	{
 		data->p1.x -= cos(pa) * MOVE_STEP;
 		data->p2.x -= cos(pa) * MOVE_STEP;
@@ -102,7 +103,7 @@ void ft_move_left(t_data *data, char **map, float pa)
 
 	i = data->p1.x - cos(pa) * MOVE_STEP;
 	j = data->p1.y + sin(pa) * MOVE_STEP;
-	if (ft_has_wall(map, i, j))
+	if (ft_is_wall(map, i, j))
 	{
 		data->p1.x += sin(pa) * MOVE_STEP;
 		data->p2.x += sin(pa) * MOVE_STEP;
@@ -118,7 +119,7 @@ void ft_move_right(t_data *data, char **map, float pa)
 
 	i = data->p1.x + cos(pa) * MOVE_STEP;
 	j = data->p1.y - sin(pa) * MOVE_STEP;
-	if (ft_has_wall(map, i, j))
+	if (ft_is_wall(map, i, j))
 	{
 		data->p1.x -= sin(pa) * MOVE_STEP;
 		data->p2.x -= sin(pa) * MOVE_STEP;

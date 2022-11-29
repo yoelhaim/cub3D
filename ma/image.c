@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/11/29 15:34:40 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/29 18:45:15 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void DDA(t_data *data, t_point p1, t_point p2)
 	int i;
 	t_line line;
 	t_img *img;
-	
 
 	img = &data->img;
 	i = 0;

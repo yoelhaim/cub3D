@@ -6,11 +6,11 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/11/30 12:19:25 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:59:55 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUB3D_H
+#ifndef CUB3D_H
 # define CUB3D_H
 # include <stdio.h>
 # include <stdlib.h>
@@ -47,20 +47,20 @@
 
 typedef struct s_point
 {
-	float x;
-	float y;
-} t_point;
+	float	x;
+	float	y;
+}	t_point;
 
 typedef struct s_line
 {
-	int dx;
-    int dy;
-    int steps;
-    float Xinc;
-    float Yinc;
-	float X;
-	float Y;
-} t_line;
+	int		dx;
+    int		dy;
+    int		steps;
+    float	x_inc;
+    float	y_inc;
+	float	X;
+	float	Y;
+}	t_line;
 
 typedef struct s_cub3d
 {
@@ -84,7 +84,7 @@ typedef struct s_vars {
 	void	*win;
 	int		pos_player_x;
 	int		pos_player_y;
-	t_cub3d *cub;
+	t_cub3d	*cub;
 }	t_vars;
 // libft_functions
 
@@ -102,29 +102,27 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
-	t_cub3d *cub;
-	t_point p1;
-	t_point p2;
+	t_cub3d	*cub;
+	t_point	p1;
+	t_point	p2;
 	float	angle;
-	int key_press;
+	int		key_press;
 }	t_data;
-
 
 typedef struct s_rect
 {
 	int	x;
 	int	y;
-	int width;
-	int height;
-	int color;
+	int	width;
+	int	height;
+	int	color;
 }	t_rect;
 
 typedef struct s_vector
 {
-	int origin_x;
-	int origin_y;
-	
-} t_vector;
+	int	origin_x;
+	int	origin_y;
+}	t_vector;
 
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
@@ -162,31 +160,25 @@ int		check_file_texture(t_cub3d *texture);
 int		check_maps(t_cub3d *cubmap, char *namefile);
 int		check_is_valid_map(char **maps, t_cub3d *cubmap);
 int		check_name_exc_texture(char *filename);
-
+//
 void	move(t_data *data, int y, int x);
 int		ft_esc(t_data *data);
-int 	ft_event(int keycode, t_data *data);
+int		ft_event(int keycode, t_data *data);
 void	ft_move(int keycode, t_data *data);
 void	ft_oriented(int keycode, t_data *data);
-
-
-
+//
 void	ft_end(t_data	data);
 void	ft_init(t_data	*data, t_cub3d *cubmap);
 void	ft_main(t_data	*data);
-
-
-
+//
 void	img_pix_put(t_img *img, int x, int y, int color);
-void    create_image(t_data *data);
-int     render_rect(t_img *img, t_rect rect);
+void	create_image(t_data *data);
+int		render_rect(t_img *img, t_rect rect);
 void	render_background(t_img *img, int color);
-int	    render(t_data *data, char **map);
+int		render(t_data *data, char **map);
 void	DDA(t_data *data, t_point p1, t_point p2);
 int		ft_is_wall(char **map, int i, int j);
 // cast rays
-
-void ft_cast_rays(t_data *data);
-float norm_angle(float ray_angle);
-
+void	ft_cast_rays(t_data *data);
+float	norm_angle(float ray_angle);
 #endif

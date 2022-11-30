@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/11/29 16:11:50 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/30 12:51:00 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	ft_esc(t_data *data)
 	exit (0);
 }
 
-void ft_end(t_data	data)
+void	ft_end(t_data	data)
 {
 	mlx_hook(data.win_ptr, 2, 0, ft_event, &data);
 	mlx_hook(data.win_ptr, 17, 0, ft_esc, &data);
 	mlx_loop(data.mlx_ptr);
 }
 
-void ft_init(t_data	*data, t_cub3d *cubmap)
+void	ft_init(t_data	*data, t_cub3d *cubmap)
 {
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1080, "cub3d");
@@ -39,14 +39,7 @@ void ft_init(t_data	*data, t_cub3d *cubmap)
 	data->key_press = -1;
 }
 
-
-void ft_main(t_data	*data)
+void	ft_main(t_data	*data)
 {
 	create_image(data);
 }
-
-
-
-
-
-

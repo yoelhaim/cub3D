@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/11/29 18:45:15 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/30 12:57:56 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void DDA(t_data *data, t_point p1, t_point p2)
 	
 	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
 	
-    line.Xinc = line.dx / (float)line.steps;
-    line.Yinc = line.dy / (float)line.steps;
+    line.x_inc = line.dx / (float)line.steps;
+    line.y_inc = line.dy / (float)line.steps;
 	
     line.X = p1.x;
     line.Y = p1.y;
@@ -104,8 +104,8 @@ void DDA(t_data *data, t_point p1, t_point p2)
     while (i <= line.steps)
 	{
         img_pix_put(img, round(line.X), round(line.Y), YELLOW);
-        line.X += line.Xinc; 
-        line.Y += line.Yinc;
+        line.X += line.x_inc; 
+        line.Y += line.y_inc;
 		i++;
     }
 }
@@ -124,8 +124,8 @@ void DDA2(t_data *data, t_point p1, t_point p2)
 	
 	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
 	
-    line.Xinc = line.dx / (float)line.steps;
-    line.Yinc = line.dy / (float)line.steps;
+    line.x_inc = line.dx / (float)line.steps;
+    line.y_inc = line.dy / (float)line.steps;
 	
     line.X = p1.x;
     line.Y = p1.y;
@@ -133,8 +133,8 @@ void DDA2(t_data *data, t_point p1, t_point p2)
     while (i <= line.steps)
 	{
         img_pix_put(img, round(line.X), round(line.Y), RED);
-        line.X += line.Xinc; 
-        line.Y += line.Yinc;
+        line.X += line.x_inc; 
+        line.Y += line.y_inc;
 		i++;
     }
 }

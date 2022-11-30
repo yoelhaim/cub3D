@@ -15,6 +15,7 @@ int ft_parsing(int ac, char *file_name, t_cub3d *cubmap)
 	if (!check_file_texture(cubmap) \
 	    || !check_is_valid_map(cubmap->maps, cubmap))
 		return (ft_putstr_fd("error reading map \n", 2), 1);
+	cubmap->length_to_map = ft_len_ptr(cubmap->maps);
     return (0);
 }
 
@@ -60,6 +61,7 @@ int	main(int ac, char **av)
 
     if (ft_parsing(ac, av[1], &cubmap))
         return 1;
+	return 1;
 	ft_init(&data, &cubmap);
 	
 	ft_main(&data);

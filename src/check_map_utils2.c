@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/11/22 12:11:37 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/30 18:51:51 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ void	get_map(int size, int fd, t_cub3d *cubmap)
 	while (length < size)
 	{
 		str = ft_strtrim(get_next_line(fd), " \t\n");
-		if (strstr(str, "111"))
+		if (strstr(str, "111"))/// khas ytbdal had chi
 			break ;
 		if (ft_strlen(str) != 0)
 			cubmap->map[length] = str;
 		else
+		{
+			free(str);
 			length -= 1;
+		}
 		length++;
 	}
 	cubmap->map[length] = 0;

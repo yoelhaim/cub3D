@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/11/29 17:50:09 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/30 22:54:44 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 void ft_oriented(int keycode, t_data *data)
 {
 	char **map;
-	float *pa;
+	double *pa;
 
 	pa = &data->angle;
 	map = data->cub->maps;
 	if (keycode == RIGHT_ARROW)
 	{
 		*pa += 0.1;
-
-		// if (*pa > 2 * M_PI)
-		// 	*pa = 0;
-
 		*pa = norm_angle(*pa);
 		data->p2.x = data->p1.x + cos(*pa) * 20;
 		data->p2.y = data->p1.y + sin(*pa) * 20;
@@ -33,10 +29,7 @@ void ft_oriented(int keycode, t_data *data)
 	}
 	if (keycode == LEFT_ARROW)
 	{
-		*pa -= 0.1;
-		
-		// if (*pa < 0)
-		// 	*pa = 2 * M_PI;
+		*pa -= 0.1;	
 		*pa = norm_angle(*pa);
 		data->p2.x = data->p1.x + cos(*pa) * 20;
 		data->p2.y = data->p1.y + sin(*pa) * 20;
@@ -46,7 +39,7 @@ void ft_oriented(int keycode, t_data *data)
 
 int ft_is_wall(char **map, int i, int j)
 {
-	return (map[(int)floor(j / GRID_SIZE)][(int)floor(i / GRID_SIZE)] != '1');
+	return (map[(int)floor(j / GRID_SIZE)][(int)floor(i / GRID_SIZE)] == '0');
 }
 
 int ft_event(int keycode, t_data *data)
@@ -64,7 +57,7 @@ int ft_event(int keycode, t_data *data)
 	return (0);
 }
 
-void ft_move_up(t_data *data, char **map, float pa)
+void ft_move_up(t_data *data, char **map, double pa)
 {
 	int i;
 	int j;
@@ -80,7 +73,7 @@ void ft_move_up(t_data *data, char **map, float pa)
 	}
 }
 
-void ft_move_down(t_data *data, char **map, float pa)
+void ft_move_down(t_data *data, char **map, double pa)
 {
 	int i;
 	int j;
@@ -96,7 +89,7 @@ void ft_move_down(t_data *data, char **map, float pa)
 	}
 }
 
-void ft_move_left(t_data *data, char **map, float pa)
+void ft_move_left(t_data *data, char **map, double pa)
 {
 	int	i;
 	int	j;
@@ -112,7 +105,7 @@ void ft_move_left(t_data *data, char **map, float pa)
 	}
 }
 
-void ft_move_right(t_data *data, char **map, float pa)
+void ft_move_right(t_data *data, char **map, double pa)
 {
 	int	i;
 	int	j;
@@ -131,7 +124,7 @@ void ft_move_right(t_data *data, char **map, float pa)
 void	ft_move(int keycode, t_data *data)
 {
 	char **map;
-	float *pa;
+	double *pa;
 
 	pa = &data->angle;
 	map = data->cub->maps;

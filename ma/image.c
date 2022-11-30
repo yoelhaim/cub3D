@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/11/30 12:57:56 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/30 22:50:30 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void create_image(t_data *data)
     data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp, &data->img.line_len, &data->img.endian);
     render(data, data->cub->maps);
 }
-
 
 
 int render_rect(t_img *img, t_rect rect)
@@ -95,8 +94,8 @@ void DDA(t_data *data, t_point p1, t_point p2)
 	
 	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
 	
-    line.x_inc = line.dx / (float)line.steps;
-    line.y_inc = line.dy / (float)line.steps;
+    line.x_inc = line.dx / (double)line.steps;
+    line.y_inc = line.dy / (double)line.steps;
 	
     line.X = p1.x;
     line.Y = p1.y;
@@ -124,8 +123,8 @@ void DDA2(t_data *data, t_point p1, t_point p2)
 	
 	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
 	
-    line.x_inc = line.dx / (float)line.steps;
-    line.y_inc = line.dy / (float)line.steps;
+    line.x_inc = line.dx / (double)line.steps;
+    line.y_inc = line.dy / (double)line.steps;
 	
     line.X = p1.x;
     line.Y = p1.y;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/11/30 12:59:55 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/01 00:09:00 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,23 @@
 # define A_KEY 0
 
 # define MOVE_STEP 2
-# define VIEW_ANGLE 60 * (M_PI / 180)
+# define VIEW_ANGLE 1.0472
 # define NBR_RAYS WINDOW_WIDTH
+
+/*
+
+	point : x y
+	distance
+	direction
+	vertical or horizontal
+	ray angle
+
+*/
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }	t_point;
 
 typedef struct s_line
@@ -56,10 +66,10 @@ typedef struct s_line
 	int		dx;
     int		dy;
     int		steps;
-    float	x_inc;
-    float	y_inc;
-	float	X;
-	float	Y;
+    double	x_inc;
+    double	y_inc;
+	double	X;
+	double	Y;
 }	t_line;
 
 typedef struct s_cub3d
@@ -105,7 +115,7 @@ typedef struct s_data
 	t_cub3d	*cub;
 	t_point	p1;
 	t_point	p2;
-	float	angle;
+	double	angle;
 	int		key_press;
 }	t_data;
 
@@ -130,9 +140,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strdup(const char *s1);
-char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_strtrim(char *s1, char *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
 void	ft_putstr_fd(char *s, int fd);
@@ -148,7 +157,7 @@ int		ft_is_digit(char *str);
 // check map 1
 int		check_exten(char *filename);
 int		check_name_exc(char *filename);
-int		read_to_file(char *namefile, t_cub3d *cubmap);
+int		read_to_file(char *file_name, t_cub3d *cubmap);
 char	**remove_empty_line(char **map);
 void	get_map(int size, int fd, t_cub3d *cubmap);
 // check errors
@@ -180,5 +189,5 @@ void	DDA(t_data *data, t_point p1, t_point p2);
 int		ft_is_wall(char **map, int i, int j);
 // cast rays
 void	ft_cast_rays(t_data *data);
-float	norm_angle(float ray_angle);
+double	norm_angle(double ray_angle);
 #endif

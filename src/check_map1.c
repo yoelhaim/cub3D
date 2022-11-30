@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/11/21 15:26:11 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:01:26 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,39 +78,47 @@ int	check_insert_texture(char **map, t_cub3d *cubmap)
 	return (check_doube_texture(map));
 }
 
-void	replaced(char **maps)
+void	replaced(char **map)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (maps[++i])
+	while (map[++i])
 	{
-		maps[i] = ft_strtrim(maps[i], " \t\n");
+		map[i] = ft_strtrim(map[i], " \t\n");
 		j = -1;
-		while (maps[i][++j])
+		while (map[i][++j])
 		{
-			if (maps[i][j] == '\t')
-				maps[i][j] = ' ';
+			if (map[i][j] == '\t')
+				map[i][j] = ' ';
 		}
 	}
 }
 
-int	read_to_file(char *namefile, t_cub3d *cubmap)
+int	read_to_file(char *file_name, t_cub3d *cubmap)
 {
 	int		fd;
-	char	**map;
 	int		i;
+	char	*line;
 
-	fd = open(namefile, O_RDONLY);
+	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		return (printf("error read to map ! \n"), 0);
+		return (ft_putstr_fd("Error read map !\n", 2), 0);
 	i = 0;
-	while (get_next_line(fd))
+	line = get_next_line(fd);
+	while (line)
+	{
 		i++;
-	fd = open(namefile, O_RDONLY);
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		return (ft_putstr_fd("Error read map !\n", 2), 0);
 	get_map(i, fd, cubmap);
 	replaced(cubmap->map);
-	map = cubmap->map;
-	return (check_insert_texture(map, cubmap));
+	close(fd);
+	return (check_insert_texture(cubmap->map, cubmap));
 }

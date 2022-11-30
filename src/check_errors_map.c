@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/11/21 14:39:42 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:35:12 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,30 @@ int	is_open(char *namefile)
 	return (fd);
 }
 
+char	*check_texture_is_valid(char *ext)
+{
+	char	**spl;
+
+	spl = ft_split(ext, '.');
+	if (!spl[1])
+		return ("error");
+	return (spl[1]);
+	
+}
+
 int	check_file_texture(t_cub3d *texture)
 {
 	if (is_open(texture->no) == -1 || \
 	is_open(texture->so) == -1 || \
 	is_open(texture->ea) == -1 || is_open(texture->we) == -1)
+		return (0);
+	if (!check_name_exc_texture(check_texture_is_valid(texture->so)))
+		return (0);
+	if (!check_name_exc_texture(check_texture_is_valid(texture->no)))
+		return (0);
+	if (!check_name_exc_texture(check_texture_is_valid(texture->ea)))
+		return (0);
+	if (!check_name_exc_texture(check_texture_is_valid(texture->we)))
 		return (0);
 	return (1);
 }

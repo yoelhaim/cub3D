@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/11/29 16:32:24 by matef            ###   ########.fr       */
+/*   Updated: 2022/11/30 12:19:25 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_cub3d
 	double			pos_player_x;
 	double			pos_player_y;
 	char			direction;
+	int				length_to_map;
 }	t_cub3d;
 // mlx
 typedef struct s_vars {
@@ -160,7 +161,7 @@ int		check_file_texture(t_cub3d *texture);
 // maps
 int		check_maps(t_cub3d *cubmap, char *namefile);
 int		check_is_valid_map(char **maps, t_cub3d *cubmap);
-
+int		check_name_exc_texture(char *filename);
 
 void	move(t_data *data, int y, int x);
 int		ft_esc(t_data *data);

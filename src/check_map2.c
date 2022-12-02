@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/11/22 18:09:40 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/02 13:02:16 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ int	check_in_map(char c)
 	char	*str;
 	int		i;
 
-	str = "01ENSW";
+	str = ft_strdup("01ENSW");
 	i = -1;
 	while (str[++i])
 	{
 		if (c == str[i])
 			break ;
 	}
+	free(str);
 	if (i == 6)
 		return (0);
 	return (1);
@@ -63,7 +64,7 @@ int	check_first_last(char **tmp, int i)
 {
 	while (tmp[i])
 	{
-		tmp[i] = ft_strtrim(tmp[i], " -\t\n");
+		tmp[i] = ft_strtrim(tmp[i], " \t\n"); // error here -
 		if (ft_strlen(tmp[i]) == 0)
 		{
 			i++;
@@ -80,12 +81,13 @@ int	more_valid_map(char **tmp, int i, t_cub3d *cubmap)
 {
 	char	**tmp2;
 	int		j;
+	int		len;
 
+	len = i;
 	i = 0;
 	tmp2 = tmp;
-	j = 0;
-	if (!find_player_position(tmp, cubmap))
-		return (0);
+	(void) cubmap;
+	
 	while (tmp2[i])
 	{
 		j = 0;
@@ -93,16 +95,20 @@ int	more_valid_map(char **tmp, int i, t_cub3d *cubmap)
 		{
 			if (tmp2[i][j] == '0')
 			{
-				if (!check_in_map(tmp[i - 1][j]) \
-				|| !check_in_map(tmp[i + 1][j]) \
-				|| !check_in_map(tmp[i][j + 1]) || !check_in_map(tmp[i][j - 1]))
+				if (!tmp2[i + 1] || !tmp2[i - 1])
+					return (0);
+				if (!check_in_map(tmp2[i - 1][j]) \
+				|| (!check_in_map(tmp2[i + 1][j])) \
+				|| !check_in_map(tmp2[i][j + 1]) || !check_in_map(tmp2[i][j - 1]))
 					return (0);
 			}
 			j++;
 		}
 		i++;
 	}
-	return (check_first_last(tmp, i));
+	if (!find_player_position(tmp, cubmap) || !check_first_last(tmp, len))
+		return (0);
+	return (1);
 }
 
 int	check_is_valid_map(char **maps, t_cub3d *cubmap)
@@ -116,9 +122,9 @@ int	check_is_valid_map(char **maps, t_cub3d *cubmap)
 	tmp = maps;
 	while (maps[i][j] != '\n' && maps[i][j])
 	{
-		while (maps[i][j] == '-')
+		while (maps[i][j] == ' ')
 			j++;
-		if (maps[i][j] == '-')
+		if (maps[i][j] == ' ')
 			i++;
 		if (maps[i][j] != '1')
 			return (0);

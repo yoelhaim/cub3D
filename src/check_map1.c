@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/11/30 19:01:26 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/01 11:55:19 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	check_insert_texture(char **map, t_cub3d *cubmap)
 			cubmap->ea = strdup(split[1]);
 		if (!check_colors(split, cubmap))
 			return (0);
-		cubmap->last_index = i + 1;
 	}
 	return (check_doube_texture(map));
 }

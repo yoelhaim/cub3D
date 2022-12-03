@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/01 00:09:00 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/02 20:56:29 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <math.h>
 # include <limits.h>
 
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
+# define WINDOW_WIDTH 1366
+# define WINDOW_HEIGHT 768
 # define GREEN_PIXEL 0xFF00
 # define RED 0xFF0000
 # define WHITE_PIXEL 0xFFFFFF
@@ -167,7 +167,7 @@ int		check_floor_ceil(int *str);
 int		check_file_texture(t_cub3d *texture);
 // maps
 int		check_maps(t_cub3d *cubmap, char *namefile);
-int		check_is_valid_map(char **maps, t_cub3d *cubmap);
+int		check_map_is_valid(t_cub3d *cubmap);
 int		check_name_exc_texture(char *filename);
 //
 void	move(t_data *data, int y, int x);

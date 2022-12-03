@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/11/30 23:16:17 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/02 20:14:58 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,24 @@ void	ft_end(t_data	data)
 	mlx_loop(data.mlx_ptr);
 }
 
+double ft_init_direction(char direction)
+{
+	if (direction == 'E')
+		return (0);
+	if (direction == 'N')
+		return (M_PI_2);
+	if (direction == 'S')
+		return (1.5 * M_PI);
+	return (M_PI);
+}
+
+
 void	ft_init(t_data	*data, t_cub3d *cubmap)
 {
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1080, "cub3d");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
 	data->cub = cubmap;
-	data->angle = (double)(1.5 * M_PI);
+	data->angle = ft_init_direction(cubmap->direction);
 	data->p1.x = cubmap->pos_player_x * GRID_SIZE;
 	data->p1.y = cubmap->pos_player_y * GRID_SIZE;
 	data->p2.x = (cubmap->pos_player_x * GRID_SIZE) + (cos(data->angle) * 20);

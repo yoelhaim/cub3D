@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/02 12:34:09 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:57:24 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	scq_map(t_cub3d *cubmap)
 	{
 		j = 0;
 		if (ft_strlen(cubmap->maps[i]) == 1)
-			cubmap->maps[i] = "-";
+			cubmap->maps[i] = " ";
 		while (cubmap->maps[i][j])
 		{
-			if (cubmap->maps[i][j] == ' ' || cubmap->maps[i][j] == '\t')
+			if (cubmap->maps[i][j] == '\t')
 				cubmap->maps[i][j] = ' ';
 			j++;
 		}

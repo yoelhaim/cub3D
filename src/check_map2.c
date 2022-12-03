@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/02 13:02:16 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:17:55 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ int	check_in_map(char c)
 	return (1);
 }
 
-int	find_player_position(char **map, t_cub3d *cubmap)
+int	find_player_position( t_cub3d *cubmap)
 {
 	int	i;
 	int	j;
 	int	len;
+	char **map;
 
 	i = -1;
 	len = 0;
+	map = cubmap->maps;
 	while (map[++i])
 	{
 		j = 0;
@@ -56,79 +58,78 @@ int	find_player_position(char **map, t_cub3d *cubmap)
 		}
 	}
 	if (len == 0 || len > 1)
-		return (printf("error find Player or duplicated!\n"), 0);
+		return (ft_putstr_fd("Error: player not exists or duplicated!\n", 2), 0);
 	return (1);
 }
 
 int	check_first_last(char **tmp, int i)
 {
+	char *line;
+
 	while (tmp[i])
 	{
-		tmp[i] = ft_strtrim(tmp[i], " \t\n"); // error here -
-		if (ft_strlen(tmp[i]) == 0)
+		line = ft_strtrim(tmp[i], " \t\n"); // error here -
+		if (ft_strlen(line) == 0)
 		{
 			i++;
 			continue ;
 		}
-		if (tmp[i][0] != '1' || tmp[i][ft_strlen(tmp[i]) - 1] != '1')
+		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int	more_valid_map(char **tmp, int i, t_cub3d *cubmap)
+int	check_spaces(int i, t_cub3d *cubmap)
 {
-	char	**tmp2;
+	char	**map;
 	int		j;
-	int		len;
-
-	len = i;
-	i = 0;
-	tmp2 = tmp;
-	(void) cubmap;
 	
-	while (tmp2[i])
+	map = cubmap->maps;
+	if (!find_player_position(cubmap) || !check_first_last(map, i))
+		return (0);
+	i = 0;
+	
+	while (map[i])
 	{
 		j = 0;
-		while (tmp2[i][j])
+		while (map[i][j])
 		{
-			if (tmp2[i][j] == '0')
+			if (map[i][j] == '0')
 			{
-				if (!tmp2[i + 1] || !tmp2[i - 1])
+				if (!map[i + 1] || !map[i - 1])
 					return (0);
-				if (!check_in_map(tmp2[i - 1][j]) \
-				|| (!check_in_map(tmp2[i + 1][j])) \
-				|| !check_in_map(tmp2[i][j + 1]) || !check_in_map(tmp2[i][j - 1]))
+				if (!check_in_map(map[i - 1][j]) \
+				|| (!check_in_map(map[i + 1][j])) \
+				|| !check_in_map(map[i][j + 1]) || !check_in_map(map[i][j - 1]))
 					return (0);
 			}
 			j++;
 		}
 		i++;
 	}
-	if (!find_player_position(tmp, cubmap) || !check_first_last(tmp, len))
-		return (0);
 	return (1);
 }
 
-int	check_is_valid_map(char **maps, t_cub3d *cubmap)
+int	check_map_is_valid(t_cub3d *cubmap)
 {
 	int		i;
 	int		j;
-	char	**tmp;
+	char	**map;
 
 	i = 0;
 	j = 0;
-	tmp = maps;
-	while (maps[i][j] != '\n' && maps[i][j])
+	map = cubmap->maps;
+	while (map[i][j] != '\n' && map[i][j])
 	{
-		while (maps[i][j] == ' ')
+		while (map[i][j] == ' ')
 			j++;
-		if (maps[i][j] == ' ')
+		if (map[i][j] == ' ')
 			i++;
-		if (maps[i][j] != '1')
+		if (map[i][j] != '1')
 			return (0);
 		j++;
 	}
-	return (more_valid_map(tmp, i, cubmap));
+	return (check_spaces(i, cubmap));
 }

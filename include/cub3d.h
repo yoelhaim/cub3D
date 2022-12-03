@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/02 20:56:29 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/03 17:41:17 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define WALL 0x5454C5
 # define SPACE 0x639CD9
 # define YELLOW 0xFFFF00
+# define DARK_YELLOW 0xd7d708
 # define DARK 0x342056
 # define GRID_SIZE 32
 
@@ -44,16 +45,6 @@
 # define MOVE_STEP 2
 # define VIEW_ANGLE 1.0472
 # define NBR_RAYS WINDOW_WIDTH
-
-/*
-
-	point : x y
-	distance
-	direction
-	vertical or horizontal
-	ray angle
-
-*/
 
 typedef struct s_point
 {
@@ -88,6 +79,7 @@ typedef struct s_cub3d
 	char			direction;
 	int				length_to_map;
 }	t_cub3d;
+
 // mlx
 typedef struct s_vars {
 	void	*mlx;
@@ -96,8 +88,8 @@ typedef struct s_vars {
 	int		pos_player_y;
 	t_cub3d	*cub;
 }	t_vars;
-// libft_functions
 
+// libft_functions
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -121,18 +113,27 @@ typedef struct s_data
 
 typedef struct s_rect
 {
-	int	x;
-	int	y;
-	int	width;
-	int	height;
+	double	x;
+	double	y;
+	double	width;
+	double	height;
 	int	color;
 }	t_rect;
 
-typedef struct s_vector
+/*
+
+	point : x y
+	distance
+	direction
+	vertical or horizontal
+	ray angle
+
+*/
+
+typedef struct  s_ray
 {
-	int	origin_x;
-	int	origin_y;
-}	t_vector;
+	double distance;
+} t_ray;
 
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
@@ -190,4 +191,8 @@ int		ft_is_wall(char **map, int i, int j);
 // cast rays
 void	ft_cast_rays(t_data *data);
 double	norm_angle(double ray_angle);
+
+//render 3d
+void    ft_render3d(t_data *data, double ray_dist, int index_of_ray, int hor);
+
 #endif

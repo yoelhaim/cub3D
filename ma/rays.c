@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:22:48 by matef             #+#    #+#             */
-/*   Updated: 2022/12/02 20:50:38 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/03 17:43:46 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,19 +169,29 @@ double get_horizontale_ray(t_data *data, double ray_angle, t_point *p)
     return (INT_MAX);
 }
 
-void ft_ray(t_data *data, double ray_angle)
+void ft_ray(t_data *data, double ray_angle, int index_of_ray)
 {
     t_point p1;
     t_point p2;
-    double dist_1;
-    double dist_2;
-
+    double  dist_1;
+    double  dist_2;
+    // double  min;
+    // (void)index_of_ray;
     dist_1 = get_horizontale_ray(data, ray_angle, &p1);
     dist_2 = get_verticale_ray(data, ray_angle, &p2);
     if (dist_1 < dist_2)
-        DDA(data, data->p1, p1);
+    {
+        // DDA(data, data->p1, p1);
+        dist_1 = dist_1 * cos(ray_angle - data->angle);
+        ft_render3d(data, dist_1, index_of_ray, 1);
+    }
     else if (dist_2 < dist_1)
-        DDA(data, data->p1, p2);
+    {
+        // DDA(data, data->p1, p2);
+        dist_2 = dist_2 * cos(ray_angle - data->angle);
+        ft_render3d(data, dist_2, index_of_ray, 0);
+    }
+
 }
 
 void ft_cast_rays(t_data *data)
@@ -193,7 +203,7 @@ void ft_cast_rays(t_data *data)
     ray_angle = data->angle - (VIEW_ANGLE / 2);
     while (i < NBR_RAYS)
     {
-        ft_ray(data, ray_angle);
+        ft_ray(data, ray_angle, i);
         ray_angle += VIEW_ANGLE / NBR_RAYS;
         ray_angle = norm_angle(ray_angle);
         i++;

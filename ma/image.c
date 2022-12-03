@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/11/30 22:50:30 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/03 17:43:58 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,18 +138,6 @@ void DDA2(t_data *data, t_point p1, t_point p2)
     }
 }
 
-void ft_get_intersection(t_data *data, t_point *orgin, t_point *p)
-{
-
-	double pa = data->angle;
-
-	(void) orgin;
-	(void) pa;
-	
-
-	printf("%f %f\n", p->x, p->y);
-}
-
 void draw_grid(t_data *data)
 {
 	int i = 0;
@@ -204,13 +192,13 @@ int	render(t_data *data, char **map)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-
-	draw_map(data, map);
-	draw_grid(data);
+	(void)map;
+	// draw_map(data, map);
+	// draw_grid(data);
 	
-	render_rect(&data->img, (t_rect){data->p1.x, data->p1.y, 5, 5, YELLOW});
+	// render_rect(&data->img, (t_rect){data->p1.x, data->p1.y, 5, 5, YELLOW});
 	ft_cast_rays(data);
-	DDA2(data, data->p1, data->p2);
+	// DDA2(data, data->p1, data->p2);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }

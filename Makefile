@@ -31,6 +31,7 @@ SRC = cub3d.c get_next_line.c \
 	$(MA)utils.c \
 	$(MA)image.c \
 	$(MA)rays.c \
+	$(MA)render_3d.c \
 	main.c
 
 SRC_UTILS = utils/utils.c \

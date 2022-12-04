@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/11/30 18:24:53 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/04 14:43:36 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*rev_str(char *str)
 int	check_name_exc(char *filename)
 {
 	char	*extenstion;
-	
+
 	extenstion = rev_str(filename);
 	if (!strcmp(extenstion, "buc"))
 	{
@@ -84,7 +84,6 @@ int	check_name_exc(char *filename)
 	free(extenstion);
 	return (0);
 }
-
 
 int	check_name_exc_texture(char *filename)
 {

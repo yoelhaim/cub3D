@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/02 15:17:55 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/04 14:46:06 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	check_in_map(char c)
 
 int	find_player_position( t_cub3d *cubmap)
 {
-	int	i;
-	int	j;
-	int	len;
-	char **map;
+	int		i;
+	int		j;
+	int		len;
+	char	**map;
 
 	i = -1;
 	len = 0;
@@ -64,11 +64,11 @@ int	find_player_position( t_cub3d *cubmap)
 
 int	check_first_last(char **tmp, int i)
 {
-	char *line;
+	char	*line;
 
 	while (tmp[i])
 	{
-		line = ft_strtrim(tmp[i], " \t\n"); // error here -
+		line = ft_strtrim(tmp[i], " \t\n");
 		if (ft_strlen(line) == 0)
 		{
 			i++;
@@ -85,12 +85,12 @@ int	check_spaces(int i, t_cub3d *cubmap)
 {
 	char	**map;
 	int		j;
-	
+
 	map = cubmap->maps;
 	if (!find_player_position(cubmap) || !check_first_last(map, i))
 		return (0);
 	i = 0;
-	
+
 	while (map[i])
 	{
 		j = 0;

@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/02 14:57:24 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/04 14:39:14 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	get_line_width(t_cub3d *cubmap)
+{
+	int	i;
+	size_t	length;
+
+	i = 0;
+	length = 0;
+	while (cubmap->maps[i])
+	{
+		if (cubmap->maps[i])
+		{
+			if (ft_strlen(cubmap->maps[i]) > length)
+				length = ft_strlen(cubmap->maps[i]);
+		}
+		i++;
+	}
+	cubmap->length_width = length;
+}
 
 int	scq_map(t_cub3d *cubmap)
 {
@@ -18,11 +37,12 @@ int	scq_map(t_cub3d *cubmap)
 	int	j;
 
 	i = 0;
+	while (cubmap->maps[i][0] == '\n' && cubmap->maps[i][0])
+		cubmap->maps[i++][0] = '\0';
+	i = 0;
 	while (cubmap->maps[i])
 	{
 		j = 0;
-		if (ft_strlen(cubmap->maps[i]) == 1)
-			cubmap->maps[i] = " ";
 		while (cubmap->maps[i][j])
 		{
 			if (cubmap->maps[i][j] == '\t')
@@ -31,6 +51,7 @@ int	scq_map(t_cub3d *cubmap)
 		}
 		i++;
 	}
+	get_line_width(cubmap);
 	return (1);
 }
 
@@ -44,11 +65,9 @@ int check_maps_2(t_cub3d *cubmap, int fd, int size)
 	while (i < size)
 	{
 		str = get_next_line(fd);
-		if (!str || str[0] == '\0')\
+		if (!str || str[0] == '\0')
 			break;
-			
-		// printf(	"%s\n", str);
-		if (strlen(str)  >= 1 && str[0] != '\n')
+		if (strlen(str)  >= 1 )
 			cubmap->maps[i] = str;
 		else
 			i -= 1;
@@ -70,9 +89,9 @@ void	get_map(int size, int fd, t_cub3d *cubmap)
 	cubmap->map = malloc(sizeof(char *) * size);
 	while (length < size)
 	{
-		str = ft_strtrim(get_next_line(fd), " \t\n");
 		if (length >= 6)
 			break ;
+		str = ft_strtrim(get_next_line(fd), " \t\n");
 		if (ft_strlen(str) != 0)
 			cubmap->map[length] = str;
 		else

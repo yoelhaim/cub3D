@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/12/02 20:43:51 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/04 14:47:43 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void ft_oriented(int keycode, t_data *data)
+void	ft_oriented(int keycode, t_data *data)
 {
-	char **map;
-	double *pa;
+	char	**map;
+	double	*pa;
 
 	pa = &data->angle;
 	map = data->cub->maps;
@@ -37,15 +37,15 @@ void ft_oriented(int keycode, t_data *data)
 	}
 }
 
-int ft_is_wall(char **map, int i, int j)
+int	ft_is_wall(char **map, int i, int j)
 {
 	return (map[(int)floor(j / GRID_SIZE)][(int)floor(i / GRID_SIZE)] == '0');
 }
 
-int ft_event(int keycode, t_data *data)
+int	ft_event(int keycode, t_data *data)
 {
-	double x;
-	double y;
+	double	x;
+	double	y;
 
 	x = data->cub->pos_player_x;
 	y = data->cub->pos_player_y;
@@ -57,10 +57,10 @@ int ft_event(int keycode, t_data *data)
 	return (0);
 }
 
-void ft_move_up(t_data *data, char **map, double pa)
+void	ft_move_up(t_data *data, char **map, double pa)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = data->p1.x + cos(pa) * MOVE_STEP;
 	j = data->p1.y + sin(pa) * MOVE_STEP;
@@ -73,10 +73,10 @@ void ft_move_up(t_data *data, char **map, double pa)
 	}
 }
 
-void ft_move_down(t_data *data, char **map, double pa)
+void	ft_move_down(t_data *data, char **map, double pa)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = data->p1.x - cos(pa) * MOVE_STEP;
 	j = data->p1.y - sin(pa) * MOVE_STEP;
@@ -89,7 +89,7 @@ void ft_move_down(t_data *data, char **map, double pa)
 	}
 }
 
-void ft_move_left(t_data *data, char **map, double pa)
+void	ft_move_left(t_data *data, char **map, double pa)
 {
 	int	i;
 	int	j;
@@ -105,7 +105,7 @@ void ft_move_left(t_data *data, char **map, double pa)
 	}
 }
 
-void ft_move_right(t_data *data, char **map, double pa)
+void	ft_move_right(t_data *data, char **map, double pa)
 {
 	int	i;
 	int	j;
@@ -123,8 +123,8 @@ void ft_move_right(t_data *data, char **map, double pa)
 
 void	ft_move(int keycode, t_data *data)
 {
-	char **map;
-	double *pa;
+	char	**map;
+	double	*pa;
 
 	pa = &data->angle;
 	map = data->cub->maps;

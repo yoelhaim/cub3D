@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 
     if (ft_parsing(ac, av[1], &cubmap))
         return (1);
+    // return (1);
 	ft_init(&data, &cubmap);
 	ft_main(&data);
 	ft_end(data);

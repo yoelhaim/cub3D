@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/04 14:39:14 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/04 17:18:17 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	scq_map(t_cub3d *cubmap)
 
 	i = 0;
 	while (cubmap->maps[i][0] == '\n' && cubmap->maps[i][0])
-		cubmap->maps[i++][0] = '\0';
+		cubmap->maps[i++] = 0;
 	i = 0;
 	while (cubmap->maps[i])
 	{
@@ -60,15 +60,19 @@ int check_maps_2(t_cub3d *cubmap, int fd, int size)
 	int		i;
 	char	*str;
 
+	int for_test = 0;
 	i = 0;
 	cubmap->maps = malloc(sizeof(char *) * size);
 	while (i < size)
 	{
 		str = get_next_line(fd);
-		if (!str || str[0] == '\0')
+		if (!str)
 			break;
-		if (strlen(str)  >= 1 )
-			cubmap->maps[i] = str;
+		if (strlen(str)  >= 1 && str[0] != '\n')
+		{
+			cubmap->maps[i] = ft_strtrim(str, "\n");
+			for_test = 1;
+		}
 		else
 			i -= 1;
 		i++;
@@ -87,6 +91,8 @@ void	get_map(int size, int fd, t_cub3d *cubmap)
 	length = 0;
 	last_size = 0;
 	cubmap->map = malloc(sizeof(char *) * size);
+	if (!cubmap->map)
+		return ;
 	while (length < size)
 	{
 		if (length >= 6)

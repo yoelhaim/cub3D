@@ -40,7 +40,7 @@ SRC_UTILS = utils/utils.c \
 OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -g -o $(NAME)
 
 all : $(NAME)
 

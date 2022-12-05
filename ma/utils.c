@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/12/04 14:47:43 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/05 11:36:40 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,43 @@ void	ft_oriented(int keycode, t_data *data)
 	}
 }
 
+int ft_is_wall_2(char **map, int i, int j, t_point *p)
+{
+	int x;
+	int y;
+
+	x = (int)floor(j / GRID_SIZE);
+	y = (int)floor(i / GRID_SIZE);
+
+	if (x < 0 || x > x11 || y < 0 || y > y11)
+		return 1;
+	if (map[x][y] == '0')
+	{
+		p->x = x;
+		p->y = y;
+		return (1);
+	}
+
+	return (0);
+}
+
 int	ft_is_wall(char **map, int i, int j)
 {
-	return (map[(int)floor(j / GRID_SIZE)][(int)floor(i / GRID_SIZE)] == '0');
+	int x;
+	int y;
+
+	x = (int)floor(j / GRID_SIZE);
+	y = (int)floor(i / GRID_SIZE);
+
+	// if (x < 0 || x > x11 || y < 0 || y > y11)
+	// 	return 1;
+
+	//printf("x = %d x11 == %d \ny = %d y11 = %d\n\n", x, x11, y, y11);
+	
+	
+	// if (x <= x11 || y <= y11)
+		return (map[x][y] == '0');
+	// return(0);
 }
 
 int	ft_event(int keycode, t_data *data)

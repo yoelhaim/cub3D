@@ -25,7 +25,21 @@ int	main(int ac, char **av)
 
     if (ft_parsing(ac, av[1], &cubmap))
         return (1);
-    // return (1);
+
+	// char **map = cubmap.maps;
+
+	// int i = 0;
+	// while (map[i])
+	// {
+	// 	//j = 0;
+	// 	printf("%s #%ld##\n", map[i] , ft_strlen(map[i]));
+	// 	i++;
+	// }
+
+	// return 0;
+
+	x11 = cubmap.length_width;
+	y11 = cubmap.length_to_map;
 	ft_init(&data, &cubmap);
 	ft_main(&data);
 	ft_end(data);

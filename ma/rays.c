@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:22:48 by matef             #+#    #+#             */
-/*   Updated: 2022/12/03 17:43:46 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/05 12:45:00 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int fr_horizontale(t_data *data, double ray_angle, t_point *p2)
     
     double y_i = y_inter;
     double x_i = x_inter;
-    while ((0 <= x_i && x_i <= 31 * 32) && (0 <= y_i && y_i <= 16 * 32))
+    while ((0 <= x_i && x_i <= x11 * 32) && (0 <= y_i && y_i <= y11 * 32))
     {
         if (!ft_is_wall(data->cub->maps, x_i, y_i - ft_is_looking_up(ray_angle)))
         {
@@ -136,7 +136,7 @@ int fr_verticale(t_data *data, double ray_angle, t_point *p2)
     
     double x_i = x_inter;
     double y_i = y_inter;
-    while ((0 <= x_i && x_i <= 33 * 32) && (0 <= y_i && y_i <= 14 * 32))
+    while ((0 <= x_i && x_i <= x11 * 32) && (0 <= y_i && y_i <= y11 * 32))
     {
         if (!ft_is_wall(data->cub->maps, x_i - ft_is_looking_left(ray_angle), y_i))
         {

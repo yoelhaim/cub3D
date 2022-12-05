@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/04 13:53:17 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/05 12:44:57 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_cub3d
 }	t_cub3d;
 
 // mlx
+int x11,y11;
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
@@ -185,14 +186,14 @@ void	ft_main(t_data	*data);
 void	img_pix_put(t_img *img, int x, int y, int color);
 void	create_image(t_data *data);
 int		render_rect(t_img *img, t_rect rect);
-void	render_background(t_img *img, int color);
+void	render_background(t_img *img ,int height, int color);
 int		render(t_data *data, char **map);
 void	DDA(t_data *data, t_point p1, t_point p2);
 int		ft_is_wall(char **map, int i, int j);
 // cast rays
 void	ft_cast_rays(t_data *data);
 double	norm_angle(double ray_angle);
-
+int ft_is_wall_2(char **map, int i, int j, t_point *p);
 //render 3d
 void    ft_render3d(t_data *data, double ray_dist, int index_of_ray, int hor);
 

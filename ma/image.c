@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/12/03 17:43:58 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/05 12:33:53 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char    *pixel;
 
-    pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-    *(unsigned int *)pixel = color;
+	if (0 <= x && x < WINDOW_WIDTH && 0 <= y && y < WINDOW_HEIGHT)
+	{
+		pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+		*(unsigned int *)pixel = color;
+	}
 }
 
 void create_image(t_data *data)
@@ -38,26 +41,30 @@ int render_rect(t_img *img, t_rect rect)
 	{
 		j = rect.x;
 		while (j < rect.x + rect.width)
-			img_pix_put(img, j++, i, rect.color);
+		{
+			img_pix_put(img, j, i, rect.color);
+			j++;
+		}
 		++i;
 	}
 	return (0);
 }
 
-void	render_background(t_img *img, int color)
+void	render_background(t_img *img, int height, int color)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < WINDOW_HEIGHT)
+	while (i < height)
 	{
 		j = 0;
 		while (j < WINDOW_WIDTH)
 		{
-			img_pix_put(img, j++, i, color);
+			img_pix_put(img, j, i, color);
+			j++;
 		}
-		++i;
+		i++;
 	}
 }
 
@@ -103,35 +110,6 @@ void DDA(t_data *data, t_point p1, t_point p2)
     while (i <= line.steps)
 	{
         img_pix_put(img, round(line.X), round(line.Y), YELLOW);
-        line.X += line.x_inc; 
-        line.Y += line.y_inc;
-		i++;
-    }
-}
-
-void DDA2(t_data *data, t_point p1, t_point p2)
-{
-	int i;
-	t_line line;
-	t_img *img;
-	
-
-	img = &data->img;
-	i = 0;
-	line.dx = p2.x - p1.x;
-	line.dy = p2.y - p1.y;
-	
-	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
-	
-    line.x_inc = line.dx / (double)line.steps;
-    line.y_inc = line.dy / (double)line.steps;
-	
-    line.X = p1.x;
-    line.Y = p1.y;
-	
-    while (i <= line.steps)
-	{
-        img_pix_put(img, round(line.X), round(line.Y), RED);
         line.X += line.x_inc; 
         line.Y += line.y_inc;
 		i++;
@@ -195,10 +173,10 @@ int	render(t_data *data, char **map)
 	(void)map;
 	// draw_map(data, map);
 	// draw_grid(data);
-	
 	// render_rect(&data->img, (t_rect){data->p1.x, data->p1.y, 5, 5, YELLOW});
+	render_background(&data->img, WINDOW_HEIGHT, 0x5F7161);
+	render_background(&data->img, WINDOW_HEIGHT / 2, 0xAAC4FF);
 	ft_cast_rays(data);
-	// DDA2(data, data->p1, data->p2);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }

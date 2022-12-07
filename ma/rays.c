@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:22:48 by matef             #+#    #+#             */
-/*   Updated: 2022/12/05 12:45:00 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/07 12:16:35 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,8 @@ double get_horizontale_ray(t_data *data, double ray_angle, t_point *p)
     return (INT_MAX);
 }
 
+
+
 void ft_ray(t_data *data, double ray_angle, int index_of_ray)
 {
     t_point p1;
@@ -176,7 +178,7 @@ void ft_ray(t_data *data, double ray_angle, int index_of_ray)
     double  dist_1;
     double  dist_2;
     // double  min;
-    // (void)index_of_ray;
+    (void)index_of_ray;
     dist_1 = get_horizontale_ray(data, ray_angle, &p1);
     dist_2 = get_verticale_ray(data, ray_angle, &p2);
     if (dist_1 < dist_2)
@@ -192,6 +194,8 @@ void ft_ray(t_data *data, double ray_angle, int index_of_ray)
         ft_render3d(data, dist_2, index_of_ray, 0);
     }
 
+
+    
 }
 
 void ft_cast_rays(t_data *data)

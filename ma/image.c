@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/12/05 12:33:53 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/07 12:16:43 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void create_image(t_data *data)
 {
     data->img.mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
     data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp, &data->img.line_len, &data->img.endian);
-    render(data, data->cub->maps);
+    render(data);
 }
 
 
@@ -50,133 +50,38 @@ int render_rect(t_img *img, t_rect rect)
 	return (0);
 }
 
-void	render_background(t_img *img, int height, int color)
+void	render_background(t_img *img)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < height)
+	while (i < WINDOW_HEIGHT)
 	{
 		j = 0;
 		while (j < WINDOW_WIDTH)
 		{
-			img_pix_put(img, j, i, color);
+			if (i < WINDOW_HEIGHT / 2)
+				img_pix_put(img, j, i, 0xAAC4FF);
+			else
+				img_pix_put(img, j, i, 0x5F7161);
 			j++;
 		}
 		i++;
 	}
 }
 
-double ft_grid(double x)
-{
-	return (GRID_SIZE * x);
-}
-
-t_rect ft_rect(double j, double i, int color)
-{
-	return ((t_rect){ft_grid(j), ft_grid(i), ft_grid(1), ft_grid(1), color});
-}
-
-t_rect ft_player(double j, double i, int color)
-{
-	return ((t_rect){ft_grid(j), ft_grid(i), ft_grid(1) / 2, ft_grid(1) / 2, color});
-}
-
-t_rect ft_line(double j, double i, int color)
-{
-	return ((t_rect){ft_grid(j) + GRID_SIZE / 4 - 2, ft_grid(i) - 5, 4, ft_grid(1) / 2 - 1, color});
-}
-
-void DDA(t_data *data, t_point p1, t_point p2)
-{
-	int i;
-	t_line line;
-	t_img *img;
-
-	img = &data->img;
-	i = 0;
-	line.dx = p2.x - p1.x;
-	line.dy = p2.y - p1.y;
-	
-	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
-	
-    line.x_inc = line.dx / (double)line.steps;
-    line.y_inc = line.dy / (double)line.steps;
-	
-    line.X = p1.x;
-    line.Y = p1.y;
-	
-    while (i <= line.steps)
-	{
-        img_pix_put(img, round(line.X), round(line.Y), YELLOW);
-        line.X += line.x_inc; 
-        line.Y += line.y_inc;
-		i++;
-    }
-}
-
-void draw_grid(t_data *data)
-{
-	int i = 0;
-	int j;
-	
-	while (i < WINDOW_WIDTH)
-	{
-		j = 0;
-		while (j < WINDOW_HEIGHT)
-		{
-			img_pix_put(&data->img, i, j, DARK);
-			j++;
-		}
-		i += GRID_SIZE;
-	}
-
-	j = 0;
-	while (j < WINDOW_HEIGHT)
-	{
-		i = 0;
-		while (i <  WINDOW_WIDTH)
-		{
-			img_pix_put(&data->img, i, j, DARK);
-			i++;
-		}
-		j += GRID_SIZE;
-	}
-}
-
-void draw_map(t_data *data, char **map)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == '1')
-				render_rect(&data->img, ft_rect(j, i, WALL));
-			else if (map[i][j] == '0')
-				render_rect(&data->img, ft_rect(j, i, SPACE));
-			j++;
-		}
-		i++;
-	}
-}
-
-int	render(t_data *data, char **map)
+int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	(void)map;
-	// draw_map(data, map);
-	// draw_grid(data);
-	// render_rect(&data->img, (t_rect){data->p1.x, data->p1.y, 5, 5, YELLOW});
-	render_background(&data->img, WINDOW_HEIGHT, 0x5F7161);
-	render_background(&data->img, WINDOW_HEIGHT / 2, 0xAAC4FF);
+
+	// draw_map(data);
+	// render_rect(&data->img, (t_rect){data->p1.x / 10, data->p1.y / 10, 5, 5, YELLOW});
+	// DDA(data, data->p1, data->p2);
+	render_background(&data->img);
 	ft_cast_rays(data);
+	// ft_mini_map(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }

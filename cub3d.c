@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/12/02 20:14:58 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/07 12:07:37 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,23 @@ int	ft_esc(t_data *data)
 	exit (0);
 }
 
+int	ft_test(int keycode, t_data *data)
+{
+	//(void)data;
+
+	if (ft_handle_oriented_event(data, keycode))
+		data->key_to_oriented = -1;
+	if (ft_handle_move_event(data, keycode))
+		data->key_to_move = -1;
+	
+	printf("test key_1 %d, key_2 %d\n", data->key_to_move, data->key_to_oriented);
+	return 0;
+}
+
 void	ft_end(t_data	data)
 {
 	mlx_hook(data.win_ptr, 2, 0, ft_event, &data);
+	mlx_hook(data.win_ptr, 3, 0, ft_test, &data);
 	mlx_hook(data.win_ptr, 17, 0, ft_esc, &data);
 	mlx_loop(data.mlx_ptr);
 }
@@ -49,6 +63,8 @@ void	ft_init(t_data	*data, t_cub3d *cubmap)
 	data->p2.x = (cubmap->pos_player_x * GRID_SIZE) + (cos(data->angle) * 20);
 	data->p2.y = (cubmap->pos_player_y * GRID_SIZE) + (sin(data->angle) * 20);
 	data->key_press = -1;
+	data->key_to_move = -1;
+	data->key_to_oriented = -1;
 }
 
 void	ft_main(t_data	*data)

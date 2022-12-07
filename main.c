@@ -26,21 +26,17 @@ int	main(int ac, char **av)
     if (ft_parsing(ac, av[1], &cubmap))
         return (1);
 
-	// char **map = cubmap.maps;
-
-	// int i = 0;
-	// while (map[i])
-	// {
-	// 	//j = 0;
-	// 	printf("%s #%ld##\n", map[i] , ft_strlen(map[i]));
-	// 	i++;
-	// }
-
-	// return 0;
+	// char *path = "./gif/14.xpm";
+	// int w, h;
 
 	x11 = cubmap.length_width;
 	y11 = cubmap.length_to_map;
 	ft_init(&data, &cubmap);
+	
+	// void *img = mlx_xpm_file_to_image(data.mlx_ptr, path, &w, &h);
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img, 0, 0);
+	//mlx_loop(data.mlx_ptr);
+
 	ft_main(&data);
 	ft_end(data);
 	return (0);

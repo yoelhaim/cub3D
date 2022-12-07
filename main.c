@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 	
 	// void *img = mlx_xpm_file_to_image(data.mlx_ptr, path, &w, &h);
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img, 0, 0);
-	//mlx_loop(data.mlx_ptr);
+	// mlx_loop(data.mlx_ptr);
 
 	ft_main(&data);
 	ft_end(data);

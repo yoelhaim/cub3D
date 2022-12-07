@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/07 11:23:11 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/07 16:29:26 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,8 @@ int		check_name_exc_texture(char *filename);
 void	move(t_data *data, int y, int x);
 int		ft_esc(t_data *data);
 int		ft_event(int keycode, t_data *data);
-void	ft_move(int keycode, t_data *data);
-void	ft_oriented(int keycode, t_data *data);
+void	ft_move(t_data *data);
+void	ft_oriented(t_data *data);
 //
 void	ft_end(t_data	data);
 void	ft_init(t_data	*data, t_cub3d *cubmap);

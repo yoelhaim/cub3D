@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/12/07 12:07:37 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/07 17:43:49 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,26 @@ int	ft_test(int keycode, t_data *data)
 	return 0;
 }
 
+int	render_next_frame(t_data *data)
+{
+	// static int i;
+	if (data->key_to_move != -1 || data->key_to_oriented != -1)
+	{
+		ft_oriented(data);
+		ft_move(data);
+		create_image(data);
+	}
+
+	return 1;
+}
+
 void	ft_end(t_data	data)
 {
-	mlx_hook(data.win_ptr, 2, 0, ft_event, &data);
-	mlx_hook(data.win_ptr, 3, 0, ft_test, &data);
+	mlx_hook(data.win_ptr, 2, 1L<<0, ft_event, &data);
+	mlx_hook(data.win_ptr, 3, 1L<<1, ft_test, &data);
+
 	mlx_hook(data.win_ptr, 17, 0, ft_esc, &data);
+	mlx_loop_hook(data.mlx_ptr, render_next_frame, &data);
 	mlx_loop(data.mlx_ptr);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/07 16:29:26 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/08 18:04:39 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,4 +209,6 @@ void ft_mini_map(t_data *data);
 int ft_handle_oriented_event(t_data *data, int keycode);
 int ft_handle_move_event(t_data *data, int keycode);
 
+// texture
+void ft_texture(t_data *data);
 #endif

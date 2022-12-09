@@ -4,12 +4,12 @@ F	100,000001,100
 
 
 
-SO  ./texture/SO.xpm
+SO  ./texture/planks.xpm
      
-NO	./texture/NO.xpm
-WE	./texture/WE.xpm
+NO	./texture/planks.xpm
+WE	./texture/planks.xpm
 
-EA	./texture/EA.xpm
+EA	./texture/planks.xpm
 
         11111111111111111
         100000100000001

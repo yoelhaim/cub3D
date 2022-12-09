@@ -37,6 +37,9 @@ int	main(int ac, char **av)
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img, 0, 0);
 	// mlx_loop(data.mlx_ptr);
 
+
+	/// empty  map   no map
+
 	ft_main(&data);
 	ft_end(data);
 	return (0);

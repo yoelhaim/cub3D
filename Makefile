@@ -34,6 +34,7 @@ SRC = cub3d.c get_next_line.c \
 	$(MA)render_3d.c \
 	$(MA)mini_map.c \
 	$(MA)dda.c \
+	$(MA)texture.c\
 	main.c
 
 SRC_UTILS = utils/utils.c \

@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/12/07 16:39:31 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/09 12:32:06 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_oriented(t_data *data)
 		data->p2.x = data->p1.x + cos(*pa) * 20;
 		data->p2.y = data->p1.y + sin(*pa) * 20;
 	}
-	printf("oriented key_1 %d, key_2 %d\n", data->key_to_move, data->key_to_oriented);
 }
 
 int ft_is_wall_2(char **map, int i, int j, t_point *p)
@@ -91,11 +90,9 @@ int	ft_event(int keycode, t_data *data)
 {
 	double	x;
 	double	y;
-	static int n;
 
 	x = data->cub->pos_player_x;
 	y = data->cub->pos_player_y;
-	printf("event %d\n", n++);
 	if (keycode == ESC)
 		ft_esc(data);
 	ft_handle_move_event(data, keycode);
@@ -175,7 +172,6 @@ void	ft_move(t_data *data)
 	char	**map;
 	double	*pa;
 
-
 	pa = &data->angle;
 	map = data->cub->maps;
 	if (data->key_to_move == W_KEY)
@@ -186,6 +182,4 @@ void	ft_move(t_data *data)
 		ft_move_right(data, map, data->angle);
 	if (data->key_to_move == A_KEY)
 		ft_move_left(data, map, data->angle);
-	
-	printf("move key_1 %d, key_2 %d\n", data->key_to_move, data->key_to_oriented);
 }

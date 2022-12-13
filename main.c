@@ -40,7 +40,19 @@ int	main(int ac, char **av)
 
 	/// empty  map   no map
 
+
+
+	int		w, h;
+	char *path = "texture/1.xpm";
+	void *img;
+	int bpp,len,end;
+	img = mlx_xpm_file_to_image(data.mlx_ptr, path , &w, &h);
+
+	data.adr = (unsigned int *)mlx_get_data_addr(img, &bpp, &len, &end);
 	ft_main(&data);
+
+	
+
 	ft_end(data);
 	return (0);
 }

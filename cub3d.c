@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/12/07 17:43:49 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/09 12:32:33 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,10 @@ int	ft_esc(t_data *data)
 
 int	ft_test(int keycode, t_data *data)
 {
-	//(void)data;
-
 	if (ft_handle_oriented_event(data, keycode))
 		data->key_to_oriented = -1;
 	if (ft_handle_move_event(data, keycode))
 		data->key_to_move = -1;
-	
-	printf("test key_1 %d, key_2 %d\n", data->key_to_move, data->key_to_oriented);
 	return 0;
 }
 

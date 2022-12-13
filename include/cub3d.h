@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/08 18:04:39 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/13 23:49:12 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_data
 	int		key_press;
 	int		key_to_move;
 	int		key_to_oriented;
+	unsigned int	*adr;
 }	t_data;
 
 typedef struct s_rect
@@ -134,9 +135,13 @@ typedef struct s_rect
 
 */
 
+
+
 typedef struct  s_ray
 {
 	double distance;
+	int		hit_horizontale;
+	t_point *hit_point;
 } t_ray;
 
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -200,7 +205,7 @@ int ft_is_wall_2(char **map, int i, int j, t_point *p);
 void draw_map(t_data *data);
 
 //render 3d
-void    ft_render3d(t_data *data, double ray_dist, int index_of_ray, int hor);
+void    ft_render3d(t_data *data, double ray_dist, int index_of_ray, t_ray *ray);
 
 //bonus
 void ft_mini_map(t_data *data);

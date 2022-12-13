@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:22:48 by matef             #+#    #+#             */
-/*   Updated: 2022/12/08 18:21:33 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:13:02 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,8 @@ void ft_ray(t_data *data, double ray_angle, int index_of_ray)
     t_point p2;
     double  dist_1;
     double  dist_2;
+
+    t_ray ray;
     // double  min;
     (void)index_of_ray;
     dist_1 = get_horizontale_ray(data, ray_angle, &p1);
@@ -184,14 +186,19 @@ void ft_ray(t_data *data, double ray_angle, int index_of_ray)
     if (dist_1 < dist_2)
     {
         // DDA(data, data->p1, p1);
+        
+        ray.hit_horizontale = 1;
+        ray.hit_point = &p1;
         dist_1 = dist_1 * cos(ray_angle - data->angle);
-        ft_render3d(data, dist_1, index_of_ray, 1);
+        ft_render3d(data, dist_1, index_of_ray, &ray);
     }
     else if (dist_2 < dist_1)
     {
         // DDA(data, data->p1, p2);
+        ray.hit_horizontale = 0;
+        ray.hit_point = &p2;
         dist_2 = dist_2 * cos(ray_angle - data->angle);
-        ft_render3d(data, dist_2, index_of_ray, 0);
+        ft_render3d(data, dist_2, index_of_ray, &ray);
     }
 
 

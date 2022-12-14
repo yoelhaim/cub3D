@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 14:51:05 by matef             #+#    #+#             */
-/*   Updated: 2022/12/13 23:40:21 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/14 14:33:26 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ int render_texture(t_data *data, t_rect rect, t_ray *ray)
 
         offset_y = (i - rect.y) * ((float)GRID_SIZE / rect.height);
         
-        img_pix_put(&data->img, rect.x, i, data->adr[(offset_y * GRID_SIZE) + offset_x]);
+        if (ray->hit_horizontale)
+            img_pix_put(&data->img, rect.x, i, data->adr[(offset_y * GRID_SIZE) + offset_x]);
+        else
+            img_pix_put(&data->img, rect.x, i, data->adr2[(offset_y * GRID_SIZE) + offset_x]);
+            
 
 		++i;
 	}

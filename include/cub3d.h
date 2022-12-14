@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/13 23:49:12 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/14 14:32:24 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_data
 	int		key_to_move;
 	int		key_to_oriented;
 	unsigned int	*adr;
+	unsigned int	*adr2;
 }	t_data;
 
 typedef struct s_rect

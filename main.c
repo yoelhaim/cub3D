@@ -43,12 +43,17 @@ int	main(int ac, char **av)
 
 
 	int		w, h;
-	char *path = "texture/1.xpm";
+	char *path = "texture/r.xpm";
+	char *path2 = "texture/o.xpm";
 	void *img;
+	void *img2;
 	int bpp,len,end;
 	img = mlx_xpm_file_to_image(data.mlx_ptr, path , &w, &h);
+	img2 = mlx_xpm_file_to_image(data.mlx_ptr, path2 , &w, &h);
 
 	data.adr = (unsigned int *)mlx_get_data_addr(img, &bpp, &len, &end);
+
+	data.adr2 = (unsigned int *)mlx_get_data_addr(img2, &bpp, &len, &end);
 	ft_main(&data);
 
 	

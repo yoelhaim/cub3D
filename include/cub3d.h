@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/16 21:18:34 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/17 19:13:35 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 # include <limits.h>
 
-# define WINDOW_WIDTH 1366
+# define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 768
 # define GREEN_PIXEL 0xFF00
 # define RED 0xFF0000
@@ -113,6 +113,7 @@ typedef struct s_data
 	int		key_press;
 	int		key_to_move;
 	int		key_to_oriented;
+	// int					mouse_presed;
 	unsigned int	*adr;
 	unsigned int	*adr2;
 

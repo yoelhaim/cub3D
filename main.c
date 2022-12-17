@@ -88,7 +88,7 @@ int	main(int ac, char **av)
 	
 
 
-	// printf("%s\n", cubmap.)
+	//printf("mouse %d\n", data.mouse_presed);
 
 	ft_main(&data);
 

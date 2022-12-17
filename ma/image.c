@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/12/17 14:08:20 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:09:26 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,13 @@ int	render(t_data *data)
 	ft_cast_rays(data);
 	// ft_mini_map(data);
 	// ft_texture(data);
-	int w,h;
-	void *img = mlx_xpm_file_to_image(data->mlx_ptr, "texture/Brosen_windrose.svg.xpm", &w, &h);
+	// int w,h;
+	// void *img = mlx_xpm_file_to_image(data->mlx_ptr, "texture/pistol.xpm", &w, &h);
 	//Brosen_windrose.svg.xpm
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img, 0, 0);
+	
+	
+	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img, WINDOW_WIDTH / 2 - w / 2, WINDOW_HEIGHT - h);
 
 	
 		

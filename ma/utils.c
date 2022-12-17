@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/12/17 14:12:54 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/17 18:44:29 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	ft_oriented(t_data *data)
 		data->p2.y = data->p1.y + sin(*pa) * 20;
 	}
 }
+
+
 
 int ft_is_wall_2(char **map, int i, int j, t_point *p)
 {

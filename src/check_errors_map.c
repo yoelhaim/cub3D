@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors_map.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/11/30 12:35:12 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:02:26 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,25 @@ int	check_colors_ciel(char *color, t_cub3d *cubmap)
 	return (1);
 }
 
-int	check_floor_ceil(int *str)
+int	check_floor_ceil(int *number)
 {
 	int	i;
 
 	i = 0;
 	while (i < 3)
 	{
-		if (str[i] < 0 || str[i] > 255)
+		if (number[i] < 0 || number[i] > 255)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int	is_open(char *namefile)
+static int	is_open(char *file_name)
 {
 	int	fd;
 
-	fd = open(namefile, O_RDONLY);
+	fd = open(file_name, O_RDONLY);
 	close(fd);
 	return (fd);
 }
@@ -97,7 +97,6 @@ char	*check_texture_is_valid(char *ext)
 	if (!spl[1])
 		return ("error");
 	return (spl[1]);
-	
 }
 
 int	check_file_texture(t_cub3d *texture)

@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/12/13 13:12:58 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/17 14:08:20 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,23 @@ int	render(t_data *data)
 	if (data->win_ptr == NULL)
 		return (1);
 
-	// render_rect(&data->img, (t_rect){data->p1.x / 10, data->p1.y / 10, 5, 5, YELLOW});
 	// DDA(data, data->p1, data->p2);
 	render_background(&data->img);
-	ft_cast_rays(data);
 	// draw_map(data);
-	ft_mini_map(data);
+	// render_rect(&data->img, (t_rect){data->p1.x, data->p1.y, 5, 5, RED});
+	ft_cast_rays(data);
+	// ft_mini_map(data);
 	// ft_texture(data);
+	int w,h;
+	void *img = mlx_xpm_file_to_image(data->mlx_ptr, "texture/Brosen_windrose.svg.xpm", &w, &h);
+	//Brosen_windrose.svg.xpm
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img, 0, 0);
 
 	
+		
 
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+	
+	// printf("up %d right %d\n", , ft_is_looking_right(data->angle));
 	return (0);
 }

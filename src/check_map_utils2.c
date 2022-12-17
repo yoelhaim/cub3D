@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/04 17:18:17 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/15 13:51:18 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	get_line_width(t_cub3d *cubmap)
 		}
 		i++;
 	}
-	cubmap->length_width = length;
+	cubmap->width_of_map = length;
 }
 
 int	scq_map(t_cub3d *cubmap)

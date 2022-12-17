@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/14 14:32:24 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/16 21:18:34 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define S_KEY 1
 # define A_KEY 0
 
-# define MOVE_STEP 2
+# define MOVE_STEP 4
 # define VIEW_ANGLE 1.0472
 # define NBR_RAYS WINDOW_WIDTH
 
@@ -77,8 +77,8 @@ typedef struct s_cub3d
 	double			pos_player_x;
 	double			pos_player_y;
 	char			direction;
-	int				length_to_map;
-	int				length_width;
+	int				height_of_map;
+	int				width_of_map;
 }	t_cub3d;
 
 // mlx
@@ -115,6 +115,11 @@ typedef struct s_data
 	int		key_to_oriented;
 	unsigned int	*adr;
 	unsigned int	*adr2;
+
+	unsigned int		*no;
+	unsigned int		*so;
+	unsigned int		*we;
+	unsigned int		*ea;
 }	t_data;
 
 typedef struct s_rect
@@ -126,23 +131,12 @@ typedef struct s_rect
 	int	color;
 }	t_rect;
 
-/*
-
-	point : x y
-	distance
-	direction
-	vertical or horizontal
-	ray angle
-
-*/
-
-
-
 typedef struct  s_ray
 {
 	double distance;
 	int		hit_horizontale;
 	t_point *hit_point;
+	double	ray_angle;
 } t_ray;
 
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -174,7 +168,7 @@ void	get_map(int size, int fd, t_cub3d *cubmap);
 // check errors
 int		check_colors_floor(char *color, t_cub3d *cubmap);
 int		check_colors_ciel(char *color, t_cub3d *cubmap);
-int		check_floor_ceil(int *str);
+int		check_floor_ceil(int *number);
 int		check_file_texture(t_cub3d *texture);
 // maps
 int		check_maps(t_cub3d *cubmap, char *namefile);
@@ -217,4 +211,6 @@ int ft_handle_move_event(t_data *data, int keycode);
 
 // texture
 void ft_texture(t_data *data);
+int ft_is_looking_up(double   angle);
+int ft_is_looking_right(double   angle);
 #endif

@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/12/09 12:32:06 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/17 14:12:54 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void	ft_move_up(t_data *data, char **map, double pa)
 	int	i;
 	int	j;
 
-	i = data->p1.x + cos(pa) * MOVE_STEP;
-	j = data->p1.y + sin(pa) * MOVE_STEP;
+	i = data->p1.x + (cos(pa) * (MOVE_STEP * 3));
+	j = data->p1.y + (sin(pa) * (MOVE_STEP * 3));
 	if (ft_is_wall(map, i, j))
 	{
 		data->p1.x += cos(pa) * MOVE_STEP;
@@ -124,8 +124,8 @@ void	ft_move_down(t_data *data, char **map, double pa)
 	int	i;
 	int	j;
 
-	i = data->p1.x - cos(pa) * MOVE_STEP;
-	j = data->p1.y - sin(pa) * MOVE_STEP;
+	i = data->p1.x - (cos(pa) * (MOVE_STEP * 3));
+	j = data->p1.y - (sin(pa) * (MOVE_STEP * 3));
 	if (ft_is_wall(map, i, j))
 	{
 		data->p1.x -= cos(pa) * MOVE_STEP;
@@ -135,35 +135,39 @@ void	ft_move_down(t_data *data, char **map, double pa)
 	}
 }
 
-void	ft_move_left(t_data *data, char **map, double pa)
-{
-	int	i;
-	int	j;
-
-	i = data->p1.x - cos(pa) * MOVE_STEP;
-	j = data->p1.y + sin(pa) * MOVE_STEP;
-	if (ft_is_wall(map, i, j))
-	{
-		data->p1.x += sin(pa) * MOVE_STEP;
-		data->p2.x += sin(pa) * MOVE_STEP;
-		data->p1.y -= cos(pa) * MOVE_STEP;
-		data->p2.y -= cos(pa) * MOVE_STEP;
-	}
-}
-
 void	ft_move_right(t_data *data, char **map, double pa)
 {
 	int	i;
 	int	j;
 
-	i = data->p1.x + cos(pa) * MOVE_STEP;
-	j = data->p1.y - sin(pa) * MOVE_STEP;
+	pa += M_PI_2;
+	pa = norm_angle(pa);
+	i = (int)(data->p1.x + (cos(pa) * (MOVE_STEP * 3)));
+	j = (int)(data->p1.y + (sin(pa) * (MOVE_STEP * 3)));
 	if (ft_is_wall(map, i, j))
 	{
-		data->p1.x -= sin(pa) * MOVE_STEP;
-		data->p2.x -= sin(pa) * MOVE_STEP;
-		data->p1.y += cos(pa) * MOVE_STEP;
-		data->p2.y += cos(pa) * MOVE_STEP;
+		data->p1.x += cos(pa) * MOVE_STEP;
+		data->p2.x += cos(pa) * MOVE_STEP;
+		data->p1.y += sin(pa) * MOVE_STEP;
+		data->p2.y += sin(pa) * MOVE_STEP;
+	}
+}
+
+void	ft_move_left(t_data *data, char **map, double pa)
+{
+	int	i;
+	int	j;
+
+	pa -= M_PI_2;
+	pa = norm_angle(pa);
+	i = (int)(data->p1.x + (cos(pa) * (MOVE_STEP * 3)));
+	j = (int)(data->p1.y + (sin(pa) * (MOVE_STEP * 3)));
+	if (ft_is_wall(map, i, j))
+	{
+		data->p1.x += cos(pa) * MOVE_STEP;
+		data->p2.x += cos(pa) * MOVE_STEP;
+		data->p1.y += sin(pa) * MOVE_STEP;
+		data->p2.y += sin(pa) * MOVE_STEP;
 	}
 }
 

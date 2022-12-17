@@ -14,7 +14,7 @@ int ft_parsing(int ac, char *file_name, t_cub3d *cubmap)
 	if (!check_file_texture(cubmap) \
 	    || !check_map_is_valid(cubmap))
 		return (ft_putstr_fd("error reading map \n", 2), 1);
-	cubmap->length_to_map = ft_len_ptr(cubmap->maps);
+	cubmap->height_of_map = ft_len_ptr(cubmap->maps);
     return (0);
 }
 
@@ -29,8 +29,8 @@ int	main(int ac, char **av)
 	// char *path = "./gif/14.xpm";
 	// int w, h;
 
-	x11 = cubmap.length_width;
-	y11 = cubmap.length_to_map;
+	x11 = cubmap.width_of_map;
+	y11 = cubmap.height_of_map;
 	ft_init(&data, &cubmap);
 	
 	// void *img = mlx_xpm_file_to_image(data.mlx_ptr, path, &w, &h);
@@ -40,23 +40,57 @@ int	main(int ac, char **av)
 
 	/// empty  map   no map
 
-
+	//printf("%s\n", cu)
 
 	int		w, h;
-	char *path = "texture/r.xpm";
-	char *path2 = "texture/o.xpm";
+	// char *path = "texture/so.xpm";
+	// char *path2 = "texture/ea.xpm";
 	void *img;
 	void *img2;
+	void *img3;
+	void *img4;
 	int bpp,len,end;
-	img = mlx_xpm_file_to_image(data.mlx_ptr, path , &w, &h);
-	img2 = mlx_xpm_file_to_image(data.mlx_ptr, path2 , &w, &h);
 
-	data.adr = (unsigned int *)mlx_get_data_addr(img, &bpp, &len, &end);
 
-	data.adr2 = (unsigned int *)mlx_get_data_addr(img2, &bpp, &len, &end);
-	ft_main(&data);
+	img = mlx_xpm_file_to_image(data.mlx_ptr, cubmap.so, &w, &h);
+	if (!img)
+		exit(0);
+	data.so = (unsigned int *)mlx_get_data_addr(img, &bpp, &len, &end);
+	if (!data.no)
+		exit(0);
+
+
+	img2 = mlx_xpm_file_to_image(data.mlx_ptr, cubmap.ea, &w, &h);
+	if (!img2)
+		exit(0);
+	data.ea = (unsigned int *)mlx_get_data_addr(img2, &bpp, &len, &end);
+	if (!data.ea)
+		exit(0);
 
 	
+	
+	
+	img3 = mlx_xpm_file_to_image(data.mlx_ptr, cubmap.no, &w, &h);
+	if (!img3)
+		exit(0);
+	data.no = (unsigned int *)mlx_get_data_addr(img3, &bpp, &len, &end);
+	if (!data.no)
+		exit(1);
+	
+
+
+	img4 = mlx_xpm_file_to_image(data.mlx_ptr, cubmap.we, &w, &h);
+	if (!img4)
+		exit(0);
+	data.we = (unsigned int *)mlx_get_data_addr(img4, &bpp, &len, &end);
+	if (!data.we)
+		exit(1);
+	
+
+
+	// printf("%s\n", cubmap.)
+
+	ft_main(&data);
 
 	ft_end(data);
 	return (0);

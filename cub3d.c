@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/12/09 12:32:33 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/16 14:09:09 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ double ft_init_direction(char direction)
 {
 	if (direction == 'E')
 		return (0);
-	if (direction == 'N')
-		return (M_PI_2);
-	if (direction == 'S')
+	else if (direction == 'N')
 		return (1.5 * M_PI);
+	else if (direction == 'S')
+		return (M_PI_2);
 	return (M_PI);
 }
 
@@ -69,8 +69,8 @@ void	ft_init(t_data	*data, t_cub3d *cubmap)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
 	data->cub = cubmap;
 	data->angle = ft_init_direction(cubmap->direction);
-	data->p1.x = cubmap->pos_player_x * GRID_SIZE;
-	data->p1.y = cubmap->pos_player_y * GRID_SIZE;
+	data->p1.x = (cubmap->pos_player_x * GRID_SIZE) + (GRID_SIZE / 2);
+	data->p1.y = (cubmap->pos_player_y * GRID_SIZE) + (GRID_SIZE / 2);
 	data->p2.x = (cubmap->pos_player_x * GRID_SIZE) + (cos(data->angle) * 20);
 	data->p2.y = (cubmap->pos_player_y * GRID_SIZE) + (sin(data->angle) * 20);
 	data->key_press = -1;

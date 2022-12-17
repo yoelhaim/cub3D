@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "mlx.h": "c",
-        "bitset": "c"
+        "bitset": "c",
+        "sstream": "c"
     }
 }

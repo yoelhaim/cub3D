@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:22:48 by matef             #+#    #+#             */
-/*   Updated: 2022/12/13 14:13:02 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/17 14:08:36 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ void ft_ray(t_data *data, double ray_angle, int index_of_ray)
     (void)index_of_ray;
     dist_1 = get_horizontale_ray(data, ray_angle, &p1);
     dist_2 = get_verticale_ray(data, ray_angle, &p2);
+    ray.ray_angle = ray_angle;
     if (dist_1 < dist_2)
     {
         // DDA(data, data->p1, p1);

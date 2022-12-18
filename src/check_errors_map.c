@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors_map.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/15 14:02:26 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/15 15:15:34 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,25 @@ int	check_colors_ciel(char *color, t_cub3d *cubmap)
 	return (1);
 }
 
-int	check_floor_ceil(int *number)
+int	check_floor_ceil(int *str)
 {
 	int	i;
 
 	i = 0;
 	while (i < 3)
 	{
-		if (number[i] < 0 || number[i] > 255)
+		if (str[i] < 0 || str[i] > 255)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-static int	is_open(char *file_name)
+int	is_open(char *namefile)
 {
 	int	fd;
 
-	fd = open(file_name, O_RDONLY);
+	fd = open(namefile, O_RDONLY);
 	close(fd);
 	return (fd);
 }
@@ -94,9 +94,11 @@ char	*check_texture_is_valid(char *ext)
 	char	**spl;
 
 	spl = ft_split(ext, '.');
-	if (!spl[1])
-		return ("error");
-	return (spl[1]);
+	
+	if (!spl[ft_len_ptr(spl) -1])
+		return (ft_strdup("error"));
+	return (spl[ft_len_ptr(spl) -1]);
+	
 }
 
 int	check_file_texture(t_cub3d *texture)

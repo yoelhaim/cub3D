@@ -1,17 +1,17 @@
 C   150,150,255
 F	100,000001,100
 
-SO  ./texture/planks.xpm
-NO	./texture/planks.xpm
-WE	./texture/planks.xpm
-EA	./texture/planks.xpm
+SO  ./texture/so.xpm
+NO	./texture/no.xpm
+WE	./texture/we.xpm
+EA	./texture/ea.xpm
 
 
 
 
         1111111111111111111111111
         1000000001100000000000001
-        11011000011100000000000E1
+        11011000011100000000000W1
         1001000000000000000000001
 111111111011000001110000000000001
 100000000011000001110111111111111

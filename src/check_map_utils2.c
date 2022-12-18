@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/15 13:51:18 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/18 01:19:50 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,19 @@ int check_maps_2(t_cub3d *cubmap, int fd, int size)
 {
 	int		i;
 	char	*str;
-
-	int for_test = 0;
 	i = 0;
-	cubmap->maps = malloc(sizeof(char *) * size);
+	cubmap->maps = calloc(size + 1,sizeof(char *));
 	while (i < size)
 	{
 		str = get_next_line(fd);
 		if (!str)
 			break;
 		if (strlen(str)  >= 1 && str[0] != '\n')
-		{
 			cubmap->maps[i] = ft_strtrim(str, "\n");
-			for_test = 1;
-		}
 		else
 			i -= 1;
 		i++;
 	}
-	cubmap->maps[i] = 0;
 	close(fd);
 	return (scq_map(cubmap));
 }

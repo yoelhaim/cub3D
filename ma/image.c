@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/12/17 15:09:26 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/17 22:54:29 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	render(t_data *data)
 	// draw_map(data);
 	// render_rect(&data->img, (t_rect){data->p1.x, data->p1.y, 5, 5, RED});
 	ft_cast_rays(data);
-	// ft_mini_map(data);
+	ft_mini_map(data);
 	// ft_texture(data);
 	// int w,h;
 	// void *img = mlx_xpm_file_to_image(data->mlx_ptr, "texture/pistol.xpm", &w, &h);

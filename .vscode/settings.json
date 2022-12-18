@@ -1,7 +1,8 @@
 {
-    "files.associations": {
-        "mlx.h": "c",
-        "bitset": "c",
-        "sstream": "c"
-    }
+	"files.associations": {
+		"mlx.h": "c",
+		"bitset": "c",
+		"sstream": "c",
+		"locale": "c"
+	}
 }

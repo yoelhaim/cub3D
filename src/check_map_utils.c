@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/04 14:43:36 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/18 20:11:43 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	ft_is_digit(char *str)
 		if ((str[i] < '0' || str[i] > '9'))
 			return (1);
 	}
+	free(str);
 	return (0);
 }
 
@@ -76,7 +77,7 @@ int	check_name_exc(char *filename)
 	char	*extenstion;
 
 	extenstion = rev_str(filename);
-	if (!strcmp(extenstion, "buc"))
+	if (!ft_strcmp(extenstion, "buc"))
 	{
 		free(extenstion);
 		return (1);
@@ -87,5 +88,7 @@ int	check_name_exc(char *filename)
 
 int	check_name_exc_texture(char *filename)
 {
-	return (!strcmp(filename, "xpm"));
+	int equal = !ft_strcmp(filename, "xpm");
+	free(filename);
+	return (equal);
 }

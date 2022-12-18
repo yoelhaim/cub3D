@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:03:08 by matef             #+#    #+#             */
-/*   Updated: 2022/12/17 23:11:41 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/18 22:03:26 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,5 +160,5 @@ void ft_mini_map(t_data *data)
 		 p1++;
 		i+= 10;
 	 }
-
+	 free_texture(mini_map);
 }

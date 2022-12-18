@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/04 14:46:06 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/18 14:52:47 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	check_first_last(char **tmp, int i)
 		}
 		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
 			return (0);
+		free((line));
 		i++;
 	}
 	return (1);

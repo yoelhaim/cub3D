@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/15 15:15:34 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:48:08 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_colors_floor(char *color, t_cub3d *cubmap)
 {
 	char	**splited;
 	int		i;
-
+	
 	i = 0;
 	splited = ft_split(color, ',');
 	while (splited[i])
@@ -33,9 +33,10 @@ int	check_colors_floor(char *color, t_cub3d *cubmap)
 		if (color[i] == ',' && color[i + 1] == ',')
 			return (0);
 	}
-	cubmap->floor[0] = atoi(splited[0]);
-	cubmap->floor[1] = atoi(splited[1]);
-	cubmap->floor[2] = atoi(splited[2]);
+	cubmap->floor[0] = ft_atoi(splited[0]);
+	cubmap->floor[1] = ft_atoi(splited[1]);
+	cubmap->floor[2] = ft_atoi(splited[2]);
+	free_texture(splited);
 	return (1);
 }
 
@@ -63,6 +64,7 @@ int	check_colors_ciel(char *color, t_cub3d *cubmap)
 	cubmap->ciel[0] = atoi(splited[0]);
 	cubmap->ciel[1] = atoi(splited[1]);
 	cubmap->ciel[2] = atoi(splited[2]);
+	free_texture(splited);
 	return (1);
 }
 
@@ -92,12 +94,15 @@ int	is_open(char *namefile)
 char	*check_texture_is_valid(char *ext)
 {
 	char	**spl;
+	char	*line;
 
 	spl = ft_split(ext, '.');
 	
 	if (!spl[ft_len_ptr(spl) -1])
 		return (ft_strdup("error"));
-	return (spl[ft_len_ptr(spl) -1]);
+	line = ft_strdup(spl[ft_len_ptr(spl) -1]);
+	free_texture(spl);
+	return (line);
 	
 }
 

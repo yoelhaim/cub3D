@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/17 19:13:35 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/18 15:47:10 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,9 @@ void	ft_putendl_fd(char *s, int fd);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+char	*ft_strstr(char *str, char *to_find);
+void	free_texture(char **split);
+int		ft_strcmp(char *s1, char *s2);
 // getnext line
 char	*get_next_line(int fd);
 // utils
@@ -163,7 +166,7 @@ int		ft_is_digit(char *str);
 // check map 1
 int		check_exten(char *filename);
 int		check_name_exc(char *filename);
-int		read_to_file(char *file_name, t_cub3d *cubmap);
+int		read_file(char *file_name, t_cub3d *cubmap);
 char	**remove_empty_line(char **map);
 void	get_map(int size, int fd, t_cub3d *cubmap);
 // check errors

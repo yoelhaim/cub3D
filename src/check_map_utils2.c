@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/18 01:19:50 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:32:00 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int check_maps_2(t_cub3d *cubmap, int fd, int size)
 	int		i;
 	char	*str;
 	i = 0;
-	cubmap->maps = calloc(size + 1,sizeof(char *));
+	cubmap->maps = calloc(size + 1, sizeof(char *));
 	while (i < size)
 	{
 		str = get_next_line(fd);
@@ -70,6 +70,7 @@ int check_maps_2(t_cub3d *cubmap, int fd, int size)
 			cubmap->maps[i] = ft_strtrim(str, "\n");
 		else
 			i -= 1;
+		free(str);
 		i++;
 	}
 	close(fd);
@@ -81,17 +82,19 @@ void	get_map(int size, int fd, t_cub3d *cubmap)
 	int		length;
 	char	*str;
 	int		last_size;
+	char	*line;
 
 	length = 0;
 	last_size = 0;
-	cubmap->map = malloc(sizeof(char *) * size);
+	cubmap->map = calloc(size + 2, sizeof(char *));
 	if (!cubmap->map)
 		return ;
 	while (length < size)
 	{
 		if (length >= 6)
 			break ;
-		str = ft_strtrim(get_next_line(fd), " \t\n");
+		line = get_next_line(fd);
+		str = ft_strtrim(line, " \t\n");
 		if (ft_strlen(str) != 0)
 			cubmap->map[length] = str;
 		else
@@ -99,11 +102,11 @@ void	get_map(int size, int fd, t_cub3d *cubmap)
 			free(str);
 			length -= 1;
 		}
+		free(line);
 		length++;
 		last_size++;
 	}
 	check_maps_2(cubmap, fd, size);
 	cubmap->last_index = last_size;
-	cubmap->map[length] = 0;
 	close(fd);
 }

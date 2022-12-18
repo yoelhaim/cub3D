@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/04 14:36:30 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:51:20 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,23 @@
 
 int	check_colors(char **colors, t_cub3d *cubmap)
 {
-	if (strstr(*colors, "F"))
+	if (ft_strstr(*colors, "F"))
 		return (check_colors_floor(*(colors + 1), cubmap));
-	if (strstr(*colors, "C"))
+	if (ft_strstr(*colors, "C"))
 		return (check_colors_ciel(*(colors + 1), cubmap));
 	return (1);
+}
+void free_texture(char **split)
+{
+	int	i;
+	
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
 
 int	check_doube_texture(char **map)
@@ -31,71 +43,83 @@ int	check_doube_texture(char **map)
 	len = 0;
 	while (map[++i])
 	{
+		
 		split = ft_split(map[i], ' ');
-		if (strstr(*split, "SO"))
+		if (ft_strstr(*split, "SO"))
 			len++;
-		if (strstr(*split, "NO"))
+		if (ft_strstr(*split, "NO"))
 			len++;
-		if (strstr(*split, "EA"))
+		if (ft_strstr(*split, "EA"))
 			len++;
-		if (strstr(*split, "WE"))
+		if (ft_strstr(*split, "WE"))
 			len++;
-		if (strstr(*split, "F"))
+		if (ft_strstr(*split, "F"))
 			len++;
-		if (strstr(*split, "C"))
+		if (ft_strstr(*split, "C"))
 			len++;
+		free_texture(split);
 	}
-	if (len != 6)
-		return (0);
-	return (1);
+	return (len == 6);
 }
 
-int	check_insert_texture(char **map, t_cub3d *cubmap)
+int	check_insert_texture(t_cub3d *cubmap)
 {
 	int		i;
 	char	**split;
 
 	i = -1;
-	while (map[++i])
+	while (cubmap->map[++i])
 	{
-		split = ft_split(map[i], ' ');
+		split = ft_split(cubmap->map[i], ' ');
 		if (split[1])
-			split[1] = ft_strtrim(split[1], " \t\n");
+		{
+			char *tr = ft_strtrim(split[1], " \t\n");
+			free(split[1]);
+			split[1] = tr;
+		}
 		else
+		{
+			free_texture(split);
 			break ;
-		if (strstr(*split, "NO"))
-			cubmap->no = strdup(split[1]);
-		else if (strstr(*split, "SO"))
-			cubmap->so = strdup(split[1]);
-		else if (strstr(*split, "WE"))
-			cubmap->we = strdup(split[1]);
-		else if (strstr(*split, "EA"))
-			cubmap->ea = strdup(split[1]);
+		}
+		if (ft_strstr(*split, "NO"))
+		cubmap->no = ft_strdup(split[1]);
+		else if (ft_strstr(*split, "SO"))
+			cubmap->so = ft_strdup(split[1]);
+		else if (ft_strstr(*split, "WE"))
+			cubmap->we = ft_strdup(split[1]);
+		else if (ft_strstr(*split, "EA"))
+			cubmap->ea = ft_strdup(split[1]);
 		if (!check_colors(split, cubmap))
-			return (0);
+			return (free_texture(split), 0);
+	  free_texture(split);
 	}
-	return (check_doube_texture(map));
+	return (check_doube_texture(cubmap->map));
 }
 
 void	replaced(char **map)
 {
-	int	i;
-	int	j;
-
+	int		i;
+	char	*tmp;
+	int		j;
+	
 	i = -1;
 	while (map[++i])
 	{
-		map[i] = ft_strtrim(map[i], " \t\n");
-		j = -1;
-		while (map[i][++j])
+		tmp = ft_strtrim(map[i], " \t\n");
+		j = 0;
+		free(map[i]);
+		while (tmp[j])
 		{
-			if (map[i][j] == '\t')
-				map[i][j] = ' ';
+			if (tmp[j] == '\t')
+				tmp[j] = ' ';
+			j++;
 		}
+		map[i] = tmp;
 	}
 }
 
-int	read_to_file(char *file_name, t_cub3d *cubmap)
+int	read_file(char *file_name, t_cub3d *cubmap)
 {
 	int		fd;
 	int		i;
@@ -112,6 +136,7 @@ int	read_to_file(char *file_name, t_cub3d *cubmap)
 		free(line);
 		line = get_next_line(fd);
 	}
+
 	close(fd);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
@@ -119,5 +144,5 @@ int	read_to_file(char *file_name, t_cub3d *cubmap)
 	get_map(i, fd, cubmap);
 	replaced(cubmap->map);
 	close(fd);
-	return (check_insert_texture(cubmap->map, cubmap));
+	return (check_insert_texture(cubmap));
 }

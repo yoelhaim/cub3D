@@ -1,35 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
+/*   Updated: 2022/12/18 21:55:03 by yoelhaim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "./include/cub3d.h"
+
+char *add_square_map(char *map, int long_width)
+{
+	int		len;
+	char	*tmp;
+	int		i;
+
+	len = ft_strlen(map);
+	tmp = calloc(long_width + 1, sizeof(char));
+	i = 0;
+	while (map[i])
+	{
+		tmp[i] = map[i];
+		i++;
+	}
+	while (i < long_width)
+		tmp[i++] = 'x';
+	free(map);
+	return (tmp);
+}
+
+void	convert_map(t_cub3d *cubmap)
+{
+	int	i;
+	
+	i = 0;
+	while (cubmap->maps[i])
+	{
+		cubmap->maps[i] = add_square_map(cubmap->maps[i], cubmap->width_of_map);
+		i++;
+	}
+	
+}
+
 
 int ft_parsing(int ac, char *file_name, t_cub3d *cubmap)
 {
 	if (ac != 2)
 		return (ft_putstr_fd("Argument not valid\n", 2), 1);
+
 	if (!check_exten(file_name) || (!check_name_exc(file_name)))
 		return (ft_putstr_fd("error: open map!\n", 2), 1);
-	if (!read_to_file(file_name, cubmap))
+	
+	if (!read_file(file_name, cubmap))
 		return (ft_putstr_fd("error check map\n", 2), 1);
 	if (!check_floor_ceil(cubmap->floor) || !check_floor_ceil(cubmap->ciel))
 		return (ft_putstr_fd("error color\n", 2), 1);
 	if (!check_file_texture(cubmap) \
 	    || !check_map_is_valid(cubmap))
 		return (ft_putstr_fd("error reading map \n", 2), 1);
+
 	cubmap->height_of_map = ft_len_ptr(cubmap->maps);
+	convert_map(cubmap);
     return (0);
 }
 
-void add_square_map(char *map, int long_width)
-{
-	int	len;
-
-	len = ft_strlen(map);
-	while(len < long_width - 1)
-	{
-		map[len] = 'x';
-		len++;
-	}
-	// map[long_width] = '\0';
-}
 
 int	main(int ac, char **av)
 {
@@ -38,15 +75,8 @@ int	main(int ac, char **av)
 
     if (ft_parsing(ac, av[1], &cubmap))
         return (1);
-	int i =0;
-	while (cubmap.maps[i])
-	{
-		printf("%s\n", cubmap.maps[i]);
-		add_square_map(cubmap.maps[i], cubmap.width_of_map);
-		//printf("afr %s\n", cubmap.maps[i]);
-
-		i++;
-	}
+	// 	while(1);
+	// return 1;
 	x11 = cubmap.width_of_map;
 	y11 = cubmap.height_of_map;
 	ft_init(&data, &cubmap);

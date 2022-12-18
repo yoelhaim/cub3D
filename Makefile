@@ -19,6 +19,7 @@ SRC = cub3d.c get_next_line.c \
 	src/check_map_utils2.c \
 	src/check_errors_map.c \
 	$(fLIB)ft_atoi.c \
+	$(fLIB)ft_strstr.c \
 	$(fLIB)ft_itoa.c \
 	$(fLIB)ft_putendl_fd.c \
 	$(fLIB)ft_putstr_fd.c \
@@ -28,6 +29,7 @@ SRC = cub3d.c get_next_line.c \
 	$(fLIB)ft_strtrim.c \
 	$(fLIB)ft_isdigit.c \
 	$(fLIB)ft_substr.c \
+	$(fLIB)ft_strcmp.c \
 	$(MA)utils.c \
 	$(MA)image.c \
 	$(MA)rays.c \

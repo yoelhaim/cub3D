@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/18 14:52:47 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:42:05 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,26 @@ int	find_player_position( t_cub3d *cubmap)
 	int		i;
 	int		j;
 	int		len;
-	char	**map;
 
 	i = -1;
 	len = 0;
-	map = cubmap->maps;
-	while (map[++i])
+	while (cubmap->maps[++i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (cubmap->maps[i][j])
 		{
-			if (map[i][j] == 'E' || map[i][j] == 'N' \
-			|| map[i][j] == 'S' || map[i][j] == 'W')
+			if (cubmap->maps[i][j] == 'E' || cubmap->maps[i][j] == 'N' \
+			|| cubmap->maps[i][j] == 'S' || cubmap->maps[i][j] == 'W')
 			{
-				cubmap->pos_player_x = j;
-				cubmap->pos_player_y = i;
-				cubmap->direction = map[i][j];
-				map[i][j] = '0';
+				setup_player(cubmap->maps[i][j], j, i, cubmap);
+				cubmap->maps[i][j] = '0';
 				len++;
 			}
 			j++;
 		}
 	}
 	if (len == 0 || len > 1)
-		return (ft_putstr_fd("Error: player not exists or duplicated!\n", 2), 0);
+		return (ft_putstr_fd("Error\nplayer not exists or duplicated!\n", 2), 0);
 	return (1);
 }
 
@@ -75,7 +71,7 @@ int	check_first_last(char **tmp, int i)
 			continue ;
 		}
 		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
-			return (0);
+			return (ft_putendl_fd("Error\nmap not allowed !", 2), 0);
 		free((line));
 		i++;
 	}
@@ -84,27 +80,25 @@ int	check_first_last(char **tmp, int i)
 
 int	check_spaces(int i, t_cub3d *cubmap)
 {
-	char	**map;
 	int		j;
 
-	map = cubmap->maps;
-	if (!find_player_position(cubmap) || !check_first_last(map, i))
-		return (0);
 	i = 0;
-
-	while (map[i])
+	if (!find_player_position(cubmap) || !check_first_last(cubmap->maps, i))
+		return (0);
+	while (cubmap->maps[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (cubmap->maps[i][j])
 		{
-			if (map[i][j] == '0')
+			if (cubmap->maps[i][j] == '0')
 			{
-				if (!map[i + 1] || !map[i - 1])
+				if (!cubmap->maps[i + 1] || !cubmap->maps[i - 1])
 					return (0);
-				if (!check_in_map(map[i - 1][j]) \
-				|| (!check_in_map(map[i + 1][j])) \
-				|| !check_in_map(map[i][j + 1]) || !check_in_map(map[i][j - 1]))
-					return (0);
+				if (!check_in_map(cubmap->maps[i - 1][j]) \
+				|| (!check_in_map(cubmap->maps[i + 1][j])) \
+				|| !check_in_map(cubmap->maps[i][j + 1]) || \
+				!check_in_map(cubmap->maps[i][j - 1]))
+					return (ft_putendl_fd("Error\nMap!", 2), 0);
 			}
 			j++;
 		}
@@ -129,7 +123,7 @@ int	check_map_is_valid(t_cub3d *cubmap)
 		if (map[i][j] == ' ')
 			i++;
 		if (map[i][j] != '1')
-			return (0);
+			return (ft_putendl_fd("Error\nmap not allowed!", 2), 0);
 		j++;
 	}
 	return (check_spaces(i, cubmap));

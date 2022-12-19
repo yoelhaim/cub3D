@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/12/17 22:06:14 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/20 00:04:35 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	render_next_frame(t_data *data)
 	{
 		ft_oriented(data);
 		ft_move(data);
+		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+		mlx_clear_window(data->mlx_ptr, data->win_ptr);
 		create_image(data);
 	}
 	return 1;
@@ -133,7 +135,47 @@ double ft_init_direction(char direction)
 	return (M_PI);
 }
 
+void	*get_texture_img(void *mlx_ptr, char *path)
+{
+	void	*img;
+	int w;
+	int h;
 
+	img = mlx_xpm_file_to_image(mlx_ptr, path, &w, &h);
+	if (!img)
+		exit(0);
+	return (img);
+}
+
+unsigned int *ft_get_data_addr(void *img)
+{
+	int				bpp;
+	int				len;
+	int				end;
+	unsigned int	*addr;
+
+	addr = (unsigned int *)mlx_get_data_addr(img, &bpp, &len, &end);
+	if (!addr)
+		exit(1);
+	return addr;
+}
+
+void	get_texture_adrr(t_data *data, t_cub3d *cubmap)
+{
+	void	*img;
+	void	*img2;
+	void	*img3;
+	void	*img4;
+	
+	img = get_texture_img(data->mlx_ptr, cubmap->so);
+	data->so = ft_get_data_addr(img);
+	img2 = get_texture_img(data->mlx_ptr, cubmap->ea);
+	data->ea = ft_get_data_addr(img2);
+	img3 = get_texture_img(data->mlx_ptr, cubmap->no);
+	data->no = ft_get_data_addr(img3);
+	img4 = get_texture_img(data->mlx_ptr, cubmap->we);
+	data->we = ft_get_data_addr(img4);
+}
 void	ft_init(t_data	*data, t_cub3d *cubmap)
 {
 	data->mlx_ptr = mlx_init();
@@ -147,7 +189,7 @@ void	ft_init(t_data	*data, t_cub3d *cubmap)
 	data->key_press = -1;
 	data->key_to_move = -1;
 	data->key_to_oriented = -1;
-	// data->mouse_presed = 0;
+	get_texture_adrr(data, cubmap);
 }
 
 void	ft_main(t_data	*data)

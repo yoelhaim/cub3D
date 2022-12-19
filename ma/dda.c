@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:12:39 by matef             #+#    #+#             */
-/*   Updated: 2022/12/05 20:13:30 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/19 15:50:29 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void DDA(t_data *data, t_point p1, t_point p2)
     line.x_inc = line.dx / (double)line.steps;
     line.y_inc = line.dy / (double)line.steps;
 	
-    line.X = p1.x;
-    line.Y = p1.y;
+    line.x = p1.x;
+    line.y = p1.y;
 	
     while (i <= line.steps)
 	{
-        img_pix_put(img, round(line.X), round(line.Y), YELLOW);
-        line.X += line.x_inc; 
-        line.Y += line.y_inc;
+        img_pix_put(img, round(line.x), round(line.y), YELLOW);
+        line.x += line.x_inc; 
+        line.y += line.y_inc;
 		i++;
     }
 }

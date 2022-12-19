@@ -3,6 +3,7 @@
 		"mlx.h": "c",
 		"bitset": "c",
 		"sstream": "c",
-		"locale": "c"
+		"locale": "c",
+		"ios": "c"
 	}
 }

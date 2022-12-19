@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/18 15:47:10 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:14:32 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <math.h>
 # include <limits.h>
 
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 768
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 500
 # define GREEN_PIXEL 0xFF00
 # define RED 0xFF0000
 # define WHITE_PIXEL 0xFFFFFF
@@ -55,12 +55,12 @@ typedef struct s_point
 typedef struct s_line
 {
 	int		dx;
-    int		dy;
-    int		steps;
-    double	x_inc;
-    double	y_inc;
-	double	X;
-	double	Y;
+	int		dy;
+	int		steps;
+	double	x_inc;
+	double	y_inc;
+	double	x;
+	double	y;
 }	t_line;
 
 typedef struct s_cub3d
@@ -82,7 +82,7 @@ typedef struct s_cub3d
 }	t_cub3d;
 
 // mlx
-int x11,y11;
+int x11 , y11;
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
@@ -90,6 +90,29 @@ typedef struct s_vars {
 	int		pos_player_y;
 	t_cub3d	*cub;
 }	t_vars;
+
+typedef struct s_mini_map{
+	int		top;
+	int		right;
+	int		left;
+	int		bottom;
+	char	**mini_map;
+	int		i;
+	int		j;
+	int		k;
+	int		l;
+}	t_mini_map;
+
+typedef struct s_mini_map_2{
+	char	**mini_map;
+	int		i;
+	int		h;
+	int		w;
+	int		p1;
+	int		p2;
+	int		j;
+}	t_mini_map_2;
+
 
 // libft_functions
 typedef struct s_img
@@ -103,24 +126,24 @@ typedef struct s_img
 
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-	t_cub3d	*cub;
-	t_point	p1;
-	t_point	p2;
-	double	angle;
-	int		key_press;
-	int		key_to_move;
-	int		key_to_oriented;
-	// int					mouse_presed;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_img			img;
+	t_cub3d			*cub;
+	t_mini_map		minimap;
+	t_mini_map_2		mini;
+	t_point			p1;
+	t_point			p2;
+	double			angle;
+	int				key_press;
+	int				key_to_move;
+	int				key_to_oriented;
 	unsigned int	*adr;
 	unsigned int	*adr2;
-
-	unsigned int		*no;
-	unsigned int		*so;
-	unsigned int		*we;
-	unsigned int		*ea;
+	unsigned int	*no;
+	unsigned int	*so;
+	unsigned int	*we;
+	unsigned int	*ea;
 }	t_data;
 
 typedef struct s_rect
@@ -129,16 +152,16 @@ typedef struct s_rect
 	double	y;
 	double	width;
 	double	height;
-	int	color;
+	int		color;
 }	t_rect;
 
-typedef struct  s_ray
+typedef struct s_ray
 {
-	double distance;
+	double	distance;
 	int		hit_horizontale;
-	t_point *hit_point;
+	t_point	*hit_point;
 	double	ray_angle;
-} t_ray;
+}	t_ray;
 
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
@@ -174,10 +197,16 @@ int		check_colors_floor(char *color, t_cub3d *cubmap);
 int		check_colors_ciel(char *color, t_cub3d *cubmap);
 int		check_floor_ceil(int *number);
 int		check_file_texture(t_cub3d *texture);
+int		check_colors_floor(char *color, t_cub3d *cubmap);
+int		check_colors(char **colors, t_cub3d *cubmap);
+int		check_colors(char **colors, t_cub3d *cubmap);
+void	add_textur(t_cub3d *cubmap, char *split, char *find);
+int		add_textur_color(char **cubmap, int fd, int size, int last_size);
 // maps
 int		check_maps(t_cub3d *cubmap, char *namefile);
 int		check_map_is_valid(t_cub3d *cubmap);
 int		check_name_exc_texture(char *filename);
+void	setup_player(char c, int pos_x, int pos_y, t_cub3d *cubmap);
 //
 void	move(t_data *data, int y, int x);
 int		ft_esc(t_data *data);
@@ -200,21 +229,22 @@ int		ft_is_wall(char **map, int i, int j);
 // cast rays
 void	ft_cast_rays(t_data *data);
 double	norm_angle(double ray_angle);
-int ft_is_wall_2(char **map, int i, int j, t_point *p);
-void draw_map(t_data *data);
+int		ft_is_wall_2(char **map, int i, int j, t_point *p);
+void	draw_map(t_data *data);
 
 //render 3d
-void    ft_render3d(t_data *data, double ray_dist, int index_of_ray, t_ray *ray);
-
+void	ft_render3d(t_data *data, double ray_dist, \
+int index_of_ray, t_ray *ray);
 //bonus
-void ft_mini_map(t_data *data);
-
+void	ft_mini_map(t_data *data);
+void	get_mini_map(t_data *data, int x, int y, t_mini_map *minimap);
+char	**check_m_map(t_data *data, int x, int y);
 // event
-int ft_handle_oriented_event(t_data *data, int keycode);
-int ft_handle_move_event(t_data *data, int keycode);
-
+int		ft_handle_oriented_event(t_data *data, int keycode);
+int		ft_handle_move_event(t_data *data, int keycode);
+void	render_mini_map(t_data *data, t_mini_map_2 *mini);
 // texture
-void ft_texture(t_data *data);
-int ft_is_looking_up(double   angle);
-int ft_is_looking_right(double   angle);
+void	ft_texture(t_data *data);
+int		ft_is_looking_up(double angle);
+int		ft_is_looking_right(double angle);
 #endif

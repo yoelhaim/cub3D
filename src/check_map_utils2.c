@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/18 21:32:00 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:23:55 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_line_width(t_cub3d *cubmap)
 {
-	int	i;
+	int		i;
 	size_t	length;
 
 	i = 0;
@@ -37,6 +37,8 @@ int	scq_map(t_cub3d *cubmap)
 	int	j;
 
 	i = 0;
+	if (!cubmap->maps[i])
+		return (ft_putendl_fd("Error\nMap not Found", 2), 0);
 	while (cubmap->maps[i][0] == '\n' && cubmap->maps[i][0])
 		cubmap->maps[i++] = 0;
 	i = 0;
@@ -55,18 +57,21 @@ int	scq_map(t_cub3d *cubmap)
 	return (1);
 }
 
-int check_maps_2(t_cub3d *cubmap, int fd, int size)
+int	check_maps_2(t_cub3d *cubmap, int fd, int size)
 {
 	int		i;
 	char	*str;
+
 	i = 0;
 	cubmap->maps = calloc(size + 1, sizeof(char *));
+	if (!cubmap->maps)
+		return (0);
 	while (i < size)
 	{
 		str = get_next_line(fd);
 		if (!str)
-			break;
-		if (strlen(str)  >= 1 && str[0] != '\n')
+			break ;
+		if (ft_strlen(str) >= 1 && str[0] != '\n')
 			cubmap->maps[i] = ft_strtrim(str, "\n");
 		else
 			i -= 1;
@@ -79,34 +84,15 @@ int check_maps_2(t_cub3d *cubmap, int fd, int size)
 
 void	get_map(int size, int fd, t_cub3d *cubmap)
 {
-	int		length;
-	char	*str;
-	int		last_size;
-	char	*line;
+	int	last_size;
 
-	length = 0;
 	last_size = 0;
 	cubmap->map = calloc(size + 2, sizeof(char *));
 	if (!cubmap->map)
 		return ;
-	while (length < size)
-	{
-		if (length >= 6)
-			break ;
-		line = get_next_line(fd);
-		str = ft_strtrim(line, " \t\n");
-		if (ft_strlen(str) != 0)
-			cubmap->map[length] = str;
-		else
-		{
-			free(str);
-			length -= 1;
-		}
-		free(line);
-		length++;
-		last_size++;
-	}
-	check_maps_2(cubmap, fd, size);
+	last_size = add_textur_color(cubmap->map, fd, size, last_size);
+	if (!check_maps_2(cubmap, fd, size))
+		exit(1);
 	cubmap->last_index = last_size;
 	close(fd);
 }

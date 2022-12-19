@@ -17,6 +17,7 @@ SRC = cub3d.c get_next_line.c \
 	src/check_map2.c \
 	src/check_map_utils.c \
 	src/check_map_utils2.c \
+	src/check_map_utils3.c \
 	src/check_errors_map.c \
 	$(fLIB)ft_atoi.c \
 	$(fLIB)ft_strstr.c \
@@ -35,6 +36,8 @@ SRC = cub3d.c get_next_line.c \
 	$(MA)rays.c \
 	$(MA)render_3d.c \
 	$(MA)mini_map.c \
+	$(MA)utils_mini_map.c \
+	$(MA)utils_mini_map2.c \
 	$(MA)dda.c \
 	$(MA)texture.c\
 	main.c

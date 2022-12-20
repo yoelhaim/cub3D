@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/19 23:41:19 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:54:19 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int	ft_parsing(int ac, char *file_name, t_cub3d *cubmap)
 	convert_map(cubmap);
 	return (0);
 }
-
-
 
 int	main(int ac, char **av)
 {

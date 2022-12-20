@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/12/17 22:54:29 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:27:01 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
-	char    *pixel;
+	char	*pixel;
 
 	if (0 <= x && x < WINDOW_WIDTH && 0 <= y && y < WINDOW_HEIGHT)
 	{
@@ -23,18 +23,19 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	}
 }
 
-void create_image(t_data *data)
+void	create_image(t_data *data)
 {
-    data->img.mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-    data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp, &data->img.line_len, &data->img.endian);
-    render(data);
+	data->img.mlx_img = mlx_new_image(data->mlx_ptr, \
+	WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->img.addr = mlx_get_data_addr(data->img.mlx_img, \
+	&data->img.bpp, &data->img.line_len, &data->img.endian);
+	render(data);
 }
 
-
-int render_rect(t_img *img, t_rect rect)
+int	render_rect(t_img *img, t_rect rect)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = rect.y;
 	while (i < rect.y + rect.height)
@@ -75,26 +76,10 @@ int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-
-	// DDA(data, data->p1, data->p2);
 	render_background(&data->img);
-	// draw_map(data);
-	// render_rect(&data->img, (t_rect){data->p1.x, data->p1.y, 5, 5, RED});
 	ft_cast_rays(data);
 	ft_mini_map(data);
-	// ft_texture(data);
-	// int w,h;
-	// void *img = mlx_xpm_file_to_image(data->mlx_ptr, "texture/pistol.xpm", &w, &h);
-	//Brosen_windrose.svg.xpm
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
-	
-	
-	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img, WINDOW_WIDTH / 2 - w / 2, WINDOW_HEIGHT - h);
-
-	
-		
-
-	
-	// printf("up %d right %d\n", , ft_is_looking_right(data->angle));
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
+	data->img.mlx_img, 0, 0);
 	return (0);
 }

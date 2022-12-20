@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/19 23:14:32 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:02:17 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ typedef struct s_mini_map_2{
 	int		p2;
 	int		j;
 }	t_mini_map_2;
-
-
 // libft_functions
 typedef struct s_img
 {
@@ -131,7 +129,7 @@ typedef struct s_data
 	t_img			img;
 	t_cub3d			*cub;
 	t_mini_map		minimap;
-	t_mini_map_2		mini;
+	t_mini_map_2	mini;
 	t_point			p1;
 	t_point			p2;
 	double			angle;
@@ -226,11 +224,28 @@ int		render(t_data *data);
 void	DDA(t_data *data, t_point p1, t_point p2);
 void	DDA2(t_data *data, t_point p1, t_point p2);
 int		ft_is_wall(char **map, int i, int j);
+//utils2
+int		ft_is_wall(char **map, int i, int j);
+int		ft_handle_move_event(t_data *data, int keycode);
+int		ft_handle_oriented_event(t_data *data, int keycode);
+void	ft_oriented(t_data *data);
+void	ft_move(t_data *data);
+void	ft_move_left(t_data *data, char **map, double pa);
+void	ft_move_right(t_data *data, char **map, double pa);
+void	ft_move_down(t_data *data, char **map, double pa);
+void	ft_move_up(t_data *data, char **map, double pa);
+int		ft_event(int keycode, t_data *data);
 // cast rays
 void	ft_cast_rays(t_data *data);
 double	norm_angle(double ray_angle);
 int		ft_is_wall_2(char **map, int i, int j, t_point *p);
 void	draw_map(t_data *data);
+//rays2
+double	norm_angle(double ray_angle);
+int		ft_is_looking_down(double angle);
+int		ft_is_looking_up(double angle);
+int		ft_is_looking_right(double angle);
+int		ft_is_looking_left(double angle);
 
 //render 3d
 void	ft_render3d(t_data *data, double ray_dist, \
@@ -244,7 +259,6 @@ int		ft_handle_oriented_event(t_data *data, int keycode);
 int		ft_handle_move_event(t_data *data, int keycode);
 void	render_mini_map(t_data *data, t_mini_map_2 *mini);
 // texture
-void	ft_texture(t_data *data);
 int		ft_is_looking_up(double angle);
 int		ft_is_looking_right(double angle);
 #endif

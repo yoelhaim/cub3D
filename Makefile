@@ -32,14 +32,15 @@ SRC = cub3d.c get_next_line.c \
 	$(fLIB)ft_substr.c \
 	$(fLIB)ft_strcmp.c \
 	$(MA)utils.c \
+	$(MA)utils2.c \
 	$(MA)image.c \
 	$(MA)rays.c \
+	$(MA)rays2.c \
 	$(MA)render_3d.c \
 	$(MA)mini_map.c \
 	$(MA)utils_mini_map.c \
 	$(MA)utils_mini_map2.c \
 	$(MA)dda.c \
-	$(MA)texture.c\
 	main.c
 
 SRC_UTILS = utils/utils.c \

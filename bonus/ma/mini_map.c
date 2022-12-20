@@ -6,11 +6,11 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:03:08 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 21:51:44 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:19:03 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 static	double	ft_grid(double x)
 {

@@ -6,11 +6,11 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:05:45 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/11/21 13:16:58 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:19:03 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 static int	ispase(char c)
 {

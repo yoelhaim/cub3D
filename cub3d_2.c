@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:35:40 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 20:37:47 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/20 23:05:41 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,4 @@ void	ft_oriented_2(t_data *data, int keycode)
 		data->p2.x = data->p1.x + cos(*pa) * 20;
 		data->p2.y = data->p1.y + sin(*pa) * 20;
 	}
-}
-
-int	ft_mouse(int x, int y, t_data *data)
-{
-	static int	old_x;
-
-	if (0 <= x && x <= WINDOW_WIDTH && 0 <= y && y <= WINDOW_HEIGHT)
-	{
-		if (old_x < x)
-		{
-			old_x = x;
-			ft_oriented_2(data, RIGHT_ARROW);
-			create_image(data);
-			return (0);
-		}
-		else if (old_x > x)
-		{
-			old_x = x;
-			ft_oriented_2(data, LEFT_ARROW);
-			create_image(data);
-			return (0);
-		}
-	}
-	data->key_to_oriented = -1;
-	return (0);
 }

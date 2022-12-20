@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:35:40 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 20:37:47 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/20 23:05:36 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+#include "include/cub3d_bonus.h"
 
 int	ft_esc(t_data *data)
 {

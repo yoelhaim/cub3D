@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 17:27:01 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 23:01:44 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	render(t_data *data)
 		return (1);
 	render_background(&data->img);
 	ft_cast_rays(data);
-	ft_mini_map(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
 	data->img.mlx_img, 0, 0);
 	return (0);

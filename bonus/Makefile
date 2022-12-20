@@ -1,10 +1,12 @@
 NAME = cub3D
 
+NAME_BONUS = cub3D_bonus
+
 INC = include/cub3d.h
 
 CC = cc 
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 fLIB = libft/
 
@@ -27,8 +29,8 @@ SRC = cub3d.c \
 	src/check_map_utils3.c \
 	src/check_errors_map.c \
 	$(fLIB)ft_atoi.c \
-	$(fLIB)ft_strstr.c \
 	$(fLIB)ft_calloc.c \
+	$(fLIB)ft_strstr.c \
 	$(fLIB)ft_itoa.c \
 	$(fLIB)ft_putendl_fd.c \
 	$(fLIB)ft_putstr_fd.c \
@@ -46,27 +48,28 @@ SRC = cub3d.c \
 	$(MA)rays2.c \
 	$(MA)rays_3.c \
 	$(MA)render_3d.c \
+	$(MA)mini_map.c \
+	$(MA)utils_mini_map.c \
+	$(MA)utils_mini_map2.c \
 	main.c
-
-SRC_UTILS = utils/utils.c \
-	get_next_line.c
 
 OBJ = $(SRC:.c=.o)
 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -g -o $(NAME)
+$(NAME): 
+	@echo "use :  make bonus";
 
-all : $(NAME)
-
-%.o : %.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
-
+%.o:%.c
+	@$(CC) $(FLAGS) -c $< -o $@
+bonus: $(OBJ)
+	@$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit  -o $(NAME_BONUS)
+	@echo "$(COLOUR_GREEN)successfully compile ..."  $(NAME_BONUS)
+	
 clean : 
 	@ rm -rf $(OBJ)
 	@echo "$(COLOUR_RED)removed "
 
 fclean : clean
-	@rm -rf $(NAME)
-	@echo "$(COLOUR_RED)removed " $(NAME)
+	@rm -rf $(NAME_BONUS)
+	@echo "$(COLOUR_RED)removed " $(NAME_BONUS)
 
-re : fclean all
+re : fclean bonus

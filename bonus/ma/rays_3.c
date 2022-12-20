@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rays_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:43:16 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 20:46:08 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/20 22:19:03 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 int	ft_horiz_1(t_data *data, t_inter inter, double ray_angle, t_point *p2)
 {

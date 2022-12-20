@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/12/20 20:40:47 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/20 23:03:28 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_end(t_data	data)
 {
 	mlx_hook(data.win_ptr, 2, 0, ft_event, &data);
 	mlx_hook(data.win_ptr, 3, 0, ft_test, &data);
-	mlx_hook(data.win_ptr, 6, 0, ft_mouse, &data);
 	mlx_hook(data.win_ptr, 17, 0, ft_esc, &data);
 	mlx_loop_hook(data.mlx_ptr, render_next_frame, &data);
 	mlx_loop(data.mlx_ptr);

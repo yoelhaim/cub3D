@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/19 15:23:55 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:28:30 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	check_maps_2(t_cub3d *cubmap, int fd, int size)
 	char	*str;
 
 	i = 0;
-	cubmap->maps = calloc(size + 1, sizeof(char *));
+	cubmap->maps = ft_calloc(size + 1, sizeof(char *));
 	if (!cubmap->maps)
 		return (0);
 	while (i < size)
@@ -87,7 +87,7 @@ void	get_map(int size, int fd, t_cub3d *cubmap)
 	int	last_size;
 
 	last_size = 0;
-	cubmap->map = calloc(size + 2, sizeof(char *));
+	cubmap->map = ft_calloc(size + 2, sizeof(char *));
 	if (!cubmap->map)
 		return ;
 	last_size = add_textur_color(cubmap->map, fd, size, last_size);

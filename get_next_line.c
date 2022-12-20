@@ -6,14 +6,14 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 01:10:19 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/11/21 14:34:45 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:30:27 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10000000
+# define BUFFER_SIZE 1000000000
 #endif
 
 char	*ft_after(char *str)

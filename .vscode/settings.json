@@ -9,6 +9,9 @@
 		"iterator": "c",
 		"string": "c",
 		"string_view": "c",
-		"vector": "c"
+		"vector": "c",
+		"string.h": "c",
+		"unistd.h": "c",
+		"stdio.h": "c"
 	}
 }

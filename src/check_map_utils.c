@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/19 16:51:08 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 22:01:22 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ char	*rev_str(char *str)
 	int		len;
 
 	i = 0;
-	len = strlen(str) - 1;
-	buff = malloc(sizeof(char) * len + 1);
+	len = ft_strlen(str) - 1;
+	buff = ft_calloc(len + 1, sizeof(char));
 	if (!buff)
 		return (0);
 	while (len && str[len] != '.')

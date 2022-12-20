@@ -1,10 +1,10 @@
-NAME = cub3d
+NAME = cub3D
 
 INC = include/cub3d.h
 
 CC = cc 
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 fLIB = libft/
 
@@ -20,6 +20,7 @@ SRC = cub3d.c cub3d_2.c get_next_line.c \
 	src/check_map_utils3.c \
 	src/check_errors_map.c \
 	$(fLIB)ft_atoi.c \
+	$(fLIB)ft_calloc.c \
 	$(fLIB)ft_strstr.c \
 	$(fLIB)ft_itoa.c \
 	$(fLIB)ft_putendl_fd.c \
@@ -48,18 +49,20 @@ SRC_UTILS = utils/utils.c \
 	get_next_line.c
 
 OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -g -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
 
 all : $(NAME)
 
 %.o : %.c $(INC)
 	$(CC) $(FLAGS) -c $< -o $@
-
+bonus: $(OBJ_BONUS)
+	$(CC) $(FLAGS) $(OBJ_BONUS) -lmlx -framework OpenGL -framework AppKit  -o cub3D_bonus
 clean : 
 	rm -rf $(OBJ)
-
+	
 fclean : clean
 	rm -rf $(NAME)
 

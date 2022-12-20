@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/20 20:45:46 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/20 22:02:40 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <string.h>
+// # include <string.h>
 # include <mlx.h>
 # include <math.h>
 # include <limits.h>
@@ -187,6 +187,7 @@ int		ft_isdigit(int c);
 char	*ft_strstr(char *str, char *to_find);
 void	free_texture(char **split);
 int		ft_strcmp(char *s1, char *s2);
+void	*ft_calloc(size_t count, size_t size);
 // getnext line
 char	*get_next_line(int fd);
 // utils

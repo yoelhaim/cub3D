@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:03:08 by matef             #+#    #+#             */
-/*   Updated: 2022/12/19 23:17:28 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:51:44 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_mini_map(t_data *data)
 		mini.p2 = 0;
 		render_mini_map(data, &mini);
 		mini.p1++;
-		mini.i += 10;
+		mini.i += 5;
 	}
 	free_texture(mini.mini_map);
 }

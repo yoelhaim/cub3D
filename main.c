@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/20 20:40:19 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/20 21:49:41 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*add_square_map(char *map, int long_width)
 	int		i;
 
 	len = ft_strlen(map);
-	tmp = calloc(long_width + 1, sizeof(char));
+	tmp = ft_calloc(long_width + 1, sizeof(char));
 	i = 0;
 	while (map[i])
 	{

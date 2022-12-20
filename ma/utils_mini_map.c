@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:06:19 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/19 19:07:58 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:28:21 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_mini_map(t_data *data, int x, int y, t_mini_map *minimap)
 	minimap->k < minimap->bottom - minimap->top + 2)
 	{
 		size = minimap->right - minimap->left + 2;
-		minimap->mini_map[minimap->k] = (char *)calloc(size, sizeof(char));
+		minimap->mini_map[minimap->k] = (char *)ft_calloc(size, sizeof(char));
 		if (!minimap->mini_map[minimap->k])
 			exit (0);
 		minimap->j = minimap->left;

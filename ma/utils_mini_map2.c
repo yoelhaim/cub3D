@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:06:19 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/19 23:19:00 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:52:11 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ void	render_mini_map(t_data *data, t_mini_map_2 *mini)
 		{
 			if (mini->mini_map[mini->p1][mini->p2] == '1')
 				render_rect(&data->img, \
-				(t_rect){mini->j, mini->i, 10, 10, RED});
+				(t_rect){mini->j, mini->i, 5, 5, RED});
 			if (mini->mini_map[mini->p1][mini->p2] == '0')
 				render_rect(&data->img, \
-				(t_rect){mini->j, mini->i, 10, 10, 0xff0});
+				(t_rect){mini->j, mini->i, 5, 5, 0xff0});
 			if (mini->mini_map[mini->p1][mini->p2] == 'X')
 				render_rect(&data->img, \
-				(t_rect){mini->j, mini->i, 10, 10, 0xff0});
+				(t_rect){mini->j, mini->i, 5, 5, 0xff0});
 			if (mini->mini_map[mini->p1][mini->p2] == 'E')
 				render_rect(&data->img, \
-				(t_rect){mini->j, mini->i, 10, 10, YELLOW});
+				(t_rect){mini->j, mini->i, 5, 5, YELLOW});
 		}
 		mini->p2++;
-		mini->j += 10;
+		mini->j += 5;
 	}
 }

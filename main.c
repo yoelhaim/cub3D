@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/20 17:54:19 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:40:19 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/cub3d.h"
+
+void	ft_init(t_data	*data, t_cub3d *cubmap)
+{
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, \
+	WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
+	data->cub = cubmap;
+	data->angle = ft_init_direction(cubmap->direction);
+	data->p1.x = (cubmap->pos_player_x * GRID_SIZE) + (GRID_SIZE / 2);
+	data->p1.y = (cubmap->pos_player_y * GRID_SIZE) + (GRID_SIZE / 2);
+	data->p2.x = (cubmap->pos_player_x * GRID_SIZE) + (cos(data->angle) * 20);
+	data->p2.y = (cubmap->pos_player_y * GRID_SIZE) + (sin(data->angle) * 20);
+	data->key_press = -1;
+	data->key_to_move = -1;
+	data->key_to_oriented = -1;
+	get_texture_adrr(data, cubmap);
+}
 
 char	*add_square_map(char *map, int long_width)
 {
@@ -68,10 +85,10 @@ int	main(int ac, char **av)
 
 	if (ft_parsing(ac, av[1], &cubmap))
 		return (1);
-	x11 = cubmap.width_of_map;
-	y11 = cubmap.height_of_map;
+	data.x11 = cubmap.width_of_map;
+	data.y11 = cubmap.height_of_map;
 	ft_init(&data, &cubmap);
-	ft_main(&data);
+	create_image(&data);
 	ft_end(data);
 	return (0);
 }

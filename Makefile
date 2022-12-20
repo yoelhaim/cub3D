@@ -10,7 +10,7 @@ fLIB = libft/
 
 MA = ma/
 
-SRC = cub3d.c get_next_line.c \
+SRC = cub3d.c cub3d_2.c get_next_line.c \
 	utils/utils.c  \
 	utils/ft_split.c \
 	src/check_map1.c \
@@ -36,6 +36,7 @@ SRC = cub3d.c get_next_line.c \
 	$(MA)image.c \
 	$(MA)rays.c \
 	$(MA)rays2.c \
+	$(MA)rays_3.c \
 	$(MA)render_3d.c \
 	$(MA)mini_map.c \
 	$(MA)utils_mini_map.c \

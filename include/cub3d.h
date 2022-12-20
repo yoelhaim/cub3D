@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/20 18:02:17 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:45:46 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ typedef struct s_cub3d
 }	t_cub3d;
 
 // mlx
-int x11 , y11;
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
@@ -90,6 +89,13 @@ typedef struct s_vars {
 	int		pos_player_y;
 	t_cub3d	*cub;
 }	t_vars;
+
+typedef struct s_inter {
+	double	x_inter;
+	double	y_inter;
+	double	x_step;
+	double	y_step;
+}	t_inter;
 
 typedef struct s_mini_map{
 	int		top;
@@ -142,6 +148,8 @@ typedef struct s_data
 	unsigned int	*so;
 	unsigned int	*we;
 	unsigned int	*ea;
+	int				x11;
+	int				y11;
 }	t_data;
 
 typedef struct s_rect
@@ -261,4 +269,16 @@ void	render_mini_map(t_data *data, t_mini_map_2 *mini);
 // texture
 int		ft_is_looking_up(double angle);
 int		ft_is_looking_right(double angle);
+int		ft_esc(t_data *data);
+int		ft_test(int keycode, t_data *data);
+int		render_next_frame(t_data *data);
+int		ft_mouse(int x, int y, t_data *data);
+
+void	get_texture_adrr(t_data *data, t_cub3d *cubmap);
+double	ft_init_direction(char direction);
+int		ft_horiz_1(t_data *data, t_inter inter, double ray_angle, t_point *p2);
+int		fr_horizontale(t_data *data, double ray_angle, t_point *p2);
+int		ft_verti_1(t_data *data, t_inter inter, double ray_angle, t_point *p2);
+int		fr_verticale(t_data *data, double ray_angle, t_point *p2);
+double	ft_calc_distance(t_point p1, t_point p2);
 #endif

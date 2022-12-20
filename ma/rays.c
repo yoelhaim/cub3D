@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:22:48 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 18:00:56 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:46:42 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	ft_ray(t_data *data, double ray_angle, int index_of_ray)
 	}
 }
 
-void ft_cast_rays(t_data *data)
+void	ft_cast_rays(t_data *data)
 {
 	int		i;
 	double	ray_angle;

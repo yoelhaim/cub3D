@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:03:08 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 22:19:03 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/20 23:12:56 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_mini_map(t_data *data)
 	mini.p1 = 0;
 	mini.p2 = 0;
 	mini.i = 15;
-	while (mini.i < 200)
+	while (mini.i < 110)
 	{
 		mini.j = 15;
 		mini.p2 = 0;

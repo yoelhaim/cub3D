@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/21 14:50:35 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:33:56 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void	convert_map(t_cub3d *cubmap)
 int	ft_parsing(int ac, char *file_name, t_cub3d *cubmap)
 {
 	if (ac != 2)
-		return (ft_putstr_fd("Error\nArgument not valid\n", 2), 1);
+		return (ft_putstr_fd("Error\nArgument not valid ❌\n", 2), 1);
 	if (!check_exten(file_name) || (!check_name_exc(file_name)))
-		return (ft_putstr_fd("Error\nopen map!\n", 2), 1);
+		return (ft_putstr_fd("Error\nopen map! ❌\n", 2), 1);
 	if (!read_file(file_name, cubmap) || \
 			!check_floor_ceil(cubmap->floor) || !check_floor_ceil(cubmap->ciel))
 		exit(1);

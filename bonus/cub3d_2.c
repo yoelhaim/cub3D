@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:35:40 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 23:05:36 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:36:43 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_esc(t_data *data)
 {
-	printf("bye :)\n");
+	printf("Game Over 👋\n");
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	exit (0);
 }

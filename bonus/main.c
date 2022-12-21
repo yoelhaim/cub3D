@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/20 22:19:03 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:43:36 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_init(t_data	*data, t_cub3d *cubmap)
 {
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
-	WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
+	WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	data->cub = cubmap;
 	data->angle = ft_init_direction(cubmap->direction);
 	data->p1.x = (cubmap->pos_player_x * GRID_SIZE) + (GRID_SIZE / 2);
@@ -64,9 +64,9 @@ void	convert_map(t_cub3d *cubmap)
 int	ft_parsing(int ac, char *file_name, t_cub3d *cubmap)
 {
 	if (ac != 2)
-		return (ft_putstr_fd("Error\nArgument not valid\n", 2), 1);
+		return (ft_putstr_fd("Error\nArgument not valid ❌\n", 2), 1);
 	if (!check_exten(file_name) || (!check_name_exc(file_name)))
-		return (ft_putstr_fd("Error\nopen map!\n", 2), 1);
+		return (ft_putstr_fd("Error\nopen map! ❌\n", 2), 1);
 	if (!read_file(file_name, cubmap) || \
 			!check_floor_ceil(cubmap->floor) || !check_floor_ceil(cubmap->ciel))
 		exit(1);

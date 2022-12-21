@@ -51,25 +51,26 @@ SRC = cub3d.c \
 	$(MA)mini_map.c \
 	$(MA)utils_mini_map.c \
 	$(MA)utils_mini_map2.c \
+	$(MA)dda.c \
 	main.c
 
 OBJ = $(SRC:.c=.o)
 
 $(NAME): 
-	@echo "use :  make bonus";
+	@echo "use: make bonus ⛔️";
 
 %.o:%.c
 	@$(CC) $(FLAGS) -c $< -o $@
 bonus: $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit  -o $(NAME_BONUS)
-	@echo "$(COLOUR_GREEN)successfully compile ..."  $(NAME_BONUS)
+	@echo "$(COLOUR_GREEN)successfully compile ..."  $(NAME_BONUS) "✅"
 	
 clean : 
 	@ rm -rf $(OBJ)
-	@echo "$(COLOUR_RED)removed "
+	@echo "$(COLOUR_RED)removed 🚮"
 
 fclean : clean
 	@rm -rf $(NAME_BONUS)
-	@echo "$(COLOUR_RED)removed " $(NAME_BONUS)
+	@echo "$(COLOUR_RED)removed " $(NAME_BONUS) "🚮"
 
 re : fclean bonus

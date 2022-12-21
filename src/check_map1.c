@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/20 22:02:03 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:46:26 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_doube_texture(char **map, int len)
 	}
 	if (len == 6)
 		return (1);
-	return (ft_putendl_fd("Error\nTexture Not Found!", 2), 0);
+	return (ft_putendl_fd("Error\nTexture Not Found ❌!", 2), 0);
 }
 
 int	check_insert_texture(t_cub3d *cubmap, int len)
@@ -114,7 +114,7 @@ int	read_file(char *file_name, t_cub3d *cubmap)
 	fd = open(file_name, O_RDONLY);
 	len = 0;
 	if (fd < 0)
-		return (ft_putstr_fd("Error read map !\n", 2), 0);
+		return (ft_putstr_fd("Error read map ❌!\n", 2), 0);
 	i = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -126,7 +126,7 @@ int	read_file(char *file_name, t_cub3d *cubmap)
 	close(fd);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		return (ft_putstr_fd("Error read map !\n", 2), 0);
+		return (ft_putstr_fd("Error read map ❌!\n", 2), 0);
 	get_map(i, fd, cubmap);
 	replaced(cubmap->map);
 	close(fd);

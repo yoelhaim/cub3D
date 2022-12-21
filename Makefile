@@ -54,19 +54,20 @@ SRC_UTILS = utils/utils.c \
 OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -g -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -g -o $(NAME)
+	@echo "$(COLOUR_GREEN)successfully compile ..."  $(NAME) "✅"
 
 all : $(NAME)
 
 %.o : %.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean : 
 	@ rm -rf $(OBJ)
-	@echo "$(COLOUR_RED)removed "
+	@echo "$(COLOUR_RED)removed 🚮"
 
 fclean : clean
 	@rm -rf $(NAME)
-	@echo "$(COLOUR_RED)removed " $(NAME)
+	@echo "$(COLOUR_RED)removed " $(NAME) "🚮"
 
 re : fclean all

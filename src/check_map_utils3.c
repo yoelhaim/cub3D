@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 23:32:13 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/20 21:40:21 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:46:51 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_colors_floor(char *color, t_cub3d *cubmap)
 	while (splited[i])
 	{
 		if (ft_is_digit(ft_strtrim(splited[i], " ")))
-			return (ft_putendl_fd("Error\nColor not valide!", 2), 0);
+			return (ft_putendl_fd("Error\nColor not valide ❌!", 2), 0);
 		i++;
 	}
 	if (i != 3)
@@ -31,7 +31,7 @@ int	check_colors_floor(char *color, t_cub3d *cubmap)
 	while (color[++i])
 	{
 		if (color[i] == ',' && color[i + 1] == ',')
-			return (ft_putendl_fd("Error\nColor not valide!", 2), 0);
+			return (ft_putendl_fd("Error\nColor not valide ❌!", 2), 0);
 	}
 	cubmap->floor[0] = ft_atoi(splited[0]);
 	cubmap->floor[1] = ft_atoi(splited[1]);

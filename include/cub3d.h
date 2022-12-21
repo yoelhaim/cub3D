@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/21 14:57:23 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:12:17 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,8 +230,7 @@ void	create_image(t_data *data);
 int		render_rect(t_img *img, t_rect rect);
 void	render_background(t_img *img, t_data *data);
 int		render(t_data *data);
-void	DDA(t_data *data, t_point p1, t_point p2);
-void	DDA2(t_data *data, t_point p1, t_point p2);
+void	dda(t_data *data, t_point p1, t_point p2);
 int		ft_is_wall(char **map, int i, int j);
 //utils2
 int		ft_is_wall(char **map, int i, int j);
@@ -259,14 +258,14 @@ int		ft_is_looking_left(double angle);
 //render 3d
 void	ft_render3d(t_data *data, double ray_dist, \
 int index_of_ray, t_ray *ray);
-//bonus
+//bonus mini map
 void	ft_mini_map(t_data *data);
 void	get_mini_map(t_data *data, int x, int y, t_mini_map *minimap);
 char	**check_m_map(t_data *data, int x, int y);
+void	render_mini_map(t_data *data, t_mini_map_2 *mini);
 // event
 int		ft_handle_oriented_event(t_data *data, int keycode);
 int		ft_handle_move_event(t_data *data, int keycode);
-void	render_mini_map(t_data *data, t_mini_map_2 *mini);
 // texture
 int		ft_is_looking_up(double angle);
 int		ft_is_looking_right(double angle);
@@ -274,7 +273,6 @@ int		ft_esc(t_data *data);
 int		ft_test(int keycode, t_data *data);
 int		render_next_frame(t_data *data);
 int		ft_mouse(int x, int y, t_data *data);
-
 void	get_texture_adrr(t_data *data, t_cub3d *cubmap);
 double	ft_init_direction(char direction);
 int		ft_horiz_1(t_data *data, t_inter inter, double ray_angle, t_point *p2);

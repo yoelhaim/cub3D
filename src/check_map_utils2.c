@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/20 21:28:30 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:46:59 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	scq_map(t_cub3d *cubmap)
 
 	i = 0;
 	if (!cubmap->maps[i])
-		return (ft_putendl_fd("Error\nMap not Found", 2), 0);
+		return (ft_putendl_fd("Error\nMap not Found ❌", 2), 0);
 	while (cubmap->maps[i][0] == '\n' && cubmap->maps[i][0])
 		cubmap->maps[i++] = 0;
 	i = 0;

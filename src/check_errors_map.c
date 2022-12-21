@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/19 16:07:29 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:47:30 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_colors_ciel(char *color, t_cub3d *cubmap)
 	while (splited[i])
 	{
 		if (ft_is_digit(ft_strtrim(splited[i], " ")))
-			return (ft_putendl_fd("Error\nColor not valide!", 2), 0);
+			return (ft_putendl_fd("Error\nColor not valide ❌!", 2), 0);
 		i++;
 	}
 	if (i != 3)
@@ -31,7 +31,7 @@ int	check_colors_ciel(char *color, t_cub3d *cubmap)
 	while (color[++i])
 	{
 		if (color[i] == ',' && color[i + 1] == ',')
-			return (ft_putendl_fd("Error\nColor not valide!", 2), 0);
+			return (ft_putendl_fd("Error\nColor not valide ❌!", 2), 0);
 	}
 	cubmap->ciel[0] = atoi(splited[0]);
 	cubmap->ciel[1] = atoi(splited[1]);
@@ -48,7 +48,7 @@ int	check_floor_ceil(int *str)
 	while (i < 3)
 	{
 		if (str[i] < 0 || str[i] > 255)
-			return (ft_putendl_fd("Error\nColor not valide!", 2), 0);
+			return (ft_putendl_fd("Error\nColor not valide ❌!", 2), 0);
 		i++;
 	}
 	return (1);
@@ -81,11 +81,11 @@ int	check_file_texture(t_cub3d *texture)
 	if (is_open(texture->no) == -1 || \
 	is_open(texture->so) == -1 || \
 	is_open(texture->ea) == -1 || is_open(texture->we) == -1)
-		return (ft_putendl_fd("Error\nOpen Texture File!", 2), 0);
+		return (ft_putendl_fd("Error\nOpen Texture File ❌!", 2), 0);
 	if (!check_name_exc_texture(check_texture_is_valid(texture->so)) || \
 	!check_name_exc_texture(check_texture_is_valid(texture->no)) || \
 	!check_name_exc_texture(check_texture_is_valid(texture->ea)) || \
 	!check_name_exc_texture(check_texture_is_valid(texture->we)))
-		return (ft_putendl_fd("Error\nFind Texture!", 2), 0);
+		return (ft_putendl_fd("Error\nFind Texture ❌!", 2), 0);
 	return (1);
 }

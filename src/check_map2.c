@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/19 15:42:05 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:46:14 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	find_player_position( t_cub3d *cubmap)
 		}
 	}
 	if (len == 0 || len > 1)
-		return (ft_putstr_fd("Error\nplayer not exists or duplicated!\n", 2), 0);
+		return (ft_putstr_fd("Error\nplayer not exists or duplicated ❌\n", 2), 0);
 	return (1);
 }
 
@@ -71,7 +71,7 @@ int	check_first_last(char **tmp, int i)
 			continue ;
 		}
 		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
-			return (ft_putendl_fd("Error\nmap not allowed !", 2), 0);
+			return (ft_putendl_fd("Error\nmap not allowed ❌!", 2), 0);
 		free((line));
 		i++;
 	}
@@ -98,7 +98,7 @@ int	check_spaces(int i, t_cub3d *cubmap)
 				|| (!check_in_map(cubmap->maps[i + 1][j])) \
 				|| !check_in_map(cubmap->maps[i][j + 1]) || \
 				!check_in_map(cubmap->maps[i][j - 1]))
-					return (ft_putendl_fd("Error\nMap!", 2), 0);
+					return (ft_putendl_fd("Error\nMap ❌!", 2), 0);
 			}
 			j++;
 		}
@@ -123,7 +123,7 @@ int	check_map_is_valid(t_cub3d *cubmap)
 		if (map[i][j] == ' ')
 			i++;
 		if (map[i][j] != '1')
-			return (ft_putendl_fd("Error\nmap not allowed!", 2), 0);
+			return (ft_putendl_fd("Error\nmap not allowed ❌!", 2), 0);
 		j++;
 	}
 	return (check_spaces(i, cubmap));

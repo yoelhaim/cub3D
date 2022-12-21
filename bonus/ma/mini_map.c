@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:03:08 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 23:12:56 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:44:28 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ void	draw_map(t_data *data)
 		}
 		i++;
 	}
-}
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
 }
 
 void	ft_mini_map(t_data *data)

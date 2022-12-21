@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/20 23:05:04 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:47:27 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,4 +282,5 @@ int		fr_horizontale(t_data *data, double ray_angle, t_point *p2);
 int		ft_verti_1(t_data *data, t_inter inter, double ray_angle, t_point *p2);
 int		fr_verticale(t_data *data, double ray_angle, t_point *p2);
 double	ft_calc_distance(t_point p1, t_point p2);
+int		create_trgb(int t, int r, int g, int b);
 #endif

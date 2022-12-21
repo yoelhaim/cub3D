@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:57:17 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 23:01:44 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:59:16 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	render_rect(t_img *img, t_rect rect)
 	return (0);
 }
 
-void	render_background(t_img *img)
+void	render_background(t_img *img, t_data *data)
 {
 	int	i;
 	int	j;
@@ -63,9 +63,11 @@ void	render_background(t_img *img)
 		while (j < WINDOW_WIDTH)
 		{
 			if (i < WINDOW_HEIGHT / 2)
-				img_pix_put(img, j, i, 0xAAC4FF);
+				img_pix_put(img, j, i, create_trgb(0, data->cub->ciel[0], \
+				data->cub->ciel[1], data->cub->ciel[2]));
 			else
-				img_pix_put(img, j, i, 0x5F7161);
+				img_pix_put(img, j, i, create_trgb(0, data->cub->floor[0], \
+				data->cub->floor[1], data->cub->floor[2]));
 			j++;
 		}
 		i++;
@@ -76,7 +78,7 @@ int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	render_background(&data->img);
+	render_background(&data->img, data);
 	ft_cast_rays(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
 	data->img.mlx_img, 0, 0);

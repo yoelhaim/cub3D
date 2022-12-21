@@ -1,5 +1,5 @@
-C   11,150,255
-F	100,000001,100
+C	1,102,204
+F	0,102,51
 
 SO  ./texture/so.xpm
 NO	./texture/no.xpm

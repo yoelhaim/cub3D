@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/21 14:47:27 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:57:23 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,7 @@ void	ft_main(t_data	*data);
 void	img_pix_put(t_img *img, int x, int y, int color);
 void	create_image(t_data *data);
 int		render_rect(t_img *img, t_rect rect);
-void	render_background(t_img *img);
+void	render_background(t_img *img, t_data *data);
 int		render(t_data *data);
 void	DDA(t_data *data, t_point p1, t_point p2);
 void	DDA2(t_data *data, t_point p1, t_point p2);
@@ -283,4 +283,5 @@ int		ft_verti_1(t_data *data, t_inter inter, double ray_angle, t_point *p2);
 int		fr_verticale(t_data *data, double ray_angle, t_point *p2);
 double	ft_calc_distance(t_point p1, t_point p2);
 int		create_trgb(int t, int r, int g, int b);
+
 #endif

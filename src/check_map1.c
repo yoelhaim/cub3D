@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/21 15:46:26 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 20:07:30 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,9 @@ int	check_doube_texture(char **map, int len)
 	while (map[++i])
 	{
 		split = ft_split(map[i], ' ');
-		if (ft_strstr(*split, "SO"))
-			len++;
-		if (ft_strstr(*split, "NO"))
-			len++;
-		if (ft_strstr(*split, "EA"))
-			len++;
-		if (ft_strstr(*split, "WE"))
-			len++;
-		if (ft_strstr(*split, "F"))
-			len++;
-		if (ft_strstr(*split, "C"))
+		if (!ft_strcmp(*split, "SO") || !ft_strcmp(*split, "NO") || \
+		!ft_strcmp(*split, "EA") || !ft_strcmp(*split, "F") || \
+		!ft_strcmp(*split, "C") || !ft_strcmp(*split, "WE"))
 			len++;
 		free_texture(split);
 	}

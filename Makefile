@@ -28,6 +28,7 @@ SRC = cub3d.c \
 	src/check_errors_map.c \
 	$(fLIB)ft_atoi.c \
 	$(fLIB)ft_strstr.c \
+	$(fLIB)ft_strnstr.c \
 	$(fLIB)ft_calloc.c \
 	$(fLIB)ft_itoa.c \
 	$(fLIB)ft_putendl_fd.c \

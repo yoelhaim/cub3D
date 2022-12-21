@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/21 15:47:30 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 19:21:23 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_colors_ciel(char *color, t_cub3d *cubmap)
 		i++;
 	}
 	if (i != 3)
-		return (0);
+		return (ft_putendl_fd("Error\nColor not valide ❌!", 2), 0);
 	i = -1;
 	while (color[++i])
 	{

@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 23:32:13 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/21 15:46:51 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 20:07:41 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ int	check_colors(char **colors, t_cub3d *cubmap)
 
 void	add_textur(t_cub3d *cubmap, char *split, char *find)
 {
-	if (ft_strstr(find, "NO"))
+	if (!ft_strcmp(find, "NO"))
 		cubmap->no = ft_strdup(split);
-	else if (ft_strstr(find, "SO"))
+	else if (!ft_strcmp(find, "SO"))
 		cubmap->so = ft_strdup(split);
-	else if (ft_strstr(find, "WE"))
+	else if (!ft_strcmp(find, "WE"))
 		cubmap->we = ft_strdup(split);
-	else if (ft_strstr(find, "EA"))
+	else if (!ft_strcmp(find, "EA"))
 		cubmap->ea = ft_strdup(split);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/21 16:12:17 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/21 19:42:37 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ char	*ft_strstr(char *str, char *to_find);
 void	free_texture(char **split);
 int		ft_strcmp(char *s1, char *s2);
 void	*ft_calloc(size_t count, size_t size);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 // getnext line
 char	*get_next_line(int fd);
 // utils

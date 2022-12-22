@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/21 23:45:08 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:34:44 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (ft_parsing(ac, av[1], &cubmap))
-		return (1);
+		exit (1);
 	data.x11 = cubmap.width_of_map;
 	data.y11 = cubmap.height_of_map;
 	ft_init(&data, &cubmap);

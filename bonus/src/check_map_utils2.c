@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:38:24 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/20 22:19:03 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:40:27 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void	get_map(int size, int fd, t_cub3d *cubmap)
 
 	last_size = 0;
 	cubmap->map = ft_calloc(size + 2, sizeof(char *));
-	if (!cubmap->map)
-		return ;
 	last_size = add_textur_color(cubmap->map, fd, size, last_size);
 	if (!check_maps_2(cubmap, fd, size))
 		exit(1);

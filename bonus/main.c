@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/21 15:43:36 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:32:54 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_init(t_data	*data, t_cub3d *cubmap)
 	data->p2.y = (cubmap->pos_player_y * GRID_SIZE) + (sin(data->angle) * 20);
 	data->key_press = -1;
 	data->key_to_move = -1;
+	data->key_to_move_left = -1;
 	data->key_to_oriented = -1;
 	get_texture_adrr(data, cubmap);
 }

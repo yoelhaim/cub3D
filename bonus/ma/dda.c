@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:12:39 by matef             #+#    #+#             */
-/*   Updated: 2022/12/21 15:08:21 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:40:46 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,19 @@ void	dda(t_data *data, t_point p1, t_point p2)
 		line.y += line.y_inc;
 		i++;
 	}
+}
+
+int	ft_event(int keycode, t_data *data)
+{
+	double	x;
+	double	y;
+
+	x = data->cub->pos_player_x;
+	y = data->cub->pos_player_y;
+	if (keycode == ESC)
+		ft_esc(data);
+	ft_handle_move_event(data, keycode);
+	ft_handle_oriented_event(data, keycode);
+	ft_handle_move_r_l(data, keycode);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:35:40 by matef             #+#    #+#             */
-/*   Updated: 2022/12/22 18:46:03 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/22 19:39:52 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	ft_test(int keycode, t_data *data)
 
 int	render_next_frame(t_data *data)
 {
-	if (data->key_to_move != -1 || data->key_to_move_left != -1 || data->key_to_oriented != -1)
+	if (data->key_to_move != -1 || data->key_to_move_left != -1 || \
+	data->key_to_oriented != -1)
 	{
 		ft_oriented(data);
 		ft_move(data);

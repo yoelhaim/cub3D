@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 22:19:03 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:40:15 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 
 int	ft_handle_move_event(t_data *data, int keycode)
 {
-	if (keycode == A_KEY || keycode == D_KEY || \
-	keycode == S_KEY || keycode == W_KEY)
+	if (keycode == S_KEY || keycode == W_KEY)
 	{
 		data->key_to_move = keycode;
+		return (1);
+	}
+	return (0);
+}
+
+int	ft_handle_move_r_l(t_data *data, int keycode)
+{
+	if (keycode == A_KEY || keycode == D_KEY)
+	{
+		data->key_to_move_left = keycode;
 		return (1);
 	}
 	return (0);
@@ -64,18 +73,4 @@ int	ft_is_wall(char **map, int i, int j)
 	x = (int)floor(j / GRID_SIZE);
 	y = (int)floor(i / GRID_SIZE);
 	return (map[x][y] == '0');
-}
-
-int	ft_event(int keycode, t_data *data)
-{
-	double	x;
-	double	y;
-
-	x = data->cub->pos_player_x;
-	y = data->cub->pos_player_y;
-	if (keycode == ESC)
-		ft_esc(data);
-	ft_handle_move_event(data, keycode);
-	ft_handle_oriented_event(data, keycode);
-	return (0);
 }

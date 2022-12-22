@@ -6,7 +6,7 @@
 /*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/21 15:46:14 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:16:13 by yoelhaim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	check_spaces(int i, t_cub3d *cubmap)
 			if (cubmap->maps[i][j] == '0')
 			{
 				if (!cubmap->maps[i + 1] || !cubmap->maps[i - 1])
-					return (0);
+					return (ft_putendl_fd("Error\nMap ❌!", 2), 0);
 				if (!check_in_map(cubmap->maps[i - 1][j]) \
 				|| (!check_in_map(cubmap->maps[i + 1][j])) \
 				|| !check_in_map(cubmap->maps[i][j + 1]) || \

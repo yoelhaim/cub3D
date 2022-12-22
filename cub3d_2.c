@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:35:40 by matef             #+#    #+#             */
-/*   Updated: 2022/12/21 15:37:22 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:07:15 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,20 @@ int	ft_esc(t_data *data)
 	exit (0);
 }
 
+// int	ft_handle_move_r_l(t_data *data, int keycode)
+// {
+// 	if (keycode == A_KEY || keycode == D_KEY)
+// 	{
+// 		data->key_to_move_left = keycode;
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+
 int	ft_test(int keycode, t_data *data)
 {
+	if (ft_handle_move_r_l(data, keycode))
+		data->key_to_move_left = -1;
 	if (ft_handle_oriented_event(data, keycode))
 		data->key_to_oriented = -1;
 	if (ft_handle_move_event(data, keycode))
@@ -30,7 +42,7 @@ int	ft_test(int keycode, t_data *data)
 
 int	render_next_frame(t_data *data)
 {
-	if (data->key_to_move != -1 || data->key_to_oriented != -1)
+	if (data->key_to_move != -1 || data->key_to_oriented != -1 || data->key_to_move_left != -1)
 	{
 		ft_oriented(data);
 		ft_move(data);

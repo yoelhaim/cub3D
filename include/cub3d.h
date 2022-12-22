@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:56:24 by pro               #+#    #+#             */
-/*   Updated: 2022/12/21 19:42:37 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:07:43 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef struct s_data
 	double			angle;
 	int				key_press;
 	int				key_to_move;
+	int				key_to_move_left;
 	int				key_to_oriented;
 	unsigned int	*adr;
 	unsigned int	*adr2;
@@ -236,6 +237,7 @@ int		ft_is_wall(char **map, int i, int j);
 //utils2
 int		ft_is_wall(char **map, int i, int j);
 int		ft_handle_move_event(t_data *data, int keycode);
+int		ft_handle_move_r_l(t_data *data, int keycode);
 int		ft_handle_oriented_event(t_data *data, int keycode);
 void	ft_oriented(t_data *data);
 void	ft_move(t_data *data);

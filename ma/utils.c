@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 17:51:51 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:01:45 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,10 @@ void	ft_move(t_data *data)
 		ft_move_up(data, map, data->angle);
 	if (data->key_to_move == S_KEY)
 		ft_move_down(data, map, data->angle);
-	if (data->key_to_move == D_KEY)
+	if (data->key_to_move_left == D_KEY)
 		ft_move_right(data, map, data->angle);
-	if (data->key_to_move == A_KEY)
+	if (data->key_to_move_left == A_KEY)
 		ft_move_left(data, map, data->angle);
+
+	printf("%d\n", data->key_to_move_left);
 }

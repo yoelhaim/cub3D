@@ -3,23 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/12/20 17:51:59 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:12:30 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+int	ft_handle_move_r_l(t_data *data, int keycode)
+{
+	if (keycode == A_KEY || keycode == D_KEY)
+	{
+		data->key_to_move_left = keycode;
+		return (1);
+	}
+	return (0);
+}
+
 int	ft_handle_move_event(t_data *data, int keycode)
 {
-	if (keycode == A_KEY || keycode == D_KEY || \
-	keycode == S_KEY || keycode == W_KEY)
+	if (keycode == S_KEY || keycode == W_KEY)
 	{
 		data->key_to_move = keycode;
 		return (1);
 	}
+	// if (keycode == A_KEY || keycode == D_KEY)
+	// {
+	// 	data->key_to_move_left = keycode;
+	// 	return (1);
+	// }
 	return (0);
 }
 
@@ -76,6 +90,7 @@ int	ft_event(int keycode, t_data *data)
 	if (keycode == ESC)
 		ft_esc(data);
 	ft_handle_move_event(data, keycode);
+	ft_handle_move_r_l(data, keycode);
 	ft_handle_oriented_event(data, keycode);
 	return (0);
 }

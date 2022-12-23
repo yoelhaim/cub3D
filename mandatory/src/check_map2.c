@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/23 16:06:14 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/23 19:50:47 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	check_first_last(char **tmp, int i)
 		if (ft_strlen(line) == 0)
 		{
 			i++;
+			free((line));
 			continue ;
 		}
 		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')

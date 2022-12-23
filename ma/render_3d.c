@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 14:51:05 by matef             #+#    #+#             */
-/*   Updated: 2022/12/23 15:17:45 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/23 19:24:18 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	ft_render3d(t_data *data, double ray_dist, int index_of_ray, t_ray *ray)
 	proj = (WINDOW_WIDTH / 2) / (tan(VIEW_ANGLE / 2));
 	wall_stripe = (GRID_SIZE / ray_dist) * proj;
 	offset_x = get_offset_x(ray);
-	render_texture(data, (t_rect){index_of_ray, \
-	(WINDOW_HEIGHT / 2) - (wall_stripe / 2), 1, \
-	wall_stripe, YELLOW}, ray, offset_x);
+	render_texture(data, (t_rect){index_of_ray, (WINDOW_HEIGHT / 2) - \
+	(wall_stripe / 2), 1, wall_stripe, YELLOW}, ray, offset_x);
 }

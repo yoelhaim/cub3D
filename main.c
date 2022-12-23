@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/22 18:35:28 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/23 19:07:24 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 void	ft_init(t_data	*data, t_cub3d *cubmap)
 {
 	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		exit(1);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 	WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
+	if (!data->win_ptr)
+		exit (1);
 	data->cub = cubmap;
 	data->angle = ft_init_direction(cubmap->direction);
 	data->p1.x = (cubmap->pos_player_x * GRID_SIZE) + (GRID_SIZE / 2);

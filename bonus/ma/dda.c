@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:12:39 by matef             #+#    #+#             */
-/*   Updated: 2022/12/22 19:40:46 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/23 21:47:03 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,17 @@ int	ft_event(int keycode, t_data *data)
 	ft_handle_oriented_event(data, keycode);
 	ft_handle_move_r_l(data, keycode);
 	return (0);
+}
+
+int	wall_collisions(t_data *data, char **map, int i, int j)
+{
+	int	x;
+	int	y;
+
+	x = (int)floor(j / GRID_SIZE);
+	y = (int)floor(i / GRID_SIZE);
+	if (map[x][(int)floor(data->p1.x / GRID_SIZE)] == '1' && \
+	map[(int)floor(data->p1.y / GRID_SIZE)][y] == '1')
+		return (0);
+	return (1);
 }

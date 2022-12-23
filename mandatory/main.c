@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 14:25:28 by yoelhaim          #+#    #+#             */
-/*   Updated: 2022/12/23 19:07:24 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/23 21:49:41 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,6 @@ void	ft_init(t_data	*data, t_cub3d *cubmap)
 	get_texture_adrr(data, cubmap);
 }
 
-char	*add_square_map(char *map, int long_width)
-{
-	int		len;
-	char	*tmp;
-	int		i;
-
-	len = ft_strlen(map);
-	tmp = ft_calloc(long_width + 1, sizeof(char));
-	i = 0;
-	while (map[i])
-	{
-		tmp[i] = map[i];
-		i++;
-	}
-	while (i < long_width)
-		tmp[i++] = 'x';
-	free(map);
-	return (tmp);
-}
-
-void	convert_map(t_cub3d *cubmap)
-{
-	int	i;
-
-	i = 0;
-	while (cubmap->maps[i])
-	{
-		cubmap->maps[i] = add_square_map(cubmap->maps[i], cubmap->width_of_map);
-		i++;
-	}
-}
-
 int	ft_parsing(int ac, char *file_name, t_cub3d *cubmap)
 {
 	if (ac != 2)
@@ -79,7 +47,6 @@ int	ft_parsing(int ac, char *file_name, t_cub3d *cubmap)
 			|| !check_map_is_valid(cubmap))
 		exit (1);
 	cubmap->height_of_map = ft_len_ptr(cubmap->maps);
-	convert_map(cubmap);
 	return (0);
 }
 

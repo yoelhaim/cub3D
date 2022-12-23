@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:28:20 by matef             #+#    #+#             */
-/*   Updated: 2022/12/22 19:38:12 by matef            ###   ########.fr       */
+/*   Updated: 2022/12/23 21:46:48 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_move_up(t_data *data, char **map, double pa)
 
 	i = data->p1.x + (cos(pa) * (MOVE_STEP * 3));
 	j = data->p1.y + (sin(pa) * (MOVE_STEP * 3));
-	if (ft_is_wall(map, i, j))
+	if (ft_is_wall(map, i, j) && wall_collisions(data, map, i, j))
 	{
 		data->p1.x += cos(pa) * MOVE_STEP;
 		data->p2.x += cos(pa) * MOVE_STEP;
@@ -35,7 +35,7 @@ void	ft_move_down(t_data *data, char **map, double pa)
 
 	i = data->p1.x - (cos(pa) * (MOVE_STEP * 3));
 	j = data->p1.y - (sin(pa) * (MOVE_STEP * 3));
-	if (ft_is_wall(map, i, j))
+	if (ft_is_wall(map, i, j) && wall_collisions(data, map, i, j))
 	{
 		data->p1.x -= cos(pa) * MOVE_STEP;
 		data->p2.x -= cos(pa) * MOVE_STEP;
@@ -53,7 +53,7 @@ void	ft_move_right(t_data *data, char **map, double pa)
 	pa = norm_angle(pa);
 	i = (int)(data->p1.x + (cos(pa) * (MOVE_STEP * 3)));
 	j = (int)(data->p1.y + (sin(pa) * (MOVE_STEP * 3)));
-	if (ft_is_wall(map, i, j))
+	if (ft_is_wall(map, i, j) && wall_collisions(data, map, i, j))
 	{
 		data->p1.x += cos(pa) * MOVE_STEP;
 		data->p2.x += cos(pa) * MOVE_STEP;
@@ -71,7 +71,7 @@ void	ft_move_left(t_data *data, char **map, double pa)
 	pa = norm_angle(pa);
 	i = (int)(data->p1.x + (cos(pa) * (MOVE_STEP * 3)));
 	j = (int)(data->p1.y + (sin(pa) * (MOVE_STEP * 3)));
-	if (ft_is_wall(map, i, j))
+	if (ft_is_wall(map, i, j) && wall_collisions(data, map, i, j))
 	{
 		data->p1.x += cos(pa) * MOVE_STEP;
 		data->p2.x += cos(pa) * MOVE_STEP;

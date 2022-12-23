@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 15:55:50 by pro               #+#    #+#             */
-/*   Updated: 2022/12/20 22:19:03 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:20:40 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	*get_texture_img(void *mlx_ptr, char *path)
 	int		h;
 
 	img = mlx_xpm_file_to_image(mlx_ptr, path, &w, &h);
-	if (!img)
-		exit(0);
+	if (!img || w != GRID_SIZE || h != GRID_SIZE)
+		exit(1);
 	return (img);
 }
 

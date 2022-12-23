@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelhaim <yoelhaim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:15:13 by pro               #+#    #+#             */
-/*   Updated: 2022/12/22 15:16:13 by yoelhaim         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:18:40 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,6 @@ int	check_map_is_valid(t_cub3d *cubmap)
 	{
 		while (map[i][j] == ' ')
 			j++;
-		if (map[i][j] == ' ')
-			i++;
 		if (map[i][j] != '1')
 			return (ft_putendl_fd("Error\nmap not allowed ❌!", 2), 0);
 		j++;

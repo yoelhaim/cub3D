@@ -28,17 +28,9 @@ then you can run the game by
 ./cub3D maps/meduim.cub
 ```
 
-## Features
-. 3D graphics rendered using ray casting
-. Immersive gaming experience
-. Realistic lighting and shadows
-
 ## Contributions
 We welcome any contributions or feedback. If you have any suggestions or find any bugs, please feel free to open an issue or submit a pull request on Github.
 
 
 ## Credits
 Developed by [@mohanor] and [@yoelhaim] as part of the 1337 Cursus program.
-
-
-
